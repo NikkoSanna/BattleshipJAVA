@@ -15,12 +15,13 @@ public class Map extends JFrame{
     public Map(){
         super("GameMap");
 
+        //Creating the grid
         for(int i=0; i<dimension; i++){
             for (int j=0; j<dimension; j++) {
                 label[i][j] = new JLabel(i + "," + j);
                 label[i][j].setBorder(BorderFactory.createLineBorder(Color.BLUE,2));
                 grid.add(label[i][j]);
-                tile[i][j] = new Tile(label[i][j]);
+                tile[i][j] = new Tile(label[i][j]);     //Adding a Tile object to every label
             }
         }
 

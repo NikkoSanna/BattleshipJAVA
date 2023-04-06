@@ -8,6 +8,7 @@ public class Listener extends JFrame implements ActionListener, FocusListener, W
     Map map;
     ShipSelector shipSelector;
 
+    //All the constructors
     public Listener(Menu page){
         menu = page;
     }
@@ -20,7 +21,7 @@ public class Listener extends JFrame implements ActionListener, FocusListener, W
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        //Metodi del menu
+        //Metods for the menu
         if(e.getSource()==menu.new_game){
             Map map = new Map();
         }
@@ -31,7 +32,7 @@ public class Listener extends JFrame implements ActionListener, FocusListener, W
             //TODO
         }
 
-        //Metodi del shipSelector
+        //Metods for the shipSelector
         if(e.getSource()==shipSelector.ship1){
             //TODO
         }
@@ -45,7 +46,7 @@ public class Listener extends JFrame implements ActionListener, FocusListener, W
             //TODO
         }
 
-        //Metodi del map
+        //Metods for the map
 
     }
 

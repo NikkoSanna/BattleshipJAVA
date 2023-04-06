@@ -6,6 +6,7 @@ public class ShipSelector extends JFrame {
     Container c = this.getContentPane();
     Listener listener = new Listener(this);
 
+    //Ships icon images
     ImageIcon iconShip1 = new ImageIcon(new ImageIcon("images/ship1.png").getImage().getScaledInstance(125, 125, Image.SCALE_SMOOTH));
     ImageIcon iconShip2 = new ImageIcon(new ImageIcon("images/ship2.png").getImage().getScaledInstance(125, 125, Image.SCALE_SMOOTH));
     ImageIcon iconShip3 = new ImageIcon(new ImageIcon("images/ship3.png").getImage().getScaledInstance(125, 125, Image.SCALE_SMOOTH));
@@ -22,11 +23,13 @@ public class ShipSelector extends JFrame {
 
         ships.setLayout(new GridLayout(2,2, 10,10));
 
+        //Adding icons to the labels
         ship1.setIcon(iconShip1);
         ship2.setIcon(iconShip2);
         ship3.setIcon(iconShip3);
         ship4.setIcon(iconShip4);
 
+        //Adding the labels to the panel
         ships.add(ship1);
         ships.add(ship2);
         ships.add(ship3);
