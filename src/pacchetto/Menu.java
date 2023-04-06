@@ -12,8 +12,23 @@ public class Menu extends JFrame {
     JButton settings = new JButton("Impostazioni");
 
     public Menu() {
+        new_game.addActionListener(listener);
+        old_game.addActionListener(listener);
+        settings.addActionListener(listener);
+
+        this.addWindowListener(listener);
+
         panel.add(new_game);
         panel.add(old_game);
         panel.add(settings);
+
+        c.add(panel);
+
+        this.setSize(250,250);
+        this.setLocation(ScreenSize.getWidth() / 3, ScreenSize.getHeight() / 3);
+        this.setResizable(false);
+        this.setVisible(true);
+        this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+
     }
 }

@@ -3,7 +3,7 @@ package pacchetto;
 import javax.swing.*;
 import java.awt.event.*;
 
-public class Listener extends JFrame implements ActionListener, FocusListener, WindowListener {
+public class Listener extends JFrame implements ActionListener, FocusListener, WindowListener, MouseListener {
     JFrame page;
 
     public Listener(JFrame page){
@@ -59,6 +59,31 @@ public class Listener extends JFrame implements ActionListener, FocusListener, W
 
     @Override
     public void windowDeactivated(WindowEvent e) {
+
+    }
+
+    @Override
+    public void mouseClicked(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mousePressed(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
 
     }
 }

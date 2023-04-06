@@ -32,6 +32,6 @@ public class Map extends JFrame{
         this.setLocation(ScreenSize.getWidth() / 3, ScreenSize.getHeight() / 3);
         this.setResizable(false);
         this.setVisible(true);
-        this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+        this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
     }
 }
