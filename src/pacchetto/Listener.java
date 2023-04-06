@@ -20,9 +20,33 @@ public class Listener extends JFrame implements ActionListener, FocusListener, W
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        //Metodi del menu
         if(e.getSource()==menu.new_game){
             Map map = new Map();
         }
+        if(e.getSource()==menu.old_game){
+            //TODO
+        }
+        if(e.getSource()==menu.settings){
+            //TODO
+        }
+
+        //Metodi del shipSelector
+        if(e.getSource()==shipSelector.ship1){
+            //TODO
+        }
+        if(e.getSource()==shipSelector.ship2){
+            //TODO
+        }
+        if(e.getSource()==shipSelector.ship3){
+            //TODO
+        }
+        if(e.getSource()==shipSelector.ship4){
+            //TODO
+        }
+
+        //Metodi del map
+
     }
 
     @Override

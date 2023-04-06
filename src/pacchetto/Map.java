@@ -3,7 +3,7 @@ import javax.swing.*;
 import java.awt.*;
 
 public class Map extends JFrame{
-    private int dimension = 6;
+    private final int dimension = 6;
     Container c = this.getContentPane();
     Listener listener = new Listener(this);
 
