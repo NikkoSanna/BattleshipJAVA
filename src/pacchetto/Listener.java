@@ -4,15 +4,25 @@ import javax.swing.*;
 import java.awt.event.*;
 
 public class Listener extends JFrame implements ActionListener, FocusListener, WindowListener, MouseListener {
-    JFrame page;
+    Menu menu;
+    Map map;
+    ShipSelector shipSelector;
 
-    public Listener(JFrame page){
-        this.page = page;
+    public Listener(Menu page){
+        menu = page;
+    }
+    public Listener(Map page){
+        map = page;
+    }
+    public Listener(ShipSelector page){
+        shipSelector = page;
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-
+        if(e.getSource()==menu.new_game){
+            Map map = new Map();
+        }
     }
 
     @Override
@@ -33,8 +43,13 @@ public class Listener extends JFrame implements ActionListener, FocusListener, W
     @Override
     public void windowClosing(WindowEvent e) {
         int confirm = JOptionPane.showOptionDialog(this, "Sei sicuro di voler chiudere la pagina?", "Conferma", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, null, null);
-        if (confirm == JOptionPane.YES_OPTION)
-            this.dispose();
+        if (confirm == JOptionPane.YES_OPTION) {
+            if(e.getSource()==menu)
+                menu.dispose();
+            else if(e.getSource()==map){
+                map.dispose();
+            }
+        }
     }
 
     @Override

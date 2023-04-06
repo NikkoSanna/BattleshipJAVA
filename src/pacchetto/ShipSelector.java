@@ -6,16 +6,27 @@ public class ShipSelector extends JFrame {
     Container c = this.getContentPane();
     Listener listener = new Listener(this);
 
+    ImageIcon iconShip1 = new ImageIcon(new ImageIcon("images/ship1.png").getImage().getScaledInstance(125, 125, Image.SCALE_SMOOTH));
+    ImageIcon iconShip2 = new ImageIcon(new ImageIcon("images/ship2.png").getImage().getScaledInstance(125, 125, Image.SCALE_SMOOTH));
+    ImageIcon iconShip3 = new ImageIcon(new ImageIcon("images/ship3.png").getImage().getScaledInstance(125, 125, Image.SCALE_SMOOTH));
+    ImageIcon iconShip4 = new ImageIcon(new ImageIcon("images/ship4.png").getImage().getScaledInstance(125, 125, Image.SCALE_SMOOTH));
+
     JPanel ships = new JPanel();
-    JPanel ship1 = new JPanel();
-    JLabel ship2 = new JLabel();
-    JLabel ship3= new JLabel();
-    JLabel ship4 = new JLabel();
+    JButton ship1 = new JButton();
+    JButton ship2 = new JButton();
+    JButton ship3= new JButton();
+    JButton ship4 = new JButton();
 
     public ShipSelector(){
         super("Ship Select");
 
         ships.setLayout(new GridLayout(2,2, 10,10));
+
+        ship1.setIcon(iconShip1);
+        ship2.setIcon(iconShip2);
+        ship3.setIcon(iconShip3);
+        ship4.setIcon(iconShip4);
+
         ships.add(ship1);
         ships.add(ship2);
         ships.add(ship3);
@@ -23,8 +34,10 @@ public class ShipSelector extends JFrame {
 
         c.add(ships);
 
-        this.addWindowListener(listener);
-        this.addMouseListener(listener);
+        ship1.addActionListener(listener);
+        ship2.addActionListener(listener);
+        ship3.addActionListener(listener);
+        ship4.addActionListener(listener);
 
         this.setSize(250,250);
         this.setLocation(ScreenSize.getWidth() / 2, ScreenSize.getHeight() / 2);
