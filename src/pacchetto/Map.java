@@ -7,7 +7,7 @@ public class Map extends JFrame{
     Container c = this.getContentPane();
     Listener listener = new Listener(this);
 
-    JPanel grid = new JPanel(new GridLayout(6,6));
+    JPanel grid = new JPanel(new GridLayout(dimension,dimension));
 
     JLabel[][] label = new JLabel[dimension][dimension]; //caselle della griglia
     Tile[][] tile = new Tile[dimension][dimension];
