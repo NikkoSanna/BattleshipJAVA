@@ -4,7 +4,7 @@ import javax.swing.*;
 
 public class Tile {
     boolean hasShip;
-    boolean isHit;
+    boolean isHit = false;
     JLabel label;
 
     public Tile(JLabel label){
@@ -12,5 +12,15 @@ public class Tile {
         label.setText("ciao");
     }
 
+    public void tileHit(){
+        if (isHit == false){
+            isHit=true;
+            if(hasShip == true){
+               /*TODO
+                   label.setIcon(RED);
+                */
+            }
+        }
+    }
 
 }
