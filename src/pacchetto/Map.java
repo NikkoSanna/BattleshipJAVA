@@ -5,6 +5,8 @@ import java.awt.*;
 
 public class Map extends JFrame{
     private final int dimension = 6;
+    public String shipType="";
+
     Container c = this.getContentPane();
     Listener listener = new Listener(this);
 
@@ -25,7 +27,7 @@ public class Map extends JFrame{
         //Creating the grid
         for(int i=0; i<dimension; i++){
             for (int j=0; j<dimension; j++) {
-                tile[i][j] = new Tile();
+                tile[i][j] = new Tile(this);
                 tile[i][j].setBorder(BorderFactory.createLineBorder(Color.BLACK,2));
 
                 tile[i][j].setContentAreaFilled(false);

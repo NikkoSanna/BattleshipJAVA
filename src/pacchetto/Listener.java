@@ -7,7 +7,7 @@ import java.awt.event.*;
 public class Listener extends JFrame implements ActionListener, FocusListener, WindowListener, MouseListener {
     Menu menu;
     Map map;
-    ShipSelector shipSelector;
+    ShipSelector shipselect;
 
     //All the constructors
     public Listener(Menu page){
@@ -17,21 +17,21 @@ public class Listener extends JFrame implements ActionListener, FocusListener, W
         map = page;
     }
     public Listener(ShipSelector page){
-        shipSelector = page;
+        shipselect = page;
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         //Metods for the menu
         try{
-            if(e.getSource()==menu.new_game){
+            if(e.getSource() == menu.new_game){
                 Map map = new Map();
                 menu.dispose();
             }
-            if(e.getSource()==menu.old_game){
+            if(e.getSource() == menu.old_game){
                 Settings opt = new Settings();
             }
-            if(e.getSource()==menu.settings){
+            if(e.getSource() == menu.settings){
                 //TODO
             }
         }catch(Exception e1){
@@ -40,16 +40,18 @@ public class Listener extends JFrame implements ActionListener, FocusListener, W
 
         //Metods for the shipSelector
         try{
-            if(e.getSource()==shipSelector.ship1){
-
+            if(e.getSource() == shipselect.ship1){
+                shipselect.ship1.setEnabled(false);
+                shipselect.setVisible(false);
+                map.shipType = e.getActionCommand();
             }
-            if(e.getSource()==shipSelector.ship2){
+            if(e.getSource() == shipselect.ship2){
                 //TODO
             }
-            if(e.getSource()==shipSelector.ship3){
+            if(e.getSource() == shipselect.ship3){
                 //TODO
             }
-            if(e.getSource()==shipSelector.ship4){
+            if(e.getSource() == shipselect.ship4){
                 //TODO
             }
         }catch(Exception e1){
@@ -93,9 +95,9 @@ public class Listener extends JFrame implements ActionListener, FocusListener, W
     public void windowClosing(WindowEvent e) {
         int confirm = JOptionPane.showOptionDialog(this, "Sei sicuro di voler chiudere la pagina?", "Conferma", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, null, null);
         if (confirm == JOptionPane.YES_OPTION) {
-            if(e.getSource()==menu)
+            if(e.getSource() == menu)
                 menu.dispose();
-            else if(e.getSource()==map){
+            else if(e.getSource() == map){
                 map.dispose();
             }
         }

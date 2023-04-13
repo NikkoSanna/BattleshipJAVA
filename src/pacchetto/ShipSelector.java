@@ -1,5 +1,6 @@
 package pacchetto;
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 import java.awt.*;
 
 public class ShipSelector extends JFrame {
@@ -15,13 +16,14 @@ public class ShipSelector extends JFrame {
     JPanel ships = new JPanel();
     JButton ship1 = new JButton();
     JButton ship2 = new JButton();
-    JButton ship3= new JButton();
+    JButton ship3 = new JButton();
     JButton ship4 = new JButton();
 
     public ShipSelector(){
         super("Ship Select");
 
-        ships.setLayout(new GridLayout(2,2, 10,10));
+        ships.setLayout(new GridLayout(2,2, 20,20));
+        ships.setBorder(new EmptyBorder(20,20,20,20));
 
         //Adding icons to the labels
         ship1.setIcon(iconShip1);
@@ -46,7 +48,7 @@ public class ShipSelector extends JFrame {
         ship1.setActionCommand("ship4");
         ship4.addActionListener(listener);
 
-        this.setSize(250,250);
+        this.pack();
         this.setLocation(ScreenSize.getWidth() / 2, ScreenSize.getHeight() / 2);
         this.setResizable(false);
         this.setVisible(true);

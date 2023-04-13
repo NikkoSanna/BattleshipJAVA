@@ -7,18 +7,20 @@ import javax.swing.*;
 public class Tile extends JButton implements MouseListener {
     boolean hasShip;
     boolean isHit = false;
+    Map map;
 
-    public Tile(){
+    public Tile(Map page){
+        this.map = page;
         addMouseListener(this);
     }
 
     public void tileHit(int i, int j){
         if (isHit == false){
-            isHit=true;
+            isHit = true;
             if(hasShip == true){
                /*TODO
                    label.setIcon(RED);
-                */
+               */
             }
         }
     }
@@ -46,11 +48,16 @@ public class Tile extends JButton implements MouseListener {
 
     @Override
     public void mouseEntered(MouseEvent e) {
-
+        System.out.println(map.shipType);
+        if(map.shipType.equals("ship1")){
+            System.out.println("aa");
+            setContentAreaFilled(true);
+            setBackground(Color.BLUE);
+        }
     }
 
     @Override
     public void mouseExited(MouseEvent e) {
-
+        setContentAreaFilled(false);
     }
 }
