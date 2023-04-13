@@ -22,32 +22,51 @@ public class Listener extends JFrame implements ActionListener, FocusListener, W
     @Override
     public void actionPerformed(ActionEvent e) {
         //Metods for the menu
-        if(e.getSource()==menu.new_game){
-            Map map = new Map();
-        }
-        if(e.getSource()==menu.old_game){
-            //TODO
-        }
-        if(e.getSource()==menu.settings){
-            //TODO
+        try{
+            if(e.getSource()==menu.new_game){
+                Map map = new Map();
+            }
+            if(e.getSource()==menu.old_game){
+                Settings opt = new Settings();
+            }
+            if(e.getSource()==menu.settings){
+                //TODO
+            }
+        }catch(Exception e1){
+            System.out.println("Errore nell'action performed di menu");
         }
 
         //Metods for the shipSelector
-        if(e.getSource()==shipSelector.ship1){
-            //TODO
-        }
-        if(e.getSource()==shipSelector.ship2){
-            //TODO
-        }
-        if(e.getSource()==shipSelector.ship3){
-            //TODO
-        }
-        if(e.getSource()==shipSelector.ship4){
-            //TODO
+        try{
+            if(e.getSource()==shipSelector.ship1){
+
+            }
+            if(e.getSource()==shipSelector.ship2){
+                //TODO
+            }
+            if(e.getSource()==shipSelector.ship3){
+                //TODO
+            }
+            if(e.getSource()==shipSelector.ship4){
+                //TODO
+            }
+        }catch(Exception e1){
+            System.out.println("Errore nell'action performed di shipselector");
         }
 
         //Metods for the map
-
+        try{
+            String command = e.getActionCommand();
+            System.out.println(e.getActionCommand());
+            String[] indexes = command.split(",");
+            int i = Integer.parseInt(indexes[0]);
+            int j = Integer.parseInt(indexes[1]);
+            System.out.println(i);
+            System.out.println(j);
+            map.tile[i][j].tileHit(i,j);
+        }catch(Exception e1){
+            System.out.println("Errore nell'action performed di map");
+        }
     }
 
     @Override

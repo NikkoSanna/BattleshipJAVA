@@ -5,14 +5,13 @@ import javax.swing.*;
 public class Tile {
     boolean hasShip;
     boolean isHit = false;
-    JLabel label;
+    JButton label;
 
-    public Tile(JLabel label){
+    public Tile(JButton label){
         this.label = label;
-        label.setText("ciao");
     }
 
-    public void tileHit(){
+    public void tileHit(int i, int j){
         if (isHit == false){
             isHit=true;
             if(hasShip == true){
@@ -21,6 +20,10 @@ public class Tile {
                 */
             }
         }
+    }
+
+    public void placeShip(){
+        //TODO
     }
 
 }

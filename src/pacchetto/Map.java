@@ -7,25 +7,36 @@ public class Map extends JFrame{
     Container c = this.getContentPane();
     Listener listener = new Listener(this);
 
+    ImageIcon image = new ImageIcon(new ImageIcon("images/seaBackground.png").getImage().getScaledInstance(250, 250, Image.SCALE_SMOOTH));
+
+    JLabel background = new JLabel();
+
     JPanel grid = new JPanel(new GridLayout(dimension,dimension));
 
-    JLabel[][] label = new JLabel[dimension][dimension]; //caselle della griglia
+    JButton[][] button = new JButton[dimension][dimension]; //caselle della griglia
     Tile[][] tile = new Tile[dimension][dimension];
 
     public Map(){
         super("GameMap");
+        background.setSize(250,250);
+        //background.setIcon(image);
 
         //Creating the grid
         for(int i=0; i<dimension; i++){
             for (int j=0; j<dimension; j++) {
-                label[i][j] = new JLabel(i + "," + j);
-                label[i][j].setBorder(BorderFactory.createLineBorder(Color.BLUE,2));
-                grid.add(label[i][j]);
-                tile[i][j] = new Tile(label[i][j]);     //Adding a Tile object to every label
+                button[i][j] = new JButton(i + "," + j);
+                button[i][j].setBorder(BorderFactory.createLineBorder(Color.BLUE,2));
+                button[i][j].setActionCommand(String.valueOf(i) + "," + String.valueOf(j));
+                button[i][j].addActionListener(listener);
+
+                //grid.add(button[i][j]);
+                tile[i][j] = new Tile(button[i][j]);     //Adding a Tile object to every label
             }
         }
 
-        c.add(grid, BorderLayout.CENTER);
+        //background.add(grid);
+        background.add(new JButton());
+        c.add(background);
 
         this.addWindowListener(listener);
 

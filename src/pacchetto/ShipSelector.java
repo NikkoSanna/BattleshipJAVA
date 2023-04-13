@@ -37,9 +37,13 @@ public class ShipSelector extends JFrame {
 
         c.add(ships);
 
+        ship1.setActionCommand("ship1");
         ship1.addActionListener(listener);
+        ship1.setActionCommand("ship2");
         ship2.addActionListener(listener);
+        ship1.setActionCommand("ship3");
         ship3.addActionListener(listener);
+        ship1.setActionCommand("ship4");
         ship4.addActionListener(listener);
 
         this.setSize(250,250);
