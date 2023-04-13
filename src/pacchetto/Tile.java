@@ -1,14 +1,15 @@
 package pacchetto;
 import java.awt.*;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import javax.swing.*;
 
-public class Tile {
+public class Tile extends JButton implements MouseListener {
     boolean hasShip;
     boolean isHit = false;
-    JButton label;
 
-    public Tile(JButton label){
-        this.label = label;
+    public Tile(){
+        addMouseListener(this);
     }
 
     public void tileHit(int i, int j){
@@ -26,4 +27,30 @@ public class Tile {
         //TODO
     }
 
+    @Override
+    public void mouseClicked(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mousePressed(MouseEvent e) {
+        setContentAreaFilled(true);
+        setBackground(Color.GRAY);
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
+        setContentAreaFilled(false);
+        setBackground(null);
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
+
+    }
 }

@@ -1,6 +1,7 @@
 package pacchetto;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.*;
 
 public class Listener extends JFrame implements ActionListener, FocusListener, WindowListener, MouseListener {
@@ -25,6 +26,7 @@ public class Listener extends JFrame implements ActionListener, FocusListener, W
         try{
             if(e.getSource()==menu.new_game){
                 Map map = new Map();
+                menu.dispose();
             }
             if(e.getSource()==menu.old_game){
                 Settings opt = new Settings();
@@ -59,10 +61,13 @@ public class Listener extends JFrame implements ActionListener, FocusListener, W
             String command = e.getActionCommand();
             System.out.println(e.getActionCommand());
             String[] indexes = command.split(",");
+
             int i = Integer.parseInt(indexes[0]);
             int j = Integer.parseInt(indexes[1]);
+
             System.out.println(i);
             System.out.println(j);
+
             map.tile[i][j].tileHit(i,j);
         }catch(Exception e1){
             System.out.println("Errore nell'action performed di map");
