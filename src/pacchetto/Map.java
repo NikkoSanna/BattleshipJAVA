@@ -22,7 +22,7 @@ public class Map extends JFrame{
     public Map(){
         setTitle("GameMap");
 
-        //Aggiunta dello sfondo ad un label
+        //Aggiunta dello sfondo a un label
         background.setLayout(new BorderLayout());
         background.setIcon(image);
 
@@ -38,8 +38,8 @@ public class Map extends JFrame{
                 tile[i][j].setBorder(BorderFactory.createLineBorder(Color.BLACK,2));
                 tile[i][j].setContentAreaFilled(false);
 
-                //Aggiunta di action e mouse listener ad ogni casella
-                //Ogni bottone avrá come action comand le sue coordinate, cosí da permettere di ottenerle piú avanti
+                //Aggiunta di action e mouse listener a ogni casella
+                //Ogni bottone avrá come action command le sue coordinate, cosí da permettere di ottenerle piú avanti
                 tile[i][j].setActionCommand(String.valueOf(i) + "," + String.valueOf(j));
                 tile[i][j].addActionListener(listener);
                 tile[i][j].addMouseListener(listener);

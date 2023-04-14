@@ -29,7 +29,7 @@ public class Listener extends JFrame implements ActionListener, FocusListener, W
     @Override
     public void actionPerformed(ActionEvent e) {
         //Metodi richiamati dal menú
-        if(e.getSource()==menu){
+        if(e.getSource() == menu){
 
             //Apertura della mappa
             if(e.getSource() == menu.new_game){
@@ -38,7 +38,7 @@ public class Listener extends JFrame implements ActionListener, FocusListener, W
             }
             //Continuo della partita precedente
             else if(e.getSource() == menu.old_game){
-                //
+                //Work in progress
             }
             //Apertura della pagina impostazioni
             else {

@@ -10,8 +10,8 @@ public class Menu extends JFrame {
     Container c = this.getContentPane();
     JPanel panel = new JPanel(new GridLayout(3, 1));
     JButton new_game = new JButton("Nuova Partita");
-    JButton old_game = new JButton("Continua partita");
-    JButton settings = new JButton("Impostazioni");
+    JButton old_game = new JButton("Continua partita (Non implementato)");
+    JButton settings = new JButton("Impostazioni (Non implementato)");
 
     public Menu() {
         //Aggiunta dei bottoni al panel
