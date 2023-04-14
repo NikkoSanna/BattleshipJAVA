@@ -3,65 +3,81 @@ package pacchetto;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.util.EventObject;
 
 public class Listener extends JFrame implements ActionListener, FocusListener, WindowListener, MouseListener {
+    //Il listener deve essere a conoscenza della classe che lo sta richiamando
     Menu menu;
     Map map;
     ShipSelector shipselect;
 
-    //All the constructors
+    //Costruttore se il listener é richiamato dal menú
     public Listener(Menu page){
         menu = page;
     }
+
+    //Costruttore se il listener é richiamato dalla mappa
     public Listener(Map page){
         map = page;
     }
-    public Listener(ShipSelector page){
-        shipselect = page;
+
+    //Costruttore se il listener é richiamato dal ship selector (contiene pure la mappa)
+    public Listener(ShipSelector shipselect){
+        this.shipselect = shipselect;
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        //Metods for the menu
-        try{
+        //Metodi richiamati dal menú
+        if(e.getSource()==menu){
+
+            //Apertura della mappa
             if(e.getSource() == menu.new_game){
                 Map map = new Map();
                 menu.dispose();
             }
-            if(e.getSource() == menu.old_game){
-                Settings opt = new Settings();
+            //Continuo della partita precedente
+            else if(e.getSource() == menu.old_game){
+                //
             }
-            if(e.getSource() == menu.settings){
-                //TODO
+            //Apertura della pagina impostazioni
+            else {
+                //Settings opt = new Settings();
             }
-        }catch(Exception e1){
-            System.out.println("Errore nell'action performed di menu");
         }
 
-        //Metods for the shipSelector
+        //Metodi richiamati dal ship selector
         try{
+            //Se la barca selezionata é la prima
             if(e.getSource() == shipselect.ship1){
+                System.out.println("a");
                 shipselect.ship1.setEnabled(false);
                 shipselect.setVisible(false);
-                map.shipType = e.getActionCommand();
+                System.out.println("a");
+                map.setShipType("ship1");
+                System.out.println(map.getShipType());
+                System.out.println("a");
             }
-            if(e.getSource() == shipselect.ship2){
+            //Se la barca selezionata é la seconda
+            else if(e.getSource() == shipselect.ship2){
                 //TODO
             }
-            if(e.getSource() == shipselect.ship3){
+            //Se la barca selezionata é la terza
+            else if(e.getSource() == shipselect.ship3){
                 //TODO
             }
-            if(e.getSource() == shipselect.ship4){
+            //Se la barca selezionata é la quarta
+            else if(e.getSource() == shipselect.ship4){
                 //TODO
             }
         }catch(Exception e1){
             System.out.println("Errore nell'action performed di shipselector");
         }
 
-        //Metods for the map
+        //Metodi richiamati dalla mappa
         try{
             String command = e.getActionCommand();
-            System.out.println(e.getActionCommand());
+            //System.out.println(e.getActionCommand());
             String[] indexes = command.split(",");
 
             int i = Integer.parseInt(indexes[0]);
@@ -91,14 +107,15 @@ public class Listener extends JFrame implements ActionListener, FocusListener, W
 
     }
 
+    //Apparizione di una finestra di conferma per la chiusura dei frame
     @Override
     public void windowClosing(WindowEvent e) {
         int confirm = JOptionPane.showOptionDialog(this, "Sei sicuro di voler chiudere la pagina?", "Conferma", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, null, null);
         if (confirm == JOptionPane.YES_OPTION) {
             if(e.getSource() == menu)
-                menu.dispose();
+                System.exit(0);
             else if(e.getSource() == map){
-                map.dispose();
+                System.exit(0);
             }
         }
     }
