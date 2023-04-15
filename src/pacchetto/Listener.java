@@ -22,15 +22,14 @@ public class Listener extends JFrame implements ActionListener, FocusListener, W
     }
 
     //Costruttore se il listener é richiamato dal ship selector (contiene pure la mappa)
-    public Listener(ShipSelector shipselect){
-        this.shipselect = shipselect;
+    public Listener(ShipSelector page){
+        shipselect = page;
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         //Metodi richiamati dal menú
-        if(e.getSource() == menu){
-
+        try{
             //Apertura della mappa
             if(e.getSource() == menu.new_game){
                 Map map = new Map();
@@ -44,52 +43,54 @@ public class Listener extends JFrame implements ActionListener, FocusListener, W
             else {
                 //Settings opt = new Settings();
             }
+        }catch (Exception e1){
+            System.out.println("Errore nell'action performed di menu");
         }
 
         //Metodi richiamati dal ship selector
         try{
             //Se la barca selezionata é la prima
             if(e.getSource() == shipselect.ship1){
-                System.out.println("a");
+                //Rendo il bottone della barca non piú usabile e nascondo lo ship selector
                 shipselect.ship1.setEnabled(false);
                 shipselect.setVisible(false);
-                System.out.println("a");
-                map.setShipType("ship1");
-                System.out.println(map.getShipType());
-                System.out.println("a");
+
+                //Imposto il tipo di barca che andró a piazzare
+                shipselect.map.setShipType(e.getActionCommand());
             }
             //Se la barca selezionata é la seconda
             else if(e.getSource() == shipselect.ship2){
-                //TODO
+                //Rendo il bottone della barca non piú usabile e nascondo lo ship selector
+                shipselect.ship2.setEnabled(false);
+                shipselect.setVisible(false);
+
+                //Imposto il tipo di barca che andró a piazzare
+                shipselect.map.setShipType(e.getActionCommand());
             }
             //Se la barca selezionata é la terza
             else if(e.getSource() == shipselect.ship3){
-                //TODO
+                //Rendo il bottone della barca non piú usabile e nascondo lo ship selector
+                shipselect.ship3.setEnabled(false);
+                shipselect.setVisible(false);
+
+                //Imposto il tipo di barca che andró a piazzare
+                shipselect.map.setShipType(e.getActionCommand());
             }
             //Se la barca selezionata é la quarta
-            else if(e.getSource() == shipselect.ship4){
-                //TODO
+            else {
+                //Rendo il bottone della barca non piú usabile e nascondo lo ship selector
+                shipselect.ship4.setEnabled(false);
+                shipselect.setVisible(false);
+
+                //Imposto il tipo di barca che andró a piazzare
+                shipselect.map.setShipType(e.getActionCommand());
             }
         }catch(Exception e1){
             System.out.println("Errore nell'action performed di shipselector");
         }
 
         //Metodi richiamati dalla mappa
-        try{
-            String command = e.getActionCommand();
-            //System.out.println(e.getActionCommand());
-            String[] indexes = command.split(",");
 
-            int i = Integer.parseInt(indexes[0]);
-            int j = Integer.parseInt(indexes[1]);
-
-            System.out.println(i);
-            System.out.println(j);
-
-            map.tile[i][j].tileHit(i,j);
-        }catch(Exception e1){
-            System.out.println("Errore nell'action performed di map");
-        }
     }
 
     @Override

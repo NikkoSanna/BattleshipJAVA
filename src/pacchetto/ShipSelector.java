@@ -65,4 +65,11 @@ public class ShipSelector extends JFrame {
         this.setVisible(true);
         this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
     }
+
+    //Se nessuno dei bottoni é piú funzionante viene chiuso definitivamente ship selector
+    public void killShipSelector(){
+        if(ship1.isEnabled() == false && ship2.isEnabled() == false && ship3.isEnabled() == false && ship4.isEnabled() == false){
+            dispose();
+        }
+    }
 }

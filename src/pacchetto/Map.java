@@ -4,20 +4,23 @@ import javax.swing.border.EmptyBorder;
 import java.awt.*;
 
 public class Map extends JFrame{
-    private final int dimension = 6;    //Per comoditá le dimensioni sono su una variabile di tipo int costante
+    private final int dimension = 10;    //Per comoditá le dimensioni sono su una variabile di tipo int costante
 
     private String shipType="";     //Variabile che contiene il tipo di barca da posizionare
 
     Listener listener = new Listener(this);
 
     //Immagine di sfondo
-    ImageIcon image = new ImageIcon(new ImageIcon("images/seaBackground.png").getImage().getScaledInstance(290, 290, Image.SCALE_SMOOTH));
+    ImageIcon image = new ImageIcon(new ImageIcon("images/seaBackground.png").getImage().getScaledInstance(500, 500, Image.SCALE_SMOOTH));
 
     //Oggetti legati all'interfaccia
     Container c = this.getContentPane();
     JLabel background = new JLabel();
     JPanel grid = new JPanel();
     Tile[][] tile = new Tile[dimension][dimension];     //JButton custom con aggiunta di attributi
+
+    //La mappa deve essere a conoscenza della struttura del ship selector
+    ShipSelector shipselect;
 
     public Map(){
         setTitle("GameMap");
@@ -32,7 +35,8 @@ public class Map extends JFrame{
         //Creazione della griglia, da inserire in un panel
         for(int i=0; i<dimension; i++){
             for (int j=0; j<dimension; j++) {
-                tile[i][j] = new Tile(this);      //Ogni casella é a conoscenza del contenuto dell'intera mappa
+                //Ogni casella é a conoscenza del contenuto dell'intera mappa e delle sue coordinate
+                tile[i][j] = new Tile(this, i ,j);
 
                 //Comandi legati all'estetica delle caselle
                 tile[i][j].setBorder(BorderFactory.createLineBorder(Color.BLACK,2));
@@ -59,23 +63,27 @@ public class Map extends JFrame{
         this.addWindowListener(listener);   //Aggiunta di un window listener al frame
 
         //Impostazioni di visualizzazione
-        this.setSize(290,290);
-        this.setLocation(ScreenSize.getWidth() / 3, ScreenSize.getHeight() / 3);
+        this.pack();
+        this.setLocation(ScreenSize.getWidth() / 9, ScreenSize.getHeight() / 3 - 100);
         this.setResizable(false);
         this.setVisible(true);
         this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
 
-        ShipSelector shipselect = new ShipSelector(this);   //La mappa genera il ship selector
+        shipselect = new ShipSelector(this);   //La mappa genera il ship selector
     }
 
     //Setter del tipo di barca che sta venendo posizionato
     public void setShipType(String text){
         shipType = text;
-        //System.out.println(shipType);
     }
 
     //Getter del tipo di barca che sta venendo posizionato
     public String getShipType() {
         return shipType;
+    }
+
+    //Getter della dimensione della griglia
+    public int getDimension(){
+        return dimension;
     }
 }
