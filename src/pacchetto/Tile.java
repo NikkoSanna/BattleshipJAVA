@@ -4,11 +4,11 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.Arrays;
 
 public class Tile extends JButton implements MouseListener {
     //Attributi della casella
-    boolean actuallyPlaying;    //Attributo che indica se si sta giocando o se si sta piazzando le navi
-    boolean hasShip;    //Attributo che indica se é presente o meno una barca
+    boolean hasShip;    //Attributo che indica se é presente o meno una parte di barca
     boolean isPlaceable = false;     //Attributo usato quando bisogna piazzare una barca (fase di piazzamento)
     boolean isHit = false;      //Attributo che indica se una barca é stata colpita (fase di gioco)
     int i;      //Coordinate ordinata
@@ -46,7 +46,7 @@ public class Tile extends JButton implements MouseListener {
     }
 
     public void placeShip(String shipType){
-        //Se la barca selezionata é la prima
+        //Se la barca selezionata é quella da 2
         if(shipType == "ship1"){
             setContentAreaFilled(true);
             setBackground(Color.GREEN);
@@ -56,7 +56,7 @@ public class Tile extends JButton implements MouseListener {
             hasShip = true;
             map.tile[i-1][j].hasShip = true;
         }
-        //Se la barca selezionata é la seconda
+        //Se la barca selezionata é quella da 3
         else if(shipType == "ship2"){
             setContentAreaFilled(true);
             setBackground(Color.GREEN);
@@ -85,7 +85,7 @@ public class Tile extends JButton implements MouseListener {
             map.tile[i+1][j].hasShip = true;
             map.tile[i-2][j].hasShip = true;
         }
-        //Se la barca selezionata é la quarta
+        //Se la barca selezionata é quella da 5
         else if(shipType == "ship4"){
             setContentAreaFilled(true);
             setBackground(Color.GREEN);
@@ -103,6 +103,13 @@ public class Tile extends JButton implements MouseListener {
             map.tile[i+1][j].hasShip = true;
             map.tile[i-2][j].hasShip = true;
             map.tile[i+2][j].hasShip = true;
+
+            //Inserimeno all'interno di un array delle coordinate che occupa la barca
+            map.shipFive_Tiles[0] = (map.tile[i-2][j].i - 1) + "," + (map.tile[i-2][j].j - 1);
+            map.shipFive_Tiles[1] = (map.tile[i-1][j].i - 1) + "," + (map.tile[i-1][j].j - 1);
+            map.shipFive_Tiles[2] = (i - 1) + "," + (j - 1);
+            map.shipFive_Tiles[3] = (map.tile[i+1][j].i - 1) + "," + (map.tile[i+1][j].j - 1);
+            map.shipFive_Tiles[4] = (map.tile[i+2][j].i - 1) + "," + (map.tile[i+2][j].j - 1);
         }
 
         map.setShipType("");
@@ -134,7 +141,7 @@ public class Tile extends JButton implements MouseListener {
                 }
 
             }
-            //Se la barca selezionata é la seconda
+            //Se la barca selezionata é quella da 3
             else if(map.getShipType().equals("ship2")){
                 //Con questa condizione evito anche che vengano cancellati i colori
                 if (i >= 1 && i <= map.getDimension() - 1 && !hasShip && !map.tile[i - 1][j].hasShip && !map.tile[i + 1][j].hasShip) {
@@ -156,7 +163,7 @@ public class Tile extends JButton implements MouseListener {
                     setBackground(Color.RED);
                 }
             }
-            //Se la barca selezionata é la terza
+            //Se la barca selezionata é la quella da 4
             else if(map.getShipType().equals("ship3")){
                 //Con questa condizione evito anche che vengano cancellati i colori
                 if (i >= 2 && i <= map.getDimension() - 1 && !hasShip && !map.tile[i - 1][j].hasShip && !map.tile[i + 1][j].hasShip && !map.tile[i - 2][j].hasShip) {
@@ -181,7 +188,7 @@ public class Tile extends JButton implements MouseListener {
                     setBackground(Color.RED);
                 }
             }
-            //Se la barca selezionata é la quarta
+            //Se la barca selezionata é quella da 5
             else if(map.getShipType().equals("ship4")){
                 //Con questa condizione evito anche che vengano cancellati i colori
                 if (i >= 2 && i <= map.getDimension() - 2 && !hasShip && !map.tile[i - 1][j].hasShip && !map.tile[i + 1][j].hasShip && !map.tile[i - 2][j].hasShip && !map.tile[i + 2][j].hasShip) {
@@ -215,7 +222,8 @@ public class Tile extends JButton implements MouseListener {
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        if (!actuallyPlaying) {//Se sono nella fase di piazzamento richiamo il metodo placeShip col tipo di barca corretto
+        //Se sono nella fase di piazzamento richiamo il metodo placeShip col tipo di barca corretto
+        if (!map.actuallyPlaying) {
             try {
                 if (map.getShipType().equals("ship1") && isPlaceable && map.tile[i - 1][j].isPlaceable) {
                     placeShip("ship1");
@@ -228,7 +236,9 @@ public class Tile extends JButton implements MouseListener {
                 }
             } catch (Exception ignored) {
             }
-        } else {//Se sono nella fase di gioco richiamo il metodo shoot
+        }
+        //Se sono nella fase di gioco richiamo il metodo tileHit
+        else {
             tileHit();
         }
     }

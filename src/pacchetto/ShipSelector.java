@@ -9,15 +9,15 @@ public class ShipSelector extends JFrame {
     Listener listener = new Listener(this);
 
     //Immagini relative alle barche
-    ImageIcon iconShip1 = new ImageIcon(new ImageIcon("images/ship1.png").getImage().getScaledInstance(125, 125, Image.SCALE_SMOOTH));
+    /*ImageIcon iconShip1 = new ImageIcon(new ImageIcon("images/ship1.png").getImage().getScaledInstance(125, 125, Image.SCALE_SMOOTH));
     ImageIcon iconShip2 = new ImageIcon(new ImageIcon("images/ship2.png").getImage().getScaledInstance(125, 125, Image.SCALE_SMOOTH));
     ImageIcon iconShip3 = new ImageIcon(new ImageIcon("images/ship3.png").getImage().getScaledInstance(125, 125, Image.SCALE_SMOOTH));
-    ImageIcon iconShip4 = new ImageIcon(new ImageIcon("images/ship4.png").getImage().getScaledInstance(125, 125, Image.SCALE_SMOOTH));
+        ImageIcon iconShip4 = new ImageIcon(new ImageIcon("images/ship4.png").getImage().getScaledInstance(125, 125, Image.SCALE_SMOOTH));*/
 
-    /*ImageIcon iconShip1 = new ImageIcon(new ImageIcon("images/navedadue.png").getImage());
+    ImageIcon iconShip1 = new ImageIcon(new ImageIcon("images/navedadue.png").getImage());
     ImageIcon iconShip2 = new ImageIcon(new ImageIcon("images/navedatre.png").getImage());
     ImageIcon iconShip3 = new ImageIcon(new ImageIcon("images/navedaquattro.png").getImage());
-    ImageIcon iconShip4 = new ImageIcon(new ImageIcon("images/ship4.png").getImage().getScaledInstance(125, 125, Image.SCALE_SMOOTH));*/
+    ImageIcon iconShip4 = new ImageIcon(new ImageIcon("images/ship4.png").getImage().getScaledInstance(125, 125, Image.SCALE_SMOOTH));
 
     //Oggetti legati all'interfaccia
     Container c = this.getContentPane();
@@ -26,8 +26,8 @@ public class ShipSelector extends JFrame {
     JButton ship2 = new JButton();
     JButton ship3 = new JButton();
     JButton ship4 = new JButton();
-    JButton horizontal = new JButton("H");
-    JButton vertical = new JButton("V");
+    JButton horizontal = new JButton("H (non implementato)");
+    JButton vertical = new JButton("V (non implementato)");
 
     public ShipSelector(Map map){
         this.map = map;     //Il ship selector é a conoscenza dell'intera struttura della mappa
