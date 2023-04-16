@@ -44,7 +44,6 @@ public class Map extends JFrame{
 
                 //Aggiunta di action e mouse listener a ogni casella
                 //Ogni bottone avrá come action command le sue coordinate, cosí da permettere di ottenerle piú avanti
-                tile[i][j].setActionCommand(String.valueOf(i) + "," + String.valueOf(j));
                 tile[i][j].addActionListener(listener);
                 tile[i][j].addMouseListener(listener);
 
@@ -73,7 +72,7 @@ public class Map extends JFrame{
     }
 
     //Setter del tipo di barca che sta venendo posizionato
-    public void setShipType(String text){
+     public void setShipType(String text){
         shipType = text;
     }
 

@@ -14,6 +14,11 @@ public class ShipSelector extends JFrame {
     ImageIcon iconShip3 = new ImageIcon(new ImageIcon("images/ship3.png").getImage().getScaledInstance(125, 125, Image.SCALE_SMOOTH));
     ImageIcon iconShip4 = new ImageIcon(new ImageIcon("images/ship4.png").getImage().getScaledInstance(125, 125, Image.SCALE_SMOOTH));
 
+    /*ImageIcon iconShip1 = new ImageIcon(new ImageIcon("images/navedadue.png").getImage());
+    ImageIcon iconShip2 = new ImageIcon(new ImageIcon("images/navedatre.png").getImage());
+    ImageIcon iconShip3 = new ImageIcon(new ImageIcon("images/navedaquattro.png").getImage());
+    ImageIcon iconShip4 = new ImageIcon(new ImageIcon("images/ship4.png").getImage().getScaledInstance(125, 125, Image.SCALE_SMOOTH));*/
+
     //Oggetti legati all'interfaccia
     Container c = this.getContentPane();
     JPanel ships = new JPanel();
@@ -21,6 +26,8 @@ public class ShipSelector extends JFrame {
     JButton ship2 = new JButton();
     JButton ship3 = new JButton();
     JButton ship4 = new JButton();
+    JButton horizontal = new JButton("H");
+    JButton vertical = new JButton("V");
 
     public ShipSelector(Map map){
         this.map = map;     //Il ship selector é a conoscenza dell'intera struttura della mappa
@@ -28,7 +35,7 @@ public class ShipSelector extends JFrame {
         setTitle("Ship Select");
 
         //Impostazioni dei layout
-        ships.setLayout(new GridLayout(2,2, 20,20));
+        ships.setLayout(new GridLayout(3,2, 20,20));
         ships.setBorder(new EmptyBorder(20,20,20,20));
 
         //Aggiungo le icone ai bottoni
@@ -42,6 +49,8 @@ public class ShipSelector extends JFrame {
         ships.add(ship2);
         ships.add(ship3);
         ships.add(ship4);
+        ships.add(horizontal);
+        ships.add(vertical);
 
         c.add(ships);   //Aggiunta del panel al content pane
 
