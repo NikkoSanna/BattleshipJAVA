@@ -1,9 +1,7 @@
 package pacchetto;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.*;
-import java.util.EventObject;
 
 public class Listener extends JFrame implements ActionListener, FocusListener, WindowListener, MouseListener {
     //Il listener deve essere a conoscenza della classe che lo sta richiamando
