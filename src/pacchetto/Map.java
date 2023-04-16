@@ -104,7 +104,7 @@ public class Map extends JFrame {
     }
 
     //Setter del tipo di barca che sta venendo posizionato
-     public void setShipType(String text){
+    public void setShipType(String text) {
         shipType = text;
     }
 

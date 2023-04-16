@@ -38,6 +38,16 @@ public class ShipSelector extends JFrame {
         ships.setLayout(new GridLayout(3,2, 20,20));
         ships.setBorder(new EmptyBorder(20,20,20,20));
 
+        //Comandi per l'estetica dei bottoni
+        ship1.setContentAreaFilled(false);
+        ship1.setBorderPainted(false);
+        ship2.setContentAreaFilled(false);
+        ship2.setBorderPainted(false);
+        ship3.setContentAreaFilled(false);
+        ship3.setBorderPainted(false);
+        ship4.setContentAreaFilled(false);
+        ship4.setBorderPainted(false);
+
         //Aggiungo le icone ai bottoni
         ship1.setIcon(iconShip1);
         ship2.setIcon(iconShip2);
@@ -77,7 +87,35 @@ public class ShipSelector extends JFrame {
 
     //Se nessuno dei bottoni é piú funzionante viene chiuso definitivamente ship selector
     public void killShipSelector(){
-        if(ship1.isEnabled() == false && ship2.isEnabled() == false && ship3.isEnabled() == false && ship4.isEnabled() == false){
+        if(!ship1.isEnabled() && !ship2.isEnabled() && !ship3.isEnabled() && !ship4.isEnabled()){
+            map.actuallyPlaying = true;     //Passo alla fase di gioco
+
+            //Stampa delle coordinate delle barche
+            /*
+            System.out.println(map.shipTwo_Tiles[0]);
+            System.out.println(map.shipTwo_Tiles[1]);
+
+            System.out.println("-------------");
+
+            System.out.println(map.shipThree_Tiles[0]);
+            System.out.println(map.shipThree_Tiles[1]);
+            System.out.println(map.shipThree_Tiles[2]);
+
+            System.out.println("-------------");
+
+            System.out.println(map.shipFour_Tiles[0]);
+            System.out.println(map.shipFour_Tiles[1]);
+            System.out.println(map.shipFour_Tiles[2]);
+            System.out.println(map.shipFour_Tiles[3]);
+
+            System.out.println("-------------");
+
+            System.out.println(map.shipFive_Tiles[0]);
+            System.out.println(map.shipFive_Tiles[1]);
+            System.out.println(map.shipFive_Tiles[2]);
+            System.out.println(map.shipFive_Tiles[3]);
+            System.out.println(map.shipFive_Tiles[4]);
+            */
             dispose();
         }
     }
