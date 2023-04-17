@@ -1,4 +1,4 @@
-package pacchetto;
+package packet;
 
 public class Main {
     public static void main(String[] args) {

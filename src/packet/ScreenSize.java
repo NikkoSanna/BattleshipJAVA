@@ -1,4 +1,4 @@
-package pacchetto;
+package packet;
 
 import java.awt.*;
 

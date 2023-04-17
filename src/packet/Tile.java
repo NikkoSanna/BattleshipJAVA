@@ -1,10 +1,9 @@
-package pacchetto;
+package packet;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.util.Arrays;
 
 public class Tile extends JButton implements MouseListener {
     //Attributi della casella

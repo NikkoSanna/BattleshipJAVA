@@ -1,7 +1,9 @@
-package pacchetto;
+package packet;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 public class ShipSelector extends JFrame {
     Map map;    //Il ship selector deve conoscere la mappa per permettere poi effettivamente di piazzare le barche
@@ -9,15 +11,15 @@ public class ShipSelector extends JFrame {
     Listener listener = new Listener(this);
 
     //Immagini relative alle barche
-    /*ImageIcon iconShip1 = new ImageIcon(new ImageIcon("images/ship1.png").getImage().getScaledInstance(125, 125, Image.SCALE_SMOOTH));
+    ImageIcon iconShip1 = new ImageIcon(new ImageIcon("images/ship1.png").getImage().getScaledInstance(125, 125, Image.SCALE_SMOOTH));
     ImageIcon iconShip2 = new ImageIcon(new ImageIcon("images/ship2.png").getImage().getScaledInstance(125, 125, Image.SCALE_SMOOTH));
     ImageIcon iconShip3 = new ImageIcon(new ImageIcon("images/ship3.png").getImage().getScaledInstance(125, 125, Image.SCALE_SMOOTH));
-        ImageIcon iconShip4 = new ImageIcon(new ImageIcon("images/ship4.png").getImage().getScaledInstance(125, 125, Image.SCALE_SMOOTH));*/
+    ImageIcon iconShip4 = new ImageIcon(new ImageIcon("images/ship4.png").getImage().getScaledInstance(125, 125, Image.SCALE_SMOOTH));
 
-    ImageIcon iconShip1 = new ImageIcon(new ImageIcon("images/navedadue.png").getImage());
+    /*ImageIcon iconShip1 = new ImageIcon(new ImageIcon("images/navedadue.png").getImage());
     ImageIcon iconShip2 = new ImageIcon(new ImageIcon("images/navedatre.png").getImage());
     ImageIcon iconShip3 = new ImageIcon(new ImageIcon("images/navedaquattro.png").getImage());
-    ImageIcon iconShip4 = new ImageIcon(new ImageIcon("images/ship4.png").getImage().getScaledInstance(125, 125, Image.SCALE_SMOOTH));
+    ImageIcon iconShip4 = new ImageIcon(new ImageIcon("images/ship4.png").getImage().getScaledInstance(125, 125, Image.SCALE_SMOOTH));*/
 
     //Oggetti legati all'interfaccia
     Container c = this.getContentPane();
@@ -59,8 +61,6 @@ public class ShipSelector extends JFrame {
         ships.add(ship2);
         ships.add(ship3);
         ships.add(ship4);
-        ships.add(horizontal);
-        ships.add(vertical);
 
         c.add(ships);   //Aggiunta del panel al content pane
 
@@ -78,8 +78,8 @@ public class ShipSelector extends JFrame {
         ship4.addActionListener(listener);
 
         //Impostazioni di visualizzazione
-        this.pack();
-        this.setLocation(ScreenSize.getWidth() / 2, ScreenSize.getHeight() / 2);
+        this.setSize(1050,250);
+        this.setLocation(ScreenSize.getWidth() / 2 - 525, ScreenSize.getHeight() - 275);
         this.setResizable(false);
         this.setVisible(true);
         this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
@@ -89,7 +89,6 @@ public class ShipSelector extends JFrame {
     public void killShipSelector(){
         if(!ship1.isEnabled() && !ship2.isEnabled() && !ship3.isEnabled() && !ship4.isEnabled()){
             map.actuallyPlaying = true;     //Passo alla fase di gioco
-
 
 
 

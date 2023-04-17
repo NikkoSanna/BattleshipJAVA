@@ -1,4 +1,4 @@
-package pacchetto;
+package packet;
 
 import javax.swing.*;
 import java.awt.event.*;
@@ -30,7 +30,10 @@ public class Listener extends JFrame implements ActionListener, FocusListener, W
         try{
             //Apertura della mappa
             if(e.getSource() == menu.new_game){
-                Map map = new Map();
+                Map mapOne = new Map();
+                Map mapTwo = new Map();
+                mapTwo.setLocation((ScreenSize.getWidth() / 2) + 25, (ScreenSize.getHeight() / 3) - 250);
+                mapTwo.shipselect.dispose();
                 menu.dispose();
             }
             //Continuo della partita precedente
