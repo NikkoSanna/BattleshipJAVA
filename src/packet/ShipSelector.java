@@ -28,8 +28,6 @@ public class ShipSelector extends JFrame {
     JButton ship2 = new JButton();
     JButton ship3 = new JButton();
     JButton ship4 = new JButton();
-    JButton horizontal = new JButton("H (non implementato)");
-    JButton vertical = new JButton("V (non implementato)");
 
     public ShipSelector(Map map){
         this.map = map;     //Il ship selector é a conoscenza dell'intera struttura della mappa
@@ -37,7 +35,7 @@ public class ShipSelector extends JFrame {
         setTitle("Ship Select");
 
         //Impostazioni dei layout
-        ships.setLayout(new GridLayout(3,2, 20,20));
+        ships.setLayout(new GridLayout(2,2, 20,20));
         ships.setBorder(new EmptyBorder(20,20,20,20));
 
         //Comandi per l'estetica dei bottoni
@@ -89,7 +87,6 @@ public class ShipSelector extends JFrame {
     public void killShipSelector(){
         if(!ship1.isEnabled() && !ship2.isEnabled() && !ship3.isEnabled() && !ship4.isEnabled()){
             map.actuallyPlaying = true;     //Passo alla fase di gioco
-
 
 
             //Stampa delle coordinate delle barche

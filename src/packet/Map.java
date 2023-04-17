@@ -38,7 +38,6 @@ public class Map extends JFrame {
     JPanel grid = new JPanel();
     Tile[][] tile = new Tile[dimension][dimension];     //JButton custom con aggiunta di attributi
 
-
     //La mappa deve essere a conoscenza della struttura del ship selector
     ShipSelector shipselect;
 
@@ -95,7 +94,7 @@ public class Map extends JFrame {
 
         //Impostazioni di visualizzazione
         this.pack();
-        this.setLocation(ScreenSize.getWidth() / 9, ScreenSize.getHeight() / 3 - 100);
+        this.setLocation(ScreenSize.getWidth() / 2 - 525, ScreenSize.getHeight() / 3 - 250);
         this.setResizable(false);
         this.setVisible(true);
         this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);

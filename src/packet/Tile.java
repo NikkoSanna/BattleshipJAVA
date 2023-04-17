@@ -346,9 +346,7 @@ public class Tile extends JButton implements MouseListener {
             }
         }
         //Se sono nella fase di gioco richiamo il metodo tileHit
-        else {
-            tileHit();
-        }
+
     }
 
     //Se sto cliccando su una casella questa deve darmi un feedback visivo
