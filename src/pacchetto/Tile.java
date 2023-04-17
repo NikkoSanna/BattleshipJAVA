@@ -38,7 +38,6 @@ public class Tile extends JButton implements MouseListener {
 
                 //Controllo se é stata colpita una casella della barca da 2
                 for (int a = 0; a < map.shipTwo_Tiles.length; a++){
-                    System.out.println("a");
 
                     if (map.shipTwo_Tiles[a].equals((i - 1) + "," + (j - 1))){
                         map.shipTwo_Iterator--;     //Decremento il contatore delle caselle operative
@@ -52,9 +51,6 @@ public class Tile extends JButton implements MouseListener {
                                 String[] coordinates = map.shipTwo_Tiles[b].split(",");     //Splitto le coordinate
                                 int x = Integer.parseInt(coordinates[0]);     //Converto la coordinata x in intero
                                 int y = Integer.parseInt(coordinates[1]);     //Converto la coordinata y in intero
-
-                                System.out.println(x);
-                                System.out.println(y);
 
                                 map.tile[x+1][y+1].setContentAreaFilled(true);
                                 map.tile[x+1][y+1].setBackground(Color.RED);
