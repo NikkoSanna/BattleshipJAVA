@@ -1,13 +1,15 @@
 package packet;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.*;
 
 public class Listener extends JFrame implements ActionListener, FocusListener, WindowListener, MouseListener {
     //Il listener deve essere a conoscenza della classe che lo sta richiamando
     Menu menu;
     Map map;
-    ShipSelector shipselect;
+    ShipSelector shipSelect;
+    PlayerRole playerRole;
 
     //Costruttore se il listener é richiamato dal menú
     public Listener(Menu page){
@@ -21,7 +23,11 @@ public class Listener extends JFrame implements ActionListener, FocusListener, W
 
     //Costruttore se il listener é richiamato dal ship selector (contiene pure la mappa)
     public Listener(ShipSelector page){
-        shipselect = page;
+        shipSelect = page;
+    }
+
+    public Listener(PlayerRole page){
+        playerRole = page;
     }
 
     @Override
@@ -30,10 +36,7 @@ public class Listener extends JFrame implements ActionListener, FocusListener, W
         try{
             //Apertura della mappa
             if(e.getSource() == menu.new_game){
-                Map mapOne = new Map();
-                Map mapTwo = new Map();
-                mapTwo.setLocation((ScreenSize.getWidth() / 2) + 25, (ScreenSize.getHeight() / 3) - 250);
-                mapTwo.shipselect.dispose();
+                PlayerRole playerRole = new PlayerRole();
                 menu.dispose();
             }
             //Continuo della partita precedente
@@ -51,46 +54,69 @@ public class Listener extends JFrame implements ActionListener, FocusListener, W
         //Metodi richiamati dal ship selector
         try{
             //Se la barca selezionata é la prima
-            if(e.getSource() == shipselect.ship1){
+            if(e.getSource() == shipSelect.ship1){
                 //Rendo il bottone della barca non piú usabile e nascondo lo ship selector
-                shipselect.ship1.setEnabled(false);
-                shipselect.setVisible(false);
+                shipSelect.ship1.setEnabled(false);
+                shipSelect.setVisible(false);
 
                 //Imposto il tipo di barca che andró a piazzare
-                shipselect.map.setShipType(e.getActionCommand());
+                shipSelect.map.setShipType(e.getActionCommand());
             }
             //Se la barca selezionata é la seconda
-            else if(e.getSource() == shipselect.ship2){
+            else if(e.getSource() == shipSelect.ship2){
                 //Rendo il bottone della barca non piú usabile e nascondo lo ship selector
-                shipselect.ship2.setEnabled(false);
-                shipselect.setVisible(false);
+                shipSelect.ship2.setEnabled(false);
+                shipSelect.setVisible(false);
 
                 //Imposto il tipo di barca che andró a piazzare
-                shipselect.map.setShipType(e.getActionCommand());
+                shipSelect.map.setShipType(e.getActionCommand());
             }
             //Se la barca selezionata é la terza
-            else if(e.getSource() == shipselect.ship3){
+            else if(e.getSource() == shipSelect.ship3){
                 //Rendo il bottone della barca non piú usabile e nascondo lo ship selector
-                shipselect.ship3.setEnabled(false);
-                shipselect.setVisible(false);
+                shipSelect.ship3.setEnabled(false);
+                shipSelect.setVisible(false);
 
                 //Imposto il tipo di barca che andró a piazzare
-                shipselect.map.setShipType(e.getActionCommand());
+                shipSelect.map.setShipType(e.getActionCommand());
             }
             //Se la barca selezionata é la quarta
             else {
                 //Rendo il bottone della barca non piú usabile e nascondo lo ship selector
-                shipselect.ship4.setEnabled(false);
-                shipselect.setVisible(false);
+                shipSelect.ship4.setEnabled(false);
+                shipSelect.setVisible(false);
 
                 //Imposto il tipo di barca che andró a piazzare
-                shipselect.map.setShipType(e.getActionCommand());
+                shipSelect.map.setShipType(e.getActionCommand());
             }
         }catch(Exception e1){
             System.out.println("Errore nell'action performed di shipselector");
         }
 
-        //Metodi richiamati dalla mappa
+        //Metodi richiamati dal selettore ruolo
+        try{
+            if(e.getSource() == playerRole.startButton){
+                playerRole.selectButtons = playerRole.buttons.getSelection();
+                if(playerRole.selectButtons != null && !(playerRole.playerName.getText().equals(""))){
+                    Map mapOne = new Map();
+                    Map mapTwo = new Map();
+                    mapTwo.setLocation((ScreenSize.getWidth() / 2) + 25, (ScreenSize.getHeight() / 3) - 250);
+                    mapTwo.shipselect.dispose();
+                    mapOne.playerName.setText(playerRole.playerName.getText());
+                    playerRole.dispose();
+                    if(playerRole.hostRole.isSelected()){
+                        Server server = new Server();
+                    }else{
+                        Client client = new Client();
+                    }
+                }
+                else{
+                    playerRole.playerName.setBackground(Color.RED);
+                }
+            }
+        }catch (Exception e1){
+            System.out.println("Errore nell'action performed di playerRole");
+        }
 
     }
 
@@ -112,13 +138,9 @@ public class Listener extends JFrame implements ActionListener, FocusListener, W
     //Apparizione di una finestra di conferma per la chiusura dei frame
     @Override
     public void windowClosing(WindowEvent e) {
-        int confirm = JOptionPane.showOptionDialog(this, "Sei sicuro di voler chiudere la pagina?", "Conferma", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, null, null);
+        int confirm = JOptionPane.showOptionDialog(this, "Sei sicuro di voler chiudere il gioco?", "Conferma", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, null, null);
         if (confirm == JOptionPane.YES_OPTION) {
-            if(e.getSource() == menu)
-                System.exit(0);
-            else if(e.getSource() == map){
-                System.exit(0);
-            }
+            System.exit(0);
         }
     }
 

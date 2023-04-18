@@ -29,11 +29,16 @@ public class Map extends JFrame {
 
     Listener listener = new Listener(this);
 
-    //Immagine di sfondo
-    ImageIcon image = new ImageIcon(new ImageIcon("images/seaBackground.png").getImage().getScaledInstance(500, 500, Image.SCALE_SMOOTH));
+    //Immagini usate
+    ImageIcon seaImage = new ImageIcon(new ImageIcon("images/seaBackground.png").getImage().getScaledInstance(500, 500, Image.SCALE_SMOOTH));
+    ImageIcon captainImage = new ImageIcon(new ImageIcon("images/captainImage.png").getImage().getScaledInstance(60,60,Image.SCALE_SMOOTH));
 
     //Oggetti legati all'interfaccia
     Container c = this.getContentPane();
+    JPanel upperBar = new JPanel();
+    JLabel playerName = new JLabel();
+    JLabel playerCharacter = new JLabel();
+    JLabel shipSunkCounter = new JLabel();
     JLabel background = new JLabel();
     JPanel grid = new JPanel();
     Tile[][] tile = new Tile[dimension][dimension];     //JButton custom con aggiunta di attributi
@@ -44,12 +49,23 @@ public class Map extends JFrame {
     public Map() {
         setTitle("GameMap");
 
+        c.setLayout(new BoxLayout(c,BoxLayout.Y_AXIS));      //Impostazione del layout del content pane
+
         //Aggiunta dello sfondo a un label
         background.setLayout(new BorderLayout());
-        background.setIcon(image);
+        background.setIcon(seaImage);
 
-        //Impostazione del layout della griglia di gioco
-        grid.setLayout(new GridLayout(dimension, dimension));
+        //Aggiunta di una barra superiore al frame
+        upperBar.setLayout(new GridLayout(1,3));
+        shipSunkCounter.setText("Barche Affondate: 0");
+        playerCharacter.setIcon(captainImage);
+        upperBar.add(playerName);
+        upperBar.add(playerCharacter);
+        upperBar.add(shipSunkCounter);
+
+        background.add(upperBar, BorderLayout.NORTH);    //Aggiunta della barra superiore al content pane
+
+        grid.setLayout(new GridLayout(dimension, dimension));    //Impostazione del layout della griglia di gioco
 
         //Creazione della griglia, da inserire in un panel
         for (int i = 0; i < dimension; i++) {
