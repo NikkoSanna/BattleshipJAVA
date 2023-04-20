@@ -13,5 +13,6 @@ public class Server {
 
         String ip = in.readLine(); //you get the IP as a String
         System.out.println(ip);
+        started = true;
     }
 }
