@@ -1,34 +1,17 @@
 package packet;
 
-import javax.swing.*;
-import java.net.InetAddress;
-import java.net.NetworkInterface;
-import java.net.SocketException;
-import java.net.UnknownHostException;
-import java.util.Enumeration;
+import java.net.*;
+import java.io.*;
 
 public class Server {
     boolean started = false;
 
-    public Server() {
-        String ip;
-        try {
-            Enumeration<NetworkInterface> interfaces = NetworkInterface.getNetworkInterfaces();
-            while (interfaces.hasMoreElements()) {
-                NetworkInterface iface = interfaces.nextElement();
-                // filters out 127.0.0.1 and inactive interfaces
-                if (iface.isLoopback() || !iface.isUp())
-                    continue;
+    public Server() throws IOException {
+        URL whatismyip = new URL("http://checkip.amazonaws.com");
+        BufferedReader in = new BufferedReader(new InputStreamReader(
+                whatismyip.openStream()));
 
-                Enumeration<InetAddress> addresses = iface.getInetAddresses();
-                while (addresses.hasMoreElements()) {
-                    InetAddress addr = addresses.nextElement();
-                    ip = addr.getHostAddress();
-                    System.out.println(iface.getDisplayName() + " " + ip);
-                }
-            }
-        } catch (SocketException e) {
-            throw new RuntimeException(e);
-        }
+        String ip = in.readLine(); //you get the IP as a String
+        System.out.println(ip);
     }
 }
