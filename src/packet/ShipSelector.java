@@ -2,8 +2,6 @@ package packet;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 
 public class ShipSelector extends JFrame {
     Map map;    //Il ship selector deve conoscere la mappa per permettere poi effettivamente di piazzare le barche

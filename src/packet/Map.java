@@ -59,6 +59,9 @@ public class Map extends JFrame {
         upperBar.setLayout(new GridLayout(1,3));
         shipSunkCounter.setText("Barche Affondate: 0");
         playerCharacter.setIcon(captainImage);
+        playerName.setHorizontalAlignment(JLabel.CENTER);
+        playerCharacter.setHorizontalAlignment(JLabel.CENTER);
+        shipSunkCounter.setHorizontalAlignment(JLabel.CENTER);
         upperBar.add(playerName);
         upperBar.add(playerCharacter);
         upperBar.add(shipSunkCounter);
