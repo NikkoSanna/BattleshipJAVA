@@ -29,12 +29,12 @@ public class Server {
 
                     comunicate(client);     //Esecuzione del metodo piú importante della classe
                 } catch (IOException e) {
-                    System.err.println(String.format("Errore durante la comunicazione con il client: %s", e.getMessage()));     //Scrittura errore nella console
+                    System.err.printf("Errore durante la comunicazione con il client: %s%n", e.getMessage());   //Scrittura errore nella console
                 }
             }
         //Apertura comunicazione non riuscita
         } catch (IOException e) {
-            System.err.println(String.format("Errore server: %s", e.getMessage()));     //Scrittura errore nella console
+            System.err.printf("Errore server: %s%n", e.getMessage());   //Scrittura errore nella console
         }
     }
     private static void comunicate(Socket sck) throws IOException {

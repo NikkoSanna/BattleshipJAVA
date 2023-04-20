@@ -29,9 +29,9 @@ public class Client {
 
             comunicate(sck);    //Esecuzione del metodo piú importante della classe
         } catch (UnknownHostException e) {
-            System.err.printf("Nome di server non valido: %s%n", e.getMessage());
+            System.err.printf("Nome di server non valido: %s%n", e.getMessage());    //Scrittura errore nella console
         } catch (IOException e) {
-            System.err.printf("Errore durante la comunicazione con il server: %s%n", e.getMessage());
+            System.err.printf("Errore durante la comunicazione con il server: %s%n", e.getMessage());   //Scrittura errore nella console
         }
     }
     private static void comunicate(Socket sck) throws IOException {
