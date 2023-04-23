@@ -4,49 +4,48 @@ import java.net.*;
 import java.io.*;
 
 public class Server {
-    final static int serverPort = 45000;
+    final static int serverPort = 50000;
     boolean started = false;
+    ServerSocket server;
 
     public Server() throws IOException {
-        //Ottengo il proprio indirizzo IP, leggo il contenuto del sito web
-        URL whatismyip = new URL("http://checkip.amazonaws.com");
-        BufferedReader in = new BufferedReader(new InputStreamReader(whatismyip.openStream()));     //Copio il contenuto della pagina web
-
-        //Indirizzo IP ottenuto tramite stringa e printato a console
-        String ip = in.readLine();
-        System.out.println(ip);
-        started = true;     //Comunico che il server é startato con successo
-
-        //Apertura comunicazione con client
-        try (ServerSocket server = new ServerSocket(serverPort)) {
-            System.out.printf("Server in ascolto su: %s%n", server.getLocalSocketAddress());    //Scrive a console la porta
-
-            // Il server accetta e serve un client alla volta
-            while (true) {
-                try (Socket client = server.accept()) {
-                    String rem = client.getRemoteSocketAddress().toString();
-                    System.out.format("Client (remoto): %s%n", rem);
-
-                    comunicate(client);     //Esecuzione del metodo piú importante della classe
-                } catch (IOException e) {
-                    System.err.printf("Errore durante la comunicazione con il client: %s%n", e.getMessage());   //Scrittura errore nella console
-                }
-            }
-        //Apertura comunicazione non riuscita
-        } catch (IOException e) {
-            System.err.printf("Errore server: %s%n", e.getMessage());   //Scrittura errore nella console
+        //Ottengo l'indirizzo IPv4 locale, uguale a quello che ottengo da cmd
+        String ip;
+        try (final DatagramSocket socket = new DatagramSocket()) {
+            socket.connect(InetAddress.getByName("8.8.8.8"), serverPort);
+            ip = socket.getLocalAddress().getHostAddress();
+            System.out.println("il tuo indirizzo ip é " + ip + " e la porta 50000");
         }
-    }
-    private static void comunicate(Socket sck) throws IOException {
-        BufferedReader in = new BufferedReader(new InputStreamReader(sck.getInputStream(), "UTF-8"));
 
-        PrintWriter out = new PrintWriter(new OutputStreamWriter(sck.getOutputStream(), "UTF-8"), true);
+        /* MACOS
+        Socket socket = new Socket();
+        socket.connect(new InetSocketAddress("google.com", 80));
+        System.out.println(socket.getLocalAddress());
+         */
 
-        System.out.println("In attesa di ricevere informazioni dal client...");
-        String inStr = in.readLine();
-        System.out.format("Ricevuto dal client: %s%n", inStr);
-        String outStr = "ha funzionato";
-        out.println(outStr);
-        System.out.format("Inviato al client: %s%n", outStr);
+        //Tentativo di apertura server
+        try{
+            server = new ServerSocket(serverPort);
+            started = true;
+        } catch (IOException e) {
+            System.out.println("Server non startato");
+        }
+
+        //Comunicazione con il client
+        while(true){
+            try(Socket client = server.accept()){
+                System.out.println("Connesso al client");
+
+                InputStreamReader in = new InputStreamReader(client.getInputStream());
+                BufferedReader bf = new BufferedReader(in);
+
+                String str = bf.readLine();
+                System.out.println("client avente indirizzo ip: " + str);
+
+                PrintWriter pr = new PrintWriter(client.getOutputStream());
+                pr.println(ip);
+                pr.flush();     //impone la scrittura immediata di tutti i dati presenti nel buffer sul dispositivo di output.
+            }
+        }
     }
 }
