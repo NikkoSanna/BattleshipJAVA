@@ -7,6 +7,9 @@ import java.awt.*;
 public class PlayerRole extends JFrame {
     Listener listener = new Listener(this);
 
+    //Immagini salvate
+    ImageIcon seaImage = new ImageIcon(new ImageIcon("images/roleBackground.jpeg").getImage().getScaledInstance(612, 612, Image.SCALE_SMOOTH));
+
     //Oggetti legati all'interfaccia
     Container c = this.getContentPane();
 
@@ -18,19 +21,23 @@ public class PlayerRole extends JFrame {
 
     JLabel textRole = new JLabel();
     JPanel rolePanel = new JPanel();
-    JRadioButton hostRole = new JRadioButton();
-    JRadioButton clientRole = new JRadioButton();
+    JButton hostRole = new JButton();
+    JButton clientRole = new JButton();
 
-    ButtonGroup buttons = new ButtonGroup();
-    ButtonModel selectButtons;      //Tiene traccia del fatto che ci sia o meno un radio button cliccato
+    JLabel background = new JLabel();
 
-    JButton startButton = new JButton();
     public PlayerRole(){
         setTitle("PlayerRole");
 
+        c.setLayout(new BoxLayout(c,BoxLayout.Y_AXIS));      //Impostazione del layout del content pane
+
+        //Aggiunta dello sfondo a un label
+        background.setLayout(new FlowLayout());
+        background.setIcon(seaImage);
+
         //Impostazione del layout e bordo del panel
         frame.setLayout(new BoxLayout(frame, BoxLayout.Y_AXIS));
-        frame.setBorder(new EmptyBorder(10,10,10,10));
+        frame.setBorder(new EmptyBorder(150,10,10,10));
 
         //Aggiunta della sezione di selezione nome
         textName.setText("Inserisci un nome:");
@@ -39,10 +46,6 @@ public class PlayerRole extends JFrame {
         namePanel.add(textName);
         namePanel.add(playerName);
         frame.add(namePanel);
-
-        //Inserimento dei radio button dentro un gruppo
-        buttons.add(hostRole);
-        buttons.add(clientRole);
 
         //Aggiunta della sezione di selezione ruolo
         textRole.setText("Con quale ruolo vuoi giocare?");
@@ -56,19 +59,17 @@ public class PlayerRole extends JFrame {
         frame.add(textRole);
         frame.add(rolePanel);
 
-        //Aggiunta del bottone di inizio gioco
-        startButton.setText("Comincia");
-        startButton.setAlignmentX(JButton.CENTER_ALIGNMENT);
-        frame.add(startButton);
+        background.add(frame);
 
-        c.add(frame);   //Aggiunta del panel al content pane
+        c.add(background);   //Aggiunta del panel al content pane
 
-        startButton.addActionListener(listener);    //Aggiunta di un action listener al bottone di inizio
+        hostRole.addActionListener(listener);
+        clientRole.addActionListener(listener);
 
         this.addWindowListener(listener);   //Aggiunta di un window listener al frame
 
         this.pack();
-        this.setLocation(ScreenSize.getWidth() / 3, ScreenSize.getHeight() / 3);
+        this.setLocation(ScreenSize.getWidth() / 3, ScreenSize.getHeight() / 4);
         this.setResizable(false);
         this.setVisible(true);
         this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);

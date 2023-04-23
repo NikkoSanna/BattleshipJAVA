@@ -22,10 +22,10 @@ public class Map extends JFrame {
     String[] shipFive_Tiles = new String[5];  //Array che contiene le coordinate della barca da 5
 
     //Array che tiene traccia delle caselle occupate da barche che vengono colpite
-    int shipTwo_Iterator = 2;   //Intero che indica quante caselle della barca da 2 sono ancora operative
-    int shipThree_Iterator = 3; //Intero che indica quante caselle della barca da 3 sono ancora operative
-    int shipFour_Iterator = 4;  //Intero che indica quante caselle della barca da 4 sono ancora operative
-    int shipFive_Iterator = 5;  //Intero che indica quante caselle della barca da 5 sono ancora operative
+    public int shipTwo_Iterator = 2;   //Intero che indica quante caselle della barca da 2 sono ancora operative
+    public int shipThree_Iterator = 3; //Intero che indica quante caselle della barca da 3 sono ancora operative
+    public int shipFour_Iterator = 4;  //Intero che indica quante caselle della barca da 4 sono ancora operative
+    public int shipFive_Iterator = 5;  //Intero che indica quante caselle della barca da 5 sono ancora operative
 
     Listener listener = new Listener(this);
 

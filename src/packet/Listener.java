@@ -95,16 +95,18 @@ public class Listener extends JFrame implements ActionListener, FocusListener, W
 
         //Metodi richiamati dal selettore ruolo
         try{
-            if(e.getSource() == playerRole.startButton){
-                playerRole.selectButtons = playerRole.buttons.getSelection();
-                if(playerRole.selectButtons != null && !(playerRole.playerName.getText().equals(""))){
+            if(e.getSource() == playerRole.hostRole || e.getSource() == playerRole.clientRole){
+                //Controllo se é stato inserito un nome
+                if(!(playerRole.playerName.getText().equals(""))){
                     Map mapOne = new Map();
                     Map mapTwo = new Map();
                     mapTwo.setLocation((ScreenSize.getWidth() / 2) + 25, (ScreenSize.getHeight() / 3) - 250);
                     mapTwo.shipselect.dispose();
                     mapOne.playerName.setText(playerRole.playerName.getText());
                     playerRole.dispose();
-                    if(playerRole.hostRole.isSelected()){
+
+                    //Avvio la partita da server o da client
+                    if(e.getSource() == playerRole.hostRole){
                         Server server = new Server();
                     }else{
                         Client client = new Client();
