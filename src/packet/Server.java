@@ -46,6 +46,14 @@ public class Server extends JFrame{
                     bufferIn = new BufferedReader(inStream);
                     bufferOut = new BufferedWriter(outStream);
 
+                    System.out.println("Connesso col client");
+
+                    bufferOut.write(ip);
+                    bufferOut.flush();     //Impone la scrittura dei dati presenti nel buffer sul dispositivo di output
+
+                    String str = bufferIn.readLine();
+                    System.out.println("Client avente indirizzo ip: " + str);
+
                     //Una volta connesso continua a comunicare
                     while(true){
 
