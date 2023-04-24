@@ -7,6 +7,10 @@ import java.io.*;
 public class Server extends JFrame{
     final static int serverPort = 50000;
     ServerSocket server;
+    InputStreamReader inStream;
+    OutputStreamWriter outStream;
+    BufferedReader bufferIn;
+    BufferedWriter bufferOut;
 
     public Server() throws IOException {
         this.setVisible(false);
@@ -18,6 +22,7 @@ public class Server extends JFrame{
             ip = socket.getLocalAddress().getHostAddress();
             System.out.println("il tuo indirizzo ip é " + ip + " e la porta 50000");
 
+            //Finestra che informa dell'indirizzo IPv4 del host
             JOptionPane.showMessageDialog(this,"Comunica al secondo giocatore il codice " + ip + " per poter giocare",
                     "Attenzione",JOptionPane.INFORMATION_MESSAGE);
         }
@@ -32,21 +37,19 @@ public class Server extends JFrame{
         try{
             server = new ServerSocket(serverPort);
 
+            //Continua a provare a connettersi
             while(true){
                 try(Socket client = server.accept()){
-                    //Comandi di informazione sull'avvenuta connessione
-                    System.out.println("Connesso al client");
 
-                    InputStreamReader in = new InputStreamReader(client.getInputStream());
-                    BufferedReader bf = new BufferedReader(in);
+                    inStream = new InputStreamReader(client.getInputStream());
+                    outStream = new OutputStreamWriter(client.getOutputStream());
+                    bufferIn = new BufferedReader(inStream);
+                    bufferOut = new BufferedWriter(outStream);
 
-                    String str = bf.readLine();
-                    System.out.println("client avente indirizzo ip: " + str);
+                    //Una volta connesso continua a comunicare
+                    while(true){
 
-                    PrintWriter pr = new PrintWriter(client.getOutputStream());
-                    pr.println(ip);
-                    pr.flush();     //impone la scrittura immediata di tutti i dati presenti nel buffer sul dispositivo di output.
-
+                    }
                 }
             }
         } catch (IOException e) {
