@@ -6,7 +6,6 @@ import java.io.*;
 
 public class Server extends JFrame{
     final static int serverPort = 50000;
-    boolean started = false;
     ServerSocket server;
 
     public Server() throws IOException {
@@ -32,14 +31,7 @@ public class Server extends JFrame{
         //Tentativo di apertura server
         try{
             server = new ServerSocket(serverPort);
-            started = true;
-        } catch (IOException e) {
-            System.out.println("Server non startato");
-            started = false;
-        }
 
-        //Comunicazione con il client
-        if(started){
             while(true){
                 try(Socket client = server.accept()){
                     //Comandi di informazione sull'avvenuta connessione
@@ -55,9 +47,10 @@ public class Server extends JFrame{
                     pr.println(ip);
                     pr.flush();     //impone la scrittura immediata di tutti i dati presenti nel buffer sul dispositivo di output.
 
-
                 }
             }
+        } catch (IOException e) {
+            System.out.println("Server non startato");
         }
     }
 }

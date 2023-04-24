@@ -9,7 +9,6 @@ public class Client extends JFrame {
     static String ipServer;
     final static int serverPort = 50000;
     Socket client;
-    boolean started = false;
 
     public Client() throws IOException {
         this.setVisible(false);
@@ -24,19 +23,11 @@ public class Client extends JFrame {
         }
 
         //Comunicazione con il server
-        while(true){
-            //Tentativo di connessione al server
-            try {
-                client = new Socket(ipServer, 50000);
-                started = true;
-            } catch (IOException e) {
-                System.out.println("Client non startato");
-                started = false;
-            }
+        //Tentativo di connessione al server
+        try {
+            client = new Socket(ipServer, 50000);
 
-            //Scambio di informazioni tra i dispositivi
-            if(started){
-                //Comandi di informazione sull'avvenuta connessione
+            while(true){
                 System.out.println("Connesso al server");
 
                 PrintWriter pr = new PrintWriter(client.getOutputStream());
@@ -48,9 +39,9 @@ public class Client extends JFrame {
 
                 String str = bf.readLine();
                 System.out.println("server avente indirizzo ip: " + str);
-
-
             }
+        } catch (IOException e) {
+            System.out.println("Client non startato");
         }
     }
 }
