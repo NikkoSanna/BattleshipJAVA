@@ -6,6 +6,26 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 public class Tile extends JButton implements MouseListener {
+    //Immagini salvate
+    ImageIcon ship2_1 = new ImageIcon(new ImageIcon("images/ship2_1.png").getImage().getScaledInstance(36, 36, Image.SCALE_SMOOTH));
+    ImageIcon ship2_2 = new ImageIcon(new ImageIcon("images/ship2_2.png").getImage().getScaledInstance(36, 36, Image.SCALE_SMOOTH));
+
+    ImageIcon ship3_1 = new ImageIcon(new ImageIcon("images/ship3_1.png").getImage().getScaledInstance(36, 36, Image.SCALE_SMOOTH));
+    ImageIcon ship3_2 = new ImageIcon(new ImageIcon("images/ship3_2.png").getImage().getScaledInstance(36, 36, Image.SCALE_SMOOTH));
+    ImageIcon ship3_3 = new ImageIcon(new ImageIcon("images/ship3_3.png").getImage().getScaledInstance(36, 36, Image.SCALE_SMOOTH));
+
+    ImageIcon ship4_1 = new ImageIcon(new ImageIcon("images/ship4_1.png").getImage().getScaledInstance(36, 36, Image.SCALE_SMOOTH));
+    ImageIcon ship4_2 = new ImageIcon(new ImageIcon("images/ship4_2.png").getImage().getScaledInstance(36, 36, Image.SCALE_SMOOTH));
+    ImageIcon ship4_3 = new ImageIcon(new ImageIcon("images/ship4_3.png").getImage().getScaledInstance(36, 36, Image.SCALE_SMOOTH));
+    ImageIcon ship4_4 = new ImageIcon(new ImageIcon("images/ship4_4.png").getImage().getScaledInstance(36, 36, Image.SCALE_SMOOTH));
+
+    ImageIcon ship5_1 = new ImageIcon(new ImageIcon("images/ship5_1.png").getImage().getScaledInstance(36, 36, Image.SCALE_SMOOTH));
+    ImageIcon ship5_2 = new ImageIcon(new ImageIcon("images/ship5_2.png").getImage().getScaledInstance(36, 36, Image.SCALE_SMOOTH));
+    ImageIcon ship5_3 = new ImageIcon(new ImageIcon("images/ship5_3.png").getImage().getScaledInstance(36, 36, Image.SCALE_SMOOTH));
+    ImageIcon ship5_4 = new ImageIcon(new ImageIcon("images/ship5_4.png").getImage().getScaledInstance(36, 36, Image.SCALE_SMOOTH));
+    ImageIcon ship5_5 = new ImageIcon(new ImageIcon("images/ship5_5.png").getImage().getScaledInstance(36, 36, Image.SCALE_SMOOTH));
+
+
     //Attributi della casella
     boolean hasShip;    //Attributo che indica se é presente o meno una parte di barca
     boolean isPlaceable = false;     //Attributo usato quando bisogna piazzare una barca (fase di piazzamento)
@@ -142,11 +162,6 @@ public class Tile extends JButton implements MouseListener {
     public void placeShip(String shipType){
         //Se la barca selezionata é quella da 2
         if(shipType == "ship1"){
-            setContentAreaFilled(true);
-            setBackground(Color.GREEN);
-            map.tile[i-1][j].setContentAreaFilled(true);
-            map.tile[i-1][j].setBackground(Color.GREEN);
-
             hasShip = true;
             map.tile[i-1][j].hasShip = true;
 
@@ -156,13 +171,6 @@ public class Tile extends JButton implements MouseListener {
         }
         //Se la barca selezionata é quella da 3
         else if(shipType == "ship2"){
-            setContentAreaFilled(true);
-            setBackground(Color.GREEN);
-            map.tile[i-1][j].setContentAreaFilled(true);
-            map.tile[i-1][j].setBackground(Color.GREEN);
-            map.tile[i+1][j].setContentAreaFilled(true);
-            map.tile[i+1][j].setBackground(Color.GREEN);
-
             hasShip = true;
             map.tile[i-1][j].hasShip = true;
             map.tile[i+1][j].hasShip = true;
@@ -174,15 +182,6 @@ public class Tile extends JButton implements MouseListener {
         }
         //Se la barca selezionata é la terza
         else if(shipType == "ship3"){
-            setContentAreaFilled(true);
-            setBackground(Color.GREEN);
-            map.tile[i-1][j].setContentAreaFilled(true);
-            map.tile[i-1][j].setBackground(Color.GREEN);
-            map.tile[i+1][j].setContentAreaFilled(true);
-            map.tile[i+1][j].setBackground(Color.GREEN);
-            map.tile[i-2][j].setContentAreaFilled(true);
-            map.tile[i-2][j].setBackground(Color.GREEN);
-
             hasShip = true;
             map.tile[i-1][j].hasShip = true;
             map.tile[i+1][j].hasShip = true;
@@ -196,17 +195,6 @@ public class Tile extends JButton implements MouseListener {
         }
         //Se la barca selezionata é quella da 5
         else if(shipType == "ship4"){
-            setContentAreaFilled(true);
-            setBackground(Color.GREEN);
-            map.tile[i-1][j].setContentAreaFilled(true);
-            map.tile[i-1][j].setBackground(Color.GREEN);
-            map.tile[i+1][j].setContentAreaFilled(true);
-            map.tile[i+1][j].setBackground(Color.GREEN);
-            map.tile[i-2][j].setContentAreaFilled(true);
-            map.tile[i-2][j].setBackground(Color.GREEN);
-            map.tile[i+2][j].setContentAreaFilled(true);
-            map.tile[i+2][j].setBackground(Color.GREEN);
-
             hasShip = true;
             map.tile[i-1][j].hasShip = true;
             map.tile[i+1][j].hasShip = true;
@@ -233,10 +221,8 @@ public class Tile extends JButton implements MouseListener {
             if(map.getShipType().equals("ship1")){
                 //Con questa condizione evito anche che vengano cancellati i colori
                 if (i >= 1 && !hasShip && !map.tile[i - 1][j].hasShip) {
-                    setContentAreaFilled(true);
-                    setBackground(Color.BLUE);
-                    map.tile[i - 1][j].setContentAreaFilled(true);
-                    map.tile[i - 1][j].setBackground(Color.BLUE);
+                    setIcon(ship2_2);
+                    map.tile[i - 1][j].setIcon(ship2_1);
 
                     isPlaceable = true;
                     map.tile[i - 1][j].isPlaceable = true;
@@ -253,12 +239,9 @@ public class Tile extends JButton implements MouseListener {
             else if(map.getShipType().equals("ship2")){
                 //Con questa condizione evito anche che vengano cancellati i colori
                 if (i >= 1 && i <= map.getDimension() - 1 && !hasShip && !map.tile[i - 1][j].hasShip && !map.tile[i + 1][j].hasShip) {
-                    setContentAreaFilled(true);
-                    setBackground(Color.BLUE);
-                    map.tile[i - 1][j].setContentAreaFilled(true);
-                    map.tile[i - 1][j].setBackground(Color.BLUE);
-                    map.tile[i + 1][j].setContentAreaFilled(true);
-                    map.tile[i + 1][j].setBackground(Color.BLUE);
+                    setIcon(ship3_2);
+                    map.tile[i - 1][j].setIcon(ship3_1);
+                    map.tile[i + 1][j].setIcon(ship3_3);
 
                     isPlaceable = true;
                     map.tile[i - 1][j].isPlaceable = true;
@@ -275,14 +258,10 @@ public class Tile extends JButton implements MouseListener {
             else if(map.getShipType().equals("ship3")){
                 //Con questa condizione evito anche che vengano cancellati i colori
                 if (i >= 2 && i <= map.getDimension() - 1 && !hasShip && !map.tile[i - 1][j].hasShip && !map.tile[i + 1][j].hasShip && !map.tile[i - 2][j].hasShip) {
-                    setContentAreaFilled(true);
-                    setBackground(Color.BLUE);
-                    map.tile[i - 1][j].setContentAreaFilled(true);
-                    map.tile[i - 1][j].setBackground(Color.BLUE);
-                    map.tile[i + 1][j].setContentAreaFilled(true);
-                    map.tile[i + 1][j].setBackground(Color.BLUE);
-                    map.tile[i - 2][j].setContentAreaFilled(true);
-                    map.tile[i - 2][j].setBackground(Color.BLUE);
+                    setIcon(ship4_3);
+                    map.tile[i - 1][j].setIcon(ship4_2);
+                    map.tile[i + 1][j].setIcon(ship4_4);
+                    map.tile[i - 2][j].setIcon(ship4_1);
 
                     isPlaceable = true;
                     map.tile[i - 1][j].isPlaceable = true;
@@ -300,16 +279,11 @@ public class Tile extends JButton implements MouseListener {
             else if(map.getShipType().equals("ship4")){
                 //Con questa condizione evito anche che vengano cancellati i colori
                 if (i >= 2 && i <= map.getDimension() - 2 && !hasShip && !map.tile[i - 1][j].hasShip && !map.tile[i + 1][j].hasShip && !map.tile[i - 2][j].hasShip && !map.tile[i + 2][j].hasShip) {
-                    setContentAreaFilled(true);
-                    setBackground(Color.BLUE);
-                    map.tile[i - 1][j].setContentAreaFilled(true);
-                    map.tile[i - 1][j].setBackground(Color.BLUE);
-                    map.tile[i + 1][j].setContentAreaFilled(true);
-                    map.tile[i + 1][j].setBackground(Color.BLUE);
-                    map.tile[i - 2][j].setContentAreaFilled(true);
-                    map.tile[i - 2][j].setBackground(Color.BLUE);
-                    map.tile[i + 2][j].setContentAreaFilled(true);
-                    map.tile[i + 2][j].setBackground(Color.BLUE);
+                    setIcon(ship5_3);
+                    map.tile[i - 1][j].setIcon(ship5_2);
+                    map.tile[i + 1][j].setIcon(ship5_4);
+                    map.tile[i - 2][j].setIcon(ship5_1);
+                    map.tile[i + 2][j].setIcon(ship5_5);
 
                     isPlaceable = true;
                     map.tile[i - 1][j].isPlaceable = true;
@@ -324,8 +298,7 @@ public class Tile extends JButton implements MouseListener {
                     setBackground(Color.RED);
                 }
             }
-        } catch (Exception ignored) {
-        }
+        } catch (Exception ignored) {}
     }
 
     @Override
@@ -342,8 +315,7 @@ public class Tile extends JButton implements MouseListener {
                 } else if (map.getShipType().equals("ship4") && isPlaceable && map.tile[i - 1][j].isPlaceable && map.tile[i + 1][j].isPlaceable && map.tile[i - 2][j].isPlaceable && map.tile[i + 2][j].isPlaceable) {
                     placeShip("ship4");
                 }
-            } catch (Exception ignored) {
-            }
+            } catch (Exception ignored) {}
         }
         //Se sono nella fase di gioco richiamo il metodo tileHit
 
@@ -384,10 +356,12 @@ public class Tile extends JButton implements MouseListener {
                 if (!hasShip) {
                     setContentAreaFilled(false);
                     setBackground(null);
+                    setIcon(null);
                 }
                 if (!map.tile[i - 1][j].hasShip) {
                     map.tile[i - 1][j].setContentAreaFilled(false);
                     map.tile[i - 1][j].setBackground(null);
+                    map.tile[i - 1][j].setIcon(null);
                 }
             }
             //Se la barca selezionata é quella da 3
@@ -395,12 +369,15 @@ public class Tile extends JButton implements MouseListener {
                 if (!hasShip) {
                     setContentAreaFilled(false);
                     setBackground(null);
+                    setIcon(null);
                 }
                 if (!map.tile[i - 1][j].hasShip && !map.tile[i + 1][j].hasShip) {
                     map.tile[i - 1][j].setContentAreaFilled(false);
                     map.tile[i + 1][j].setContentAreaFilled(false);
                     map.tile[i - 1][j].setBackground(null);
                     map.tile[i + 1][j].setBackground(null);
+                    map.tile[i - 1][j].setIcon(null);
+                    map.tile[i + 1][j].setIcon(null);
                 }
             }
             //Se la barca selezionata é quella da 4
@@ -408,6 +385,7 @@ public class Tile extends JButton implements MouseListener {
                 if (!hasShip) {
                     setContentAreaFilled(false);
                     setBackground(null);
+                    setIcon(null);
                 }
                 if (!map.tile[i - 1][j].hasShip && !map.tile[i + 1][j].hasShip && !map.tile[i - 2][j].hasShip) {
                     map.tile[i - 1][j].setContentAreaFilled(false);
@@ -416,6 +394,9 @@ public class Tile extends JButton implements MouseListener {
                     map.tile[i - 1][j].setBackground(null);
                     map.tile[i + 1][j].setBackground(null);
                     map.tile[i - 2][j].setBackground(null);
+                    map.tile[i - 1][j].setIcon(null);
+                    map.tile[i + 1][j].setIcon(null);
+                    map.tile[i - 2][j].setIcon(null);
                 }
             }
             //Se la barca selezionata é quella da 5
@@ -423,6 +404,7 @@ public class Tile extends JButton implements MouseListener {
                 if (!hasShip) {
                     setContentAreaFilled(false);
                     setBackground(null);
+                    setIcon(null);
                 }
                 if (!map.tile[i - 1][j].hasShip && !map.tile[i + 1][j].hasShip && !map.tile[i - 2][j].hasShip && !map.tile[i + 2][j].hasShip) {
                     map.tile[i - 1][j].setContentAreaFilled(false);
@@ -433,9 +415,12 @@ public class Tile extends JButton implements MouseListener {
                     map.tile[i + 1][j].setBackground(null);
                     map.tile[i - 2][j].setBackground(null);
                     map.tile[i + 2][j].setBackground(null);
+                    map.tile[i - 1][j].setIcon(null);
+                    map.tile[i + 1][j].setIcon(null);
+                    map.tile[i - 2][j].setIcon(null);
+                    map.tile[i + 2][j].setIcon(null);
                 }
             }
-        } catch (Exception ignored) {
-        }
+        } catch (Exception ignored) {}
     }
 }

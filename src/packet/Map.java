@@ -11,7 +11,7 @@ public class Map extends JFrame {
     public boolean shipFour_Sunk = false;   //Attributo che indica se la barca da 4 é affondata
     public boolean shipFive_Sunk = false;   //Attributo che indica se la barca da 5 é affondata
 
-    boolean actuallyPlaying;    //Attributo che indica se si sta giocando o se si sta piazzando le navi
+    boolean actuallyPlaying = false;    //Attributo che indica se si sta giocando o se si sta piazzando le navi
 
     private String shipType = "";     //Variabile che contiene il tipo di barca da posizionare
 

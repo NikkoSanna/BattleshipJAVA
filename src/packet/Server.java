@@ -38,6 +38,7 @@ public class Server extends JFrame{
             server = new ServerSocket(serverPort);
 
             //Continua a provare a connettersi
+
             while(true){
                 try(Socket client = server.accept()){
 
