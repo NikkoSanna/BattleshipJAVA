@@ -41,6 +41,7 @@ public class Client extends JFrame {
             System.out.println("Connesso al server");
 
             bufferOut.write(ip);
+            bufferOut.newLine();    //Riga piú importante qui
             bufferOut.flush();     //Impone la scrittura dei dati presenti nel buffer sul dispositivo di output
 
             String str = bufferIn.readLine();
