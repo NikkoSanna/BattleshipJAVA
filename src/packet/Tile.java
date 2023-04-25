@@ -203,7 +203,7 @@ public class Tile extends JButton implements MouseListener {
                 if (map.getShipType().equals("ship2") && !hasShip && !map.tile[i - 1][j].hasShip) {
                     placeShip("ship2");
                 } else if (map.getShipType().equals("ship3") && !hasShip && !map.tile[i - 1][j].hasShip && !map.tile[i + 1][j].hasShip) {
-                    placeShip("shi32");
+                    placeShip("ship3");
                 } else if (map.getShipType().equals("ship4") && !hasShip && !map.tile[i - 1][j].hasShip && !map.tile[i + 1][j].hasShip && !map.tile[i - 2][j].hasShip) {
                     placeShip("ship4");
                 } else if (map.getShipType().equals("ship5") && !hasShip && !map.tile[i - 1][j].hasShip && !map.tile[i + 1][j].hasShip && !map.tile[i - 2][j].hasShip && !map.tile[i + 2][j].hasShip) {
