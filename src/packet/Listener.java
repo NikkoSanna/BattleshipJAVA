@@ -137,7 +137,11 @@ public class Listener extends JFrame implements ActionListener, WindowListener {
         //Metodi richiamati dalla mappa
         try{
             if(e.getSource() == map.ready){
-                map.remove(map.ready);
+                map.bottomBar.remove(map.ready);
+                map.repaint();      //Aggiorna l'interfaccia grafica
+
+                map.bottomBar.add(map.gameText);
+                map.gameText.setText("Questa e la tua mappa");
             }
         }catch (Exception e1){
             System.out.println("Errore nell'action performed di map");

@@ -74,6 +74,8 @@ public class Server extends JFrame implements Runnable{
                     String enemyName = bufferIn.readLine();
                     mapTwo.playerName.setText(enemyName);
 
+                    mapTwo.gameText.setText("Connessione riuscita");
+
                     //Una volta connesso continua a comunicare
                     while(true){
 
