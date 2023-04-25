@@ -28,7 +28,6 @@ public class Client extends JFrame implements Runnable {
             socket.connect(InetAddress.getByName("8.8.8.8"), 50000);
             ip = socket.getLocalAddress().getHostAddress();
         }
-
     }
 
     @Override
