@@ -15,7 +15,13 @@ public class Client extends JFrame implements Runnable {
     BufferedWriter bufferOut;
     String ip;
 
-    public Client() throws IOException {
+    Map mapOne;
+    Map mapTwo;
+
+    public Client(Map mapOne, Map mapTwo) throws IOException {
+        this.mapOne = mapOne;
+        this.mapTwo = mapTwo;
+
         this.setVisible(false);
 
         //Finestra per inserire l'indirizzo IPv4 del host
@@ -49,6 +55,13 @@ public class Client extends JFrame implements Runnable {
 
             String str = bufferIn.readLine();
             System.out.println("server avente indirizzo ip: " + str);
+
+            bufferOut.write(mapOne.playerName.getText());
+            bufferOut.newLine();
+            bufferOut.flush();
+
+            String enemyName = bufferIn.readLine();
+            mapTwo.playerName.setText(enemyName);
 
             //Una volta connesso continua a comunicare
             while(true){

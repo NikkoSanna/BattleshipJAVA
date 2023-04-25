@@ -13,7 +13,13 @@ public class Server extends JFrame implements Runnable{
     BufferedReader bufferIn;
     BufferedWriter bufferOut;
 
-    public Server() throws IOException {
+    Map mapOne;
+    Map mapTwo;
+
+    public Server(Map mapOne, Map mapTwo) throws IOException {
+        this.mapOne = mapOne;
+        this.mapTwo = mapTwo;
+
         this.setVisible(false);
 
         //Ottengo l'indirizzo IPv4 locale, uguale a quello che ottengo da cmd
@@ -56,6 +62,13 @@ public class Server extends JFrame implements Runnable{
                     bufferOut.write(ip);
                     bufferOut.newLine();     //Riga piú importante qui
                     bufferOut.flush();     //Impone la scrittura dei dati presenti nel buffer sul dispositivo di output
+
+                    bufferOut.write(mapOne.playerName.getText());
+                    bufferOut.newLine();
+                    bufferOut.flush();
+
+                    String enemyName = bufferIn.readLine();
+                    mapTwo.playerName.setText(enemyName);
 
                     //Una volta connesso continua a comunicare
                     while(true){

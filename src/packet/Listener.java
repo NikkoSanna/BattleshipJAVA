@@ -108,13 +108,13 @@ public class Listener extends JFrame implements ActionListener, WindowListener {
                     //Avvio la partita da server
                     if(e.getSource() == playerRole.hostRole){
                         //Uso il multithreading, altrimenti ottengo un freeze dell'interfaccia
-                        Thread server = new Thread(new Server());
+                        Thread server = new Thread(new Server(mapOne, mapTwo));
                         server.start();
 
                     //Avvio la partita da client
                     }else{
                         //Uso il multithreading, altrimenti ottengo un freeze dell'interfaccia
-                        Thread client = new Thread(new Client());
+                        Thread client = new Thread(new Client(mapOne, mapTwo));
                         client.start();
                     }
                 }
