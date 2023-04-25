@@ -7,6 +7,8 @@ import java.io.*;
 public class Server extends JFrame implements Runnable{
     final static int serverPort = 50000;
     String ip;
+    boolean yourTurn = true;
+
     ServerSocket server;
     InputStreamReader inStream;
     OutputStreamWriter outStream;

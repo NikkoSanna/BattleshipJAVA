@@ -3,6 +3,7 @@ import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.io.File;
+import java.nio.file.attribute.FileOwnerAttributeView;
 
 public class Map extends JFrame {
     private final int dimension = 11;    //Per comoditá le dimensioni sono su una variabile di tipo int costante
@@ -31,18 +32,24 @@ public class Map extends JFrame {
     Listener listener = new Listener(this);
 
     //Immagini usate
-    ImageIcon seaImage = new ImageIcon(new ImageIcon("images/backgrounds/seaBackground.png").getImage().getScaledInstance(500, 500, Image.SCALE_SMOOTH));
+    ImageIcon seaImage = new ImageIcon(new ImageIcon("images/backgrounds/seaBackground.png").getImage().getScaledInstance(500, 550, Image.SCALE_SMOOTH));
     ImageIcon captainImage = new ImageIcon(new ImageIcon("images/captainImage.png").getImage().getScaledInstance(60,60,Image.SCALE_SMOOTH));
 
     //Oggetti legati all'interfaccia
     Container c = this.getContentPane();
+
     JPanel upperBar = new JPanel();
     JLabel playerName = new JLabel();
     JLabel playerCharacter = new JLabel();
     JLabel shipSunkCounter = new JLabel();
     JLabel background = new JLabel();
+
     JPanel grid = new JPanel();
     Tile[][] tile = new Tile[dimension][dimension];     //JButton custom con aggiunta di attributi
+
+    JPanel bottomBar = new JPanel();
+    JButton ready = new JButton();
+    JLabel gameText = new JLabel();     //Usato su mapTwo
 
     Font font;
 
@@ -62,7 +69,9 @@ public class Map extends JFrame {
 
         //Aggiunta font agli elementi
         playerName.setFont(font);
-        shipSunkCounter.setFont(font.deriveFont(Font.PLAIN, 11));
+        shipSunkCounter.setFont(font.deriveFont(Font.PLAIN, 13));
+        ready.setFont(font);
+        gameText.setFont(font.deriveFont(Font.PLAIN, 20));
 
         c.setLayout(new BoxLayout(c,BoxLayout.Y_AXIS));      //Impostazione del layout del content pane
 
@@ -118,8 +127,16 @@ public class Map extends JFrame {
 
         background.add(grid, BorderLayout.CENTER);   //Aggiunta della mappa di gioco al label principale
 
+        //Aggiunta di una barra inferiore al frame
+        ready.setText("Pronto");
+        ready.setEnabled(false);
+        bottomBar.setLayout(new FlowLayout(FlowLayout.CENTER));
+        bottomBar.add(ready);
+        background.add(bottomBar, BorderLayout.SOUTH);
+
         c.add(background);      //Aggiunta dell'intera interfaccia al content pane
 
+        ready.addActionListener(listener);  //Aggiunta di un action listener al bottone
 
         this.addWindowListener(listener);   //Aggiunta di un window listener al frame
 

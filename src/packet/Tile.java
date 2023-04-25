@@ -7,7 +7,6 @@ import java.awt.event.*;
 public class Tile extends JButton implements MouseListener {
     //Attributi della casella
     boolean hasShip;    //Attributo che indica se é presente o meno una parte di barca
-    boolean isPlaceable = false;     //Attributo usato quando bisogna piazzare una barca (fase di piazzamento)
     boolean isHit = false;      //Attributo che indica se una parte di barca é stata colpita (fase di gioco)
     int i;      //Coordinate ordinata
     int j;      //Coordinate ascissa
@@ -160,9 +159,6 @@ public class Tile extends JButton implements MouseListener {
                 if (i >= 1 && !hasShip && !map.tile[i - 1][j].hasShip) {
                     setIcon(ship2_2);
                     map.tile[i - 1][j].setIcon(ship2_1);
-
-                    isPlaceable = true;
-                    map.tile[i - 1][j].isPlaceable = true;
                 }
             }
             //Se la barca selezionata é quella da 3
@@ -172,10 +168,6 @@ public class Tile extends JButton implements MouseListener {
                     setIcon(ship3_2);
                     map.tile[i - 1][j].setIcon(ship3_1);
                     map.tile[i + 1][j].setIcon(ship3_3);
-
-                    isPlaceable = true;
-                    map.tile[i - 1][j].isPlaceable = true;
-                    map.tile[i + 1][j].isPlaceable = true;
                 }
             }
             //Se la barca selezionata é la quella da 4
@@ -186,11 +178,6 @@ public class Tile extends JButton implements MouseListener {
                     map.tile[i - 1][j].setIcon(ship4_2);
                     map.tile[i + 1][j].setIcon(ship4_4);
                     map.tile[i - 2][j].setIcon(ship4_1);
-
-                    isPlaceable = true;
-                    map.tile[i - 1][j].isPlaceable = true;
-                    map.tile[i + 1][j].isPlaceable = true;
-                    map.tile[i - 2][j].isPlaceable = true;
                 }
             }
             //Se la barca selezionata é quella da 5
@@ -202,12 +189,6 @@ public class Tile extends JButton implements MouseListener {
                     map.tile[i + 1][j].setIcon(ship5_4);
                     map.tile[i - 2][j].setIcon(ship5_1);
                     map.tile[i + 2][j].setIcon(ship5_5);
-
-                    isPlaceable = true;
-                    map.tile[i - 1][j].isPlaceable = true;
-                    map.tile[i + 1][j].isPlaceable = true;
-                    map.tile[i - 2][j].isPlaceable = true;
-                    map.tile[i + 2][j].isPlaceable = true;
                 }
             }
         }catch (Exception ignored){}
@@ -219,13 +200,13 @@ public class Tile extends JButton implements MouseListener {
         //Se sono nella fase di piazzamento richiamo il metodo placeShip col tipo di barca corretto
         if (!map.actuallyPlaying) {
             try {
-                if (map.getShipType().equals("ship2") && isPlaceable && map.tile[i - 1][j].isPlaceable) {
+                if (map.getShipType().equals("ship2") && !hasShip && !map.tile[i - 1][j].hasShip) {
                     placeShip("ship2");
-                } else if (map.getShipType().equals("ship3") && isPlaceable && map.tile[i - 1][j].isPlaceable && map.tile[i + 1][j].isPlaceable) {
+                } else if (map.getShipType().equals("ship3") && !hasShip && !map.tile[i - 1][j].hasShip && !map.tile[i + 1][j].hasShip) {
                     placeShip("shi32");
-                } else if (map.getShipType().equals("ship4") && isPlaceable && map.tile[i - 1][j].isPlaceable && map.tile[i + 1][j].isPlaceable && map.tile[i - 2][j].isPlaceable) {
+                } else if (map.getShipType().equals("ship4") && !hasShip && !map.tile[i - 1][j].hasShip && !map.tile[i + 1][j].hasShip && !map.tile[i - 2][j].hasShip) {
                     placeShip("ship4");
-                } else if (map.getShipType().equals("ship5") && isPlaceable && map.tile[i - 1][j].isPlaceable && map.tile[i + 1][j].isPlaceable && map.tile[i - 2][j].isPlaceable && map.tile[i + 2][j].isPlaceable) {
+                } else if (map.getShipType().equals("ship5") && !hasShip && !map.tile[i - 1][j].hasShip && !map.tile[i + 1][j].hasShip && !map.tile[i - 2][j].hasShip && !map.tile[i + 2][j].hasShip) {
                     placeShip("ship5");
                 }
             } catch (Exception ignored) {}

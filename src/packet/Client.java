@@ -8,12 +8,14 @@ import java.util.Scanner;
 public class Client extends JFrame implements Runnable {
     static String ipServer;
     final static int serverPort = 50000;
+    String ip;
+    boolean yourTurn = false;
+
     Socket client;
     InputStreamReader inStream;
     OutputStreamWriter outStream;
     BufferedReader bufferIn;
     BufferedWriter bufferOut;
-    String ip;
 
     Map mapOne;
     Map mapTwo;

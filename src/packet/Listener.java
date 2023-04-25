@@ -98,11 +98,16 @@ public class Listener extends JFrame implements ActionListener, WindowListener {
             if(e.getSource() == playerRole.hostRole || e.getSource() == playerRole.clientRole){
                 //Controllo se é stato inserito un nome
                 if(!(playerRole.playerName.getText().equals(""))){
-                    Map mapOne = new Map();
-                    Map mapTwo = new Map();
+                    Map mapOne = new Map();     //Mappa giocatore
+                    Map mapTwo = new Map();     //Mappa avversario
+
+                    mapOne.playerName.setText(playerRole.playerName.getText());
+
                     mapTwo.setLocation((ScreenSize.getWidth() / 2) + 25, (ScreenSize.getHeight() / 3) - 250);
                     mapTwo.shipselect.dispose();
-                    mapOne.playerName.setText(playerRole.playerName.getText());
+                    mapTwo.bottomBar.remove(mapTwo.ready);
+                    mapTwo.bottomBar.add(mapTwo.gameText);
+
                     playerRole.dispose();
 
                     //Avvio la partita da server
@@ -111,11 +116,14 @@ public class Listener extends JFrame implements ActionListener, WindowListener {
                         Thread server = new Thread(new Server(mapOne, mapTwo));
                         server.start();
 
+                        mapTwo.gameText.setText("In attesa di una connessione...");
                     //Avvio la partita da client
                     }else{
                         //Uso il multithreading, altrimenti ottengo un freeze dell'interfaccia
                         Thread client = new Thread(new Client(mapOne, mapTwo));
                         client.start();
+
+                        mapTwo.gameText.setText("Connettiti ad un server...");
                     }
                 }
                 else{
@@ -126,6 +134,14 @@ public class Listener extends JFrame implements ActionListener, WindowListener {
             System.out.println("Errore nell'action performed di playerRole");
         }
 
+        //Metodi richiamati dalla mappa
+        try{
+            if(e.getSource() == map.ready){
+                map.remove(map.ready);
+            }
+        }catch (Exception e1){
+            System.out.println("Errore nell'action performed di map");
+        }
     }
 
     //Apparizione di una finestra di conferma per la chiusura dei frame
