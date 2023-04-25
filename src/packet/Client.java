@@ -44,9 +44,10 @@ public class Client extends JFrame implements Runnable {
 
             inStream = new InputStreamReader(client.getInputStream());
             outStream = new OutputStreamWriter(client.getOutputStream());
-            bufferIn = new BufferedReader(inStream);
-            bufferOut = new BufferedWriter(outStream);
+            bufferIn = new BufferedReader(inStream);        //Usare solo questo oggetto per gli input
+            bufferOut = new BufferedWriter(outStream);      //Usare solo questo oggetto per gli output
 
+            //Messaggi a console riguardanti la connessione
             System.out.println("Connesso al server");
 
             bufferOut.write(ip);
@@ -56,6 +57,7 @@ public class Client extends JFrame implements Runnable {
             String str = bufferIn.readLine();
             System.out.println("server avente indirizzo ip: " + str);
 
+            //Scambio dei nickname
             bufferOut.write(mapOne.playerName.getText());
             bufferOut.newLine();
             bufferOut.flush();

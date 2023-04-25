@@ -51,9 +51,10 @@ public class Server extends JFrame implements Runnable{
 
                     inStream = new InputStreamReader(client.getInputStream());
                     outStream = new OutputStreamWriter(client.getOutputStream());
-                    bufferIn = new BufferedReader(inStream);
-                    bufferOut = new BufferedWriter(outStream);
+                    bufferIn = new BufferedReader(inStream);         //Usare solo questo oggetto per gli input
+                    bufferOut = new BufferedWriter(outStream);       //Usare solo questo oggetto per gli output
 
+                    //Messaggi a console riguardanti la connessione
                     System.out.println("Connesso col client");
 
                     String str = bufferIn.readLine();
@@ -63,6 +64,7 @@ public class Server extends JFrame implements Runnable{
                     bufferOut.newLine();     //Riga piú importante qui
                     bufferOut.flush();     //Impone la scrittura dei dati presenti nel buffer sul dispositivo di output
 
+                    //Scambio dei nickname
                     bufferOut.write(mapOne.playerName.getText());
                     bufferOut.newLine();
                     bufferOut.flush();
