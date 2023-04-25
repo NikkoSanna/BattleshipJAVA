@@ -20,15 +20,23 @@ public class Client extends JFrame implements Runnable {
     Map mapOne;
     Map mapTwo;
 
-    public Client(Map mapOne, Map mapTwo) throws IOException {
-        this.mapOne = mapOne;
-        this.mapTwo = mapTwo;
+    public Client(String playerName) throws IOException {
+        mapOne = new Map(null, this);
+        mapTwo = new Map(null, this);
+
+        mapOne.playerName.setText(playerName);
+
+        mapTwo.setLocation((ScreenSize.getWidth() / 2) + 25, (ScreenSize.getHeight() / 3) - 250);
+        mapTwo.shipselect.dispose();
+        mapTwo.bottomBar.remove(mapTwo.ready);
+        mapTwo.bottomBar.add(mapTwo.gameText);
+
+        mapTwo.gameText.setText("Connettiti ad un server...");
 
         this.setVisible(false);
 
         //Finestra per inserire l'indirizzo IPv4 del host
-        ipServer = JOptionPane.showInputDialog(this,"Inserisci l'indirizzo del host",
-                "Attenzione",JOptionPane.QUESTION_MESSAGE);
+        ipServer = JOptionPane.showInputDialog(this,"Inserisci l'indirizzo del host", "Attenzione",JOptionPane.QUESTION_MESSAGE);
 
         //Ottengo l'indirizzo IPv4 locale, uguale a quello che ottengo da cmd
         //Ció non é necessario per il client, ma scriverlo in console potrebbe risultare utile

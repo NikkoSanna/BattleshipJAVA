@@ -98,32 +98,20 @@ public class Listener extends JFrame implements ActionListener, WindowListener {
             if(e.getSource() == playerRole.hostRole || e.getSource() == playerRole.clientRole){
                 //Controllo se é stato inserito un nome
                 if(!(playerRole.playerName.getText().equals(""))){
-                    Map mapOne = new Map();     //Mappa giocatore
-                    Map mapTwo = new Map();     //Mappa avversario
-
-                    mapOne.playerName.setText(playerRole.playerName.getText());
-
-                    mapTwo.setLocation((ScreenSize.getWidth() / 2) + 25, (ScreenSize.getHeight() / 3) - 250);
-                    mapTwo.shipselect.dispose();
-                    mapTwo.bottomBar.remove(mapTwo.ready);
-                    mapTwo.bottomBar.add(mapTwo.gameText);
-
+                    String playerName = playerRole.playerName.getText();
                     playerRole.dispose();
 
                     //Avvio la partita da server
                     if(e.getSource() == playerRole.hostRole){
                         //Uso il multithreading, altrimenti ottengo un freeze dell'interfaccia
-                        Thread server = new Thread(new Server(mapOne, mapTwo));
+                        Thread server = new Thread(new Server(playerName));
                         server.start();
 
-                        mapTwo.gameText.setText("In attesa di una connessione...");
                     //Avvio la partita da client
                     }else{
                         //Uso il multithreading, altrimenti ottengo un freeze dell'interfaccia
-                        Thread client = new Thread(new Client(mapOne, mapTwo));
+                        Thread client = new Thread(new Client(playerName));
                         client.start();
-
-                        mapTwo.gameText.setText("Connettiti ad un server...");
                     }
                 }
                 else{

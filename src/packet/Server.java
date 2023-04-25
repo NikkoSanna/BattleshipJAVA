@@ -18,9 +18,18 @@ public class Server extends JFrame implements Runnable{
     Map mapOne;
     Map mapTwo;
 
-    public Server(Map mapOne, Map mapTwo) throws IOException {
-        this.mapOne = mapOne;
-        this.mapTwo = mapTwo;
+    public Server(String playerName) throws IOException {
+        mapOne = new Map(this, null);
+        mapTwo = new Map(this, null);
+
+        mapOne.playerName.setText(playerName);
+
+        mapTwo.setLocation((ScreenSize.getWidth() / 2) + 25, (ScreenSize.getHeight() / 3) - 250);
+        mapTwo.shipselect.dispose();
+        mapTwo.bottomBar.remove(mapTwo.ready);
+        mapTwo.bottomBar.add(mapTwo.gameText);
+
+        mapTwo.gameText.setText("In attesa di una connessione...");
 
         this.setVisible(false);
 

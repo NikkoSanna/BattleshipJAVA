@@ -56,11 +56,16 @@ public class Map extends JFrame {
     //La mappa deve essere a conoscenza della struttura del ship selector
     ShipSelector shipselect;
 
+    //La mappa deve comunicare col client o col server;
+    Server server;
+    Client client;
 
-    public Map() {
+    public Map(Server server, Client client) {
         setTitle("GameMap");
 
         shipselect = new ShipSelector(this);   //La mappa genera il ship selector
+        this.server = server;
+        this.client = client;
 
         //Font da file esterno
         try{
@@ -69,7 +74,7 @@ public class Map extends JFrame {
 
         //Aggiunta font agli elementi
         playerName.setFont(font);
-        shipSunkCounter.setFont(font.deriveFont(Font.PLAIN, 13));
+        shipSunkCounter.setFont(font.deriveFont(Font.PLAIN, 11));
         ready.setFont(font);
         gameText.setFont(font.deriveFont(Font.PLAIN, 20));
 
