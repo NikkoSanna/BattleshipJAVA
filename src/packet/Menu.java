@@ -10,7 +10,7 @@ public class Menu extends JFrame {
     Listener listener = new Listener(this);
 
     //Immagini salvate
-    ImageIcon seaImage = new ImageIcon(new ImageIcon("images/menuBackground.jpg").getImage().getScaledInstance(612, 612, Image.SCALE_SMOOTH));
+    ImageIcon seaImage = new ImageIcon(new ImageIcon("images/backgrounds/menuBackground.jpg").getImage().getScaledInstance(612, 612, Image.SCALE_SMOOTH));
 
     //Oggetti legati all'interfaccia
     Container c = this.getContentPane();
@@ -18,7 +18,6 @@ public class Menu extends JFrame {
     JButton new_game = new JButton("Nuova Partita");
     JButton old_game = new JButton("Continua partita");     //Non implementato
     JButton settings = new JButton("Impostazioni");      //Non implementato
-
 
     JLabel background = new JLabel();
     Font font;
@@ -48,7 +47,6 @@ public class Menu extends JFrame {
         settings.setBorder(BorderFactory.createLineBorder(Color.GRAY, 2));
         settings.setBackground(Color.WHITE);
 
-
         //Aggiunta dei bottoni al panel
         panel.setBorder(new EmptyBorder(250,100,100,100));
         panel.setLayout(new GridLayout(3, 1, 20,30));
@@ -60,6 +58,7 @@ public class Menu extends JFrame {
         background.add(panel);   //Aggiunta del panel al label
 
         c.add(background);       //Aggiunta del panel al content pane
+
 
         //Aggiunta di action listener per i bottoni
         new_game.addActionListener(listener);

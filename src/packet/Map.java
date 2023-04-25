@@ -2,6 +2,7 @@ package packet;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
+import java.io.File;
 
 public class Map extends JFrame {
     private final int dimension = 11;    //Per comoditá le dimensioni sono su una variabile di tipo int costante
@@ -30,7 +31,7 @@ public class Map extends JFrame {
     Listener listener = new Listener(this);
 
     //Immagini usate
-    ImageIcon seaImage = new ImageIcon(new ImageIcon("images/seaBackground.png").getImage().getScaledInstance(500, 500, Image.SCALE_SMOOTH));
+    ImageIcon seaImage = new ImageIcon(new ImageIcon("images/backgrounds/seaBackground.png").getImage().getScaledInstance(500, 500, Image.SCALE_SMOOTH));
     ImageIcon captainImage = new ImageIcon(new ImageIcon("images/captainImage.png").getImage().getScaledInstance(60,60,Image.SCALE_SMOOTH));
 
     //Oggetti legati all'interfaccia
@@ -43,11 +44,25 @@ public class Map extends JFrame {
     JPanel grid = new JPanel();
     Tile[][] tile = new Tile[dimension][dimension];     //JButton custom con aggiunta di attributi
 
+    Font font;
+
     //La mappa deve essere a conoscenza della struttura del ship selector
     ShipSelector shipselect;
 
+
     public Map() {
         setTitle("GameMap");
+
+        shipselect = new ShipSelector(this);   //La mappa genera il ship selector
+
+        //Font da file esterno
+        try{
+            font  = Font.createFont(Font.TRUETYPE_FONT, new File("Font.ttf")).deriveFont(Font.PLAIN, 25);
+        } catch (Exception e){}
+
+        //Aggiunta font agli elementi
+        playerName.setFont(font);
+        shipSunkCounter.setFont(font.deriveFont(Font.PLAIN, 11));
 
         c.setLayout(new BoxLayout(c,BoxLayout.Y_AXIS));      //Impostazione del layout del content pane
 
@@ -61,7 +76,6 @@ public class Map extends JFrame {
         playerCharacter.setIcon(captainImage);
         playerName.setHorizontalAlignment(JLabel.CENTER);
         playerCharacter.setHorizontalAlignment(JLabel.CENTER);
-        shipSunkCounter.setHorizontalAlignment(JLabel.CENTER);
         upperBar.add(playerName);
         upperBar.add(playerCharacter);
         upperBar.add(shipSunkCounter);
@@ -94,9 +108,6 @@ public class Map extends JFrame {
                     tile[i][j].setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
                     tile[i][j].setContentAreaFilled(false);
 
-                    //Aggiunta di mouse listener a ogni casella
-                    tile[i][j].addMouseListener(listener);
-
                     grid.add(tile[i][j]);   //Aggiunta della casella alla griglia
                 }
             }
@@ -109,6 +120,7 @@ public class Map extends JFrame {
 
         c.add(background);      //Aggiunta dell'intera interfaccia al content pane
 
+
         this.addWindowListener(listener);   //Aggiunta di un window listener al frame
 
         //Impostazioni di visualizzazione
@@ -117,8 +129,6 @@ public class Map extends JFrame {
         this.setResizable(false);
         this.setVisible(true);
         this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
-
-        shipselect = new ShipSelector(this);   //La mappa genera il ship selector
     }
 
     //Setter del tipo di barca che sta venendo posizionato

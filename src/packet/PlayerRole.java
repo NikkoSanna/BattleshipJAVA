@@ -3,12 +3,13 @@ package packet;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
+import java.io.File;
 
 public class PlayerRole extends JFrame {
     Listener listener = new Listener(this);
 
     //Immagini salvate
-    ImageIcon seaImage = new ImageIcon(new ImageIcon("images/roleBackground.jpeg").getImage().getScaledInstance(612, 612, Image.SCALE_SMOOTH));
+    ImageIcon seaImage = new ImageIcon(new ImageIcon("images/backgrounds/roleBackground.jpeg").getImage().getScaledInstance(612, 612, Image.SCALE_SMOOTH));
 
     //Oggetti legati all'interfaccia
     Container c = this.getContentPane();
@@ -21,13 +22,26 @@ public class PlayerRole extends JFrame {
 
     JLabel textRole = new JLabel();
     JPanel rolePanel = new JPanel();
+    JPanel rolePanelBottom = new JPanel();
     JButton hostRole = new JButton();
     JButton clientRole = new JButton();
 
     JLabel background = new JLabel();
-
+    Font font;
     public PlayerRole(){
         setTitle("PlayerRole");
+
+        //Font da file esterno
+        try{
+            font  = Font.createFont(Font.TRUETYPE_FONT, new File("Font.ttf")).deriveFont(Font.PLAIN, 20);
+        } catch (Exception e){}
+
+        //Aggiunta font agli elementi
+        textName.setFont(font);
+        playerName.setFont(font);
+        textRole.setFont(font);
+        hostRole.setFont(font);
+        clientRole.setFont(font);
 
         c.setLayout(new BoxLayout(c,BoxLayout.Y_AXIS));      //Impostazione del layout del content pane
 
@@ -37,32 +51,36 @@ public class PlayerRole extends JFrame {
 
         //Impostazione del layout e bordo del panel
         frame.setLayout(new BoxLayout(frame, BoxLayout.Y_AXIS));
-        frame.setBorder(new EmptyBorder(150,10,10,10));
+        frame.setBorder(new EmptyBorder(175,10,10,10));
+        frame.setOpaque(false);
 
         //Aggiunta della sezione di selezione nome
         textName.setText("Inserisci un nome:");
         namePanel.setLayout(new GridLayout(1,2,5,5));
-        namePanel.setBorder(new EmptyBorder(0,10,20,10));
+        namePanel.setBorder(new EmptyBorder(10,10,50,10));
         namePanel.add(textName);
         namePanel.add(playerName);
         frame.add(namePanel);
 
         //Aggiunta della sezione di selezione ruolo
+        rolePanel.setLayout(new BoxLayout(rolePanel,BoxLayout.Y_AXIS));
         textRole.setText("Con quale ruolo vuoi giocare?");
         textRole.setAlignmentX(JLabel.CENTER_ALIGNMENT);
         hostRole.setText("Host");
         clientRole.setText("Client");
-        rolePanel.setLayout(new FlowLayout(FlowLayout.CENTER));
-        rolePanel.setBorder(new EmptyBorder(10,10,10,10));
-        rolePanel.add(hostRole);
-        rolePanel.add(clientRole);
-        frame.add(textRole);
+        rolePanelBottom.setLayout(new FlowLayout(FlowLayout.CENTER));
+        rolePanelBottom.setBorder(new EmptyBorder(10,10,10,10));
+        rolePanelBottom.add(hostRole);
+        rolePanelBottom.add(clientRole);
+        rolePanel.add(textRole);
+        rolePanel.add(rolePanelBottom);
         frame.add(rolePanel);
 
         background.add(frame);
 
         c.add(background);   //Aggiunta del panel al content pane
 
+        //Aggiunta di action listener per i bottoni
         hostRole.addActionListener(listener);
         clientRole.addActionListener(listener);
 

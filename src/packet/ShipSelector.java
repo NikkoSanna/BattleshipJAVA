@@ -10,18 +10,18 @@ public class ShipSelector extends JFrame {
 
     //Immagini relative alle barche
 
-    ImageIcon iconShip1 = new ImageIcon(new ImageIcon("images/ship2.png").getImage());
-    ImageIcon iconShip2 = new ImageIcon(new ImageIcon("images/ship3.png").getImage());
-    ImageIcon iconShip3 = new ImageIcon(new ImageIcon("images/ship4.png").getImage());
-    ImageIcon iconShip4 = new ImageIcon(new ImageIcon("images/ship5.png").getImage());
+    ImageIcon iconShip2 = new ImageIcon(new ImageIcon("images/ship2/ship2.png").getImage());
+    ImageIcon iconShip3 = new ImageIcon(new ImageIcon("images/ship3/ship3.png").getImage());
+    ImageIcon iconShip4 = new ImageIcon(new ImageIcon("images/ship4/ship4.png").getImage());
+    ImageIcon iconShip5 = new ImageIcon(new ImageIcon("images/ship5/ship5.png").getImage());
 
     //Oggetti legati all'interfaccia
     Container c = this.getContentPane();
     JPanel ships = new JPanel();
-    JButton ship1 = new JButton();
     JButton ship2 = new JButton();
     JButton ship3 = new JButton();
     JButton ship4 = new JButton();
+    JButton ship5 = new JButton();
 
     public ShipSelector(Map map){
         this.map = map;     //Il ship selector é a conoscenza dell'intera struttura della mappa
@@ -33,33 +33,31 @@ public class ShipSelector extends JFrame {
         ships.setBorder(new EmptyBorder(20,20,20,20));
 
         //Comandi per l'estetica dei bottoni
-        ship1.setContentAreaFilled(false);
-        ship1.setBorderPainted(false);
         ship2.setContentAreaFilled(false);
         ship2.setBorderPainted(false);
         ship3.setContentAreaFilled(false);
         ship3.setBorderPainted(false);
         ship4.setContentAreaFilled(false);
         ship4.setBorderPainted(false);
+        ship5.setContentAreaFilled(false);
+        ship5.setBorderPainted(false);
 
         //Aggiungo le icone ai bottoni
-        ship1.setIcon(iconShip1);
         ship2.setIcon(iconShip2);
         ship3.setIcon(iconShip3);
         ship4.setIcon(iconShip4);
+        ship5.setIcon(iconShip5);
 
         //Aggiungo i bottoni al panel
-        ships.add(ship1);
         ships.add(ship2);
         ships.add(ship3);
         ships.add(ship4);
+        ships.add(ship5);
 
         c.add(ships);   //Aggiunta del panel al content pane
 
-        //Imposto degli action listener con relativi comandi ad ogni bottone
-        ship1.setActionCommand("ship1");
-        ship1.addActionListener(listener);
 
+        //Imposto degli action listener con relativi comandi ad ogni bottone
         ship2.setActionCommand("ship2");
         ship2.addActionListener(listener);
 
@@ -68,6 +66,9 @@ public class ShipSelector extends JFrame {
 
         ship4.setActionCommand("ship4");
         ship4.addActionListener(listener);
+
+        ship5.setActionCommand("ship5");
+        ship5.addActionListener(listener);
 
         //Impostazioni di visualizzazione
         this.setSize(1050,250);
@@ -79,9 +80,8 @@ public class ShipSelector extends JFrame {
 
     //Se nessuno dei bottoni é piú funzionante viene chiuso definitivamente ship selector
     public void killShipSelector(){
-        if(!ship1.isEnabled() && !ship2.isEnabled() && !ship3.isEnabled() && !ship4.isEnabled()){
+        if(!ship2.isEnabled() && !ship3.isEnabled() && !ship4.isEnabled() && !ship5.isEnabled()){
             map.actuallyPlaying = true;     //Passo alla fase di gioco
-
 
             //Stampa delle coordinate delle barche
             /*
@@ -109,6 +109,7 @@ public class ShipSelector extends JFrame {
             System.out.println(map.shipFive_Tiles[3]);
             System.out.println(map.shipFive_Tiles[4]);
             */
+
             dispose();
         }
     }

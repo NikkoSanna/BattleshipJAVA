@@ -5,7 +5,7 @@ import java.net.*;
 import java.io.*;
 import java.util.Scanner;
 
-public class Client extends JFrame {
+public class Client extends JFrame implements Runnable {
     static String ipServer;
     final static int serverPort = 50000;
     Socket client;
@@ -13,6 +13,7 @@ public class Client extends JFrame {
     OutputStreamWriter outStream;
     BufferedReader bufferIn;
     BufferedWriter bufferOut;
+    String ip;
 
     public Client() throws IOException {
         this.setVisible(false);
@@ -23,12 +24,15 @@ public class Client extends JFrame {
 
         //Ottengo l'indirizzo IPv4 locale, uguale a quello che ottengo da cmd
         //Ció non é necessario per il client, ma scriverlo in console potrebbe risultare utile
-        String ip;
         try (final DatagramSocket socket = new DatagramSocket()) {
             socket.connect(InetAddress.getByName("8.8.8.8"), 50000);
             ip = socket.getLocalAddress().getHostAddress();
         }
 
+    }
+
+    @Override
+    public void run() {
         //Comunicazione con il server
         try {
             client = new Socket(ipServer, 50000);

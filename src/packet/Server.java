@@ -4,8 +4,9 @@ import javax.swing.*;
 import java.net.*;
 import java.io.*;
 
-public class Server extends JFrame{
+public class Server extends JFrame implements Runnable{
     final static int serverPort = 50000;
+    String ip;
     ServerSocket server;
     InputStreamReader inStream;
     OutputStreamWriter outStream;
@@ -16,15 +17,13 @@ public class Server extends JFrame{
         this.setVisible(false);
 
         //Ottengo l'indirizzo IPv4 locale, uguale a quello che ottengo da cmd
-        String ip;
         try (final DatagramSocket socket = new DatagramSocket()) {
             socket.connect(InetAddress.getByName("8.8.8.8"), serverPort);
             ip = socket.getLocalAddress().getHostAddress();
             System.out.println("il tuo indirizzo ip é " + ip + " e la porta 50000");
 
             //Finestra che informa dell'indirizzo IPv4 del host
-            JOptionPane.showMessageDialog(this,"Comunica al secondo giocatore il codice " + ip + " per poter giocare",
-                    "Attenzione",JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(this,"Comunica al secondo giocatore il codice " + ip + " per poter giocare","Attenzione",JOptionPane.INFORMATION_MESSAGE);
         }
 
         /* MACOS
@@ -32,13 +31,15 @@ public class Server extends JFrame{
         socket.connect(new InetSocketAddress("google.com", 80));
         System.out.println(socket.getLocalAddress());
          */
+    }
 
+    @Override
+    public void run() {
         //Tentativo di apertura server
         try{
             server = new ServerSocket(serverPort);
 
             //Continua a provare a connettersi
-
             while(true){
                 try(Socket client = server.accept()){
 

@@ -4,7 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
-public class Listener extends JFrame implements ActionListener, FocusListener, WindowListener, MouseListener {
+public class Listener extends JFrame implements ActionListener, WindowListener {
     //Il listener deve essere a conoscenza della classe che lo sta richiamando
     Menu menu;
     Map map;
@@ -54,16 +54,7 @@ public class Listener extends JFrame implements ActionListener, FocusListener, W
         //Metodi richiamati dal ship selector
         try{
             //Se la barca selezionata é la prima
-            if(e.getSource() == shipSelect.ship1){
-                //Rendo il bottone della barca non piú usabile e nascondo lo ship selector
-                shipSelect.ship1.setEnabled(false);
-                shipSelect.setVisible(false);
-
-                //Imposto il tipo di barca che andró a piazzare
-                shipSelect.map.setShipType(e.getActionCommand());
-            }
-            //Se la barca selezionata é la seconda
-            else if(e.getSource() == shipSelect.ship2){
+            if(e.getSource() == shipSelect.ship2){
                 //Rendo il bottone della barca non piú usabile e nascondo lo ship selector
                 shipSelect.ship2.setEnabled(false);
                 shipSelect.setVisible(false);
@@ -71,7 +62,7 @@ public class Listener extends JFrame implements ActionListener, FocusListener, W
                 //Imposto il tipo di barca che andró a piazzare
                 shipSelect.map.setShipType(e.getActionCommand());
             }
-            //Se la barca selezionata é la terza
+            //Se la barca selezionata é la seconda
             else if(e.getSource() == shipSelect.ship3){
                 //Rendo il bottone della barca non piú usabile e nascondo lo ship selector
                 shipSelect.ship3.setEnabled(false);
@@ -80,10 +71,19 @@ public class Listener extends JFrame implements ActionListener, FocusListener, W
                 //Imposto il tipo di barca che andró a piazzare
                 shipSelect.map.setShipType(e.getActionCommand());
             }
+            //Se la barca selezionata é la terza
+            else if(e.getSource() == shipSelect.ship4){
+                //Rendo il bottone della barca non piú usabile e nascondo lo ship selector
+                shipSelect.ship4.setEnabled(false);
+                shipSelect.setVisible(false);
+
+                //Imposto il tipo di barca che andró a piazzare
+                shipSelect.map.setShipType(e.getActionCommand());
+            }
             //Se la barca selezionata é la quarta
             else {
                 //Rendo il bottone della barca non piú usabile e nascondo lo ship selector
-                shipSelect.ship4.setEnabled(false);
+                shipSelect.ship5.setEnabled(false);
                 shipSelect.setVisible(false);
 
                 //Imposto il tipo di barca che andró a piazzare
@@ -105,11 +105,17 @@ public class Listener extends JFrame implements ActionListener, FocusListener, W
                     mapOne.playerName.setText(playerRole.playerName.getText());
                     playerRole.dispose();
 
-                    //Avvio la partita da server o da client
+                    //Avvio la partita da server
                     if(e.getSource() == playerRole.hostRole){
-                        Server server = new Server();
+                        //Uso il multithreading, altrimenti ottengo un freeze dell'interfaccia
+                        Thread server = new Thread(new Server());
+                        server.start();
+
+                    //Avvio la partita da client
                     }else{
-                        Client client = new Client();
+                        //Uso il multithreading, altrimenti ottengo un freeze dell'interfaccia
+                        Thread client = new Thread(new Client());
+                        client.start();
                     }
                 }
                 else{
@@ -122,21 +128,6 @@ public class Listener extends JFrame implements ActionListener, FocusListener, W
 
     }
 
-    @Override
-    public void focusGained(FocusEvent e) {
-
-    }
-
-    @Override
-    public void focusLost(FocusEvent e) {
-
-    }
-
-    @Override
-    public void windowOpened(WindowEvent e) {
-
-    }
-
     //Apparizione di una finestra di conferma per la chiusura dei frame
     @Override
     public void windowClosing(WindowEvent e) {
@@ -144,6 +135,11 @@ public class Listener extends JFrame implements ActionListener, FocusListener, W
         if (confirm == JOptionPane.YES_OPTION) {
             System.exit(0);
         }
+    }
+
+    @Override
+    public void windowOpened(WindowEvent e) {
+
     }
 
     @Override
@@ -168,31 +164,6 @@ public class Listener extends JFrame implements ActionListener, FocusListener, W
 
     @Override
     public void windowDeactivated(WindowEvent e) {
-
-    }
-
-    @Override
-    public void mouseClicked(MouseEvent e) {
-
-    }
-
-    @Override
-    public void mousePressed(MouseEvent e) {
-
-    }
-
-    @Override
-    public void mouseReleased(MouseEvent e) {
-
-    }
-
-    @Override
-    public void mouseEntered(MouseEvent e) {
-
-    }
-
-    @Override
-    public void mouseExited(MouseEvent e) {
 
     }
 }
