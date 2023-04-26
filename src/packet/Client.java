@@ -79,7 +79,9 @@ public class Client extends JFrame implements Runnable {
 
             //Una volta connesso continua a comunicare
             while(true){
-
+                if(!yourTurn){
+                    bufferIn.readLine();
+                }
             }
         } catch (IOException e) {
             System.out.println("Client non startato");

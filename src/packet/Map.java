@@ -64,6 +64,7 @@ public class Map extends JFrame {
         setTitle("GameMap");
 
         shipselect = new ShipSelector(this);   //La mappa genera il ship selector
+
         this.server = server;
         this.client = client;
 
