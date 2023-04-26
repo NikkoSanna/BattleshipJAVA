@@ -10,6 +10,7 @@ public class Listener extends JFrame implements ActionListener, WindowListener {
     Map map;
     ShipSelector shipSelect;
     PlayerRole playerRole;
+    IP_Selector ipSelector;
 
     //Costruttore se il listener é richiamato dal menú
     public Listener(Menu page){
@@ -29,6 +30,8 @@ public class Listener extends JFrame implements ActionListener, WindowListener {
     public Listener(PlayerRole page){
         playerRole = page;
     }
+
+    public Listener(IP_Selector page) { ipSelector = page; }
 
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -140,6 +143,15 @@ public class Listener extends JFrame implements ActionListener, WindowListener {
             }
         }catch (Exception e1){
             System.out.println("Errore nell'action performed di map");
+        }
+        try {
+            if(e.getSource().equals(ipSelector.send)){
+                ipSelector.sent = true;
+            } else {
+                ipSelector.IP.setText("");
+            }
+        } catch (Exception e1) {
+
         }
     }
 

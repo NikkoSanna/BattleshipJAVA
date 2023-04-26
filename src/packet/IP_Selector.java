@@ -10,6 +10,8 @@ public class IP_Selector extends JDialog {
     JButton send = new JButton("Invia");
     JButton clear = new JButton("clear");
 
+    boolean sent = false;
+
     JPanel buttons = new JPanel(new FlowLayout());
 
     public IP_Selector(JFrame parent){
@@ -28,11 +30,18 @@ public class IP_Selector extends JDialog {
         add(IP);
         add(buttons);
 
+        if(sent) {
+            getIP();
+        }
+
         pack();
         setLocation(ScreenSize.getWidth() / 2, ScreenSize.getHeight() / 2);
         setResizable(false);
         setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE);
         setVisible(true);
 
+    }
+    public String getIP() {
+        return IP.getText();
     }
 }

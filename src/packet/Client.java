@@ -36,7 +36,7 @@ public class Client extends JFrame implements Runnable {
         this.setVisible(false);
 
         //Finestra per inserire l'indirizzo IPv4 del host
-        ipServer = JOptionPane.showInputDialog(this,"Inserisci l'indirizzo del host", "Attenzione",JOptionPane.QUESTION_MESSAGE);
+        ipServer =
 
         //Ottengo l'indirizzo IPv4 locale, uguale a quello che ottengo da cmd
         //Ció non é necessario per il client, ma scriverlo in console potrebbe risultare utile
