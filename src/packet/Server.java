@@ -87,7 +87,9 @@ public class Server extends JFrame implements Runnable{
 
                     //Una volta connesso continua a comunicare
                     while(true){
-
+                        if(!yourTurn){
+                            bufferIn.readLine();
+                        }
                     }
                 }
             }
