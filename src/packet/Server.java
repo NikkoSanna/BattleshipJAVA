@@ -8,8 +8,8 @@ public class Server extends JFrame implements Runnable{
     final static int serverPort = 50000;
     String str;
     String ip;
+    int ready = 2;
     boolean yourTurn = true;
-    boolean ready = false;
 
     ServerSocket server;
     InputStreamReader inStream;
@@ -89,7 +89,18 @@ public class Server extends JFrame implements Runnable{
 
                     //Una volta connesso continua a comunicare
                     while(true){
-                        if(!yourTurn){
+                        //Finché entrambi non sono pronti il gioco non inizia
+                        while(ready>0){
+                            str = bufferIn.readLine();
+                            if(str.equals("ready")){
+                                ready -= 1;
+                            }
+                        }
+
+                        //Gestisco i turni di gioco
+                        if(yourTurn){
+                            mapTwo.gameText.setText("E il tuo turno!");
+                        }else {
                             str = bufferIn.readLine();
                         }
                     }

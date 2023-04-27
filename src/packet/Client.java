@@ -6,10 +6,12 @@ import java.io.*;
 import java.util.Scanner;
 
 public class Client extends JFrame implements Runnable {
-    String ipServer;
     final static int serverPort = 50000;
+    String ipServer;
     String ip;
+    String str;
     boolean yourTurn = false;
+    boolean started = false;    //booleano usato quando ancora entrambi non hanno cliccato pronto
 
     Socket client;
     InputStreamReader inStream;
@@ -63,7 +65,7 @@ public class Client extends JFrame implements Runnable {
             bufferOut.newLine();    //Riga piú importante qui
             bufferOut.flush();     //Impone la scrittura dei dati presenti nel buffer sul dispositivo di output
 
-            String str = bufferIn.readLine();
+            str = bufferIn.readLine();
             System.out.println("server avente indirizzo ip: " + str);
 
             //Scambio dei nickname
@@ -78,8 +80,19 @@ public class Client extends JFrame implements Runnable {
 
             //Una volta connesso continua a comunicare
             while(true){
-                if(!yourTurn){
-                    bufferIn.readLine();
+                //Finché entrambi non sono pronti il gioco non inizia
+                while(!started){
+                    str = bufferIn.readLine();
+                    if(str.equals("ready")){
+                        started = true;
+                    }
+                }
+
+                //Gestisco i turni di gioco
+                if(yourTurn){
+                    mapTwo.gameText.setText("E il tuo turno!");
+                }else {
+                    str = bufferIn.readLine();
                 }
             }
         } catch (IOException e) {
