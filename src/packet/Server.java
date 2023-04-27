@@ -9,7 +9,7 @@ public class Server extends JFrame implements Runnable{
     String ip;
     String str;     //stringa usata per la ricezione dal client
     int ready = 2;      //booleano che si decrementa per capire quando entrambi sono pronti
-    boolean yourTurn = true;      //booleano che gestisce i turni
+    boolean yourTurn = false;      //booleano che gestisce i turni
 
     ServerSocket server;
     InputStreamReader inStream;
@@ -91,10 +91,13 @@ public class Server extends JFrame implements Runnable{
                     //Una volta connesso continua a comunicare
                     while(true){
                         //Finché entrambi non sono pronti il gioco non inizia
-                        while(ready>0){
+                        while(ready > 0){
                             str = bufferIn.readLine();
                             if(str.equals("ready")){
                                 ready -= 1;
+                            }
+                            if(ready == 0){
+                                yourTurn = true;
                             }
                         }
 
@@ -109,7 +112,6 @@ public class Server extends JFrame implements Runnable{
 
                             mapOne.tile[x][y].tileHit(x,y);
 
-                            System.out.println("AAAAAAA");
                             yourTurn = true;
                         }
                     }
