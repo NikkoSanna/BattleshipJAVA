@@ -78,7 +78,6 @@ public class Client implements Runnable {
 
             mapTwo.gameText.setText("Connessione riuscita");
 
-
             //Una volta connesso continua a comunicare
             while(true){
                 //Finché entrambi non sono pronti il gioco non inizia

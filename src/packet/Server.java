@@ -9,7 +9,7 @@ public class Server extends JFrame implements Runnable{
     String ip;
     String str;     //stringa usata per la ricezione dal client
     int ready = 2;      //booleano che si decrementa per capire quando entrambi sono pronti
-    boolean yourTurn = false;      //booleano che gestisce i turni
+    boolean yourTurn = true;      //booleano che gestisce i turni
 
     ServerSocket server;
     InputStreamReader inStream;
