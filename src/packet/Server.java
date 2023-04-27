@@ -108,6 +108,9 @@ public class Server extends JFrame implements Runnable{
                             int y = Integer.parseInt(coordinates[1]);     //Converto la coordinata y in intero
 
                             mapOne.tile[x][y].tileHit(x,y);
+
+                            System.out.println("AAAAAAA");
+                            yourTurn = true;
                         }
                     }
                 }
