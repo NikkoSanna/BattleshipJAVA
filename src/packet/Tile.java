@@ -221,6 +221,8 @@ public class Tile extends JButton implements MouseListener {
                         map.server.bufferOut.write(i + "," + j);
                         map.server.bufferOut.newLine();
                         map.server.bufferOut.flush();
+
+                        System.out.println("AAAAA");
                     } catch (IOException e1) {
                         throw new RuntimeException(e1);
                     }
