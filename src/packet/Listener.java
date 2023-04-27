@@ -100,7 +100,7 @@ public class Listener extends JFrame implements ActionListener, WindowListener {
         try{
             if(e.getSource() == playerRole.hostRole || e.getSource() == playerRole.clientRole){
                 //Controllo se é stato inserito un nome
-                if(!(playerRole.playerName.getText().equals(""))){
+                if(!playerRole.playerName.getText().equals("")){
                     String playerName = playerRole.playerName.getText();
                     playerRole.dispose();
 
@@ -112,9 +112,8 @@ public class Listener extends JFrame implements ActionListener, WindowListener {
 
                     //Avvio la partita da client
                     }else{
-                        //Uso il multithreading, altrimenti ottengo un freeze dell'interfaccia
-                        Thread client = new Thread(new Client(playerName));
-                        client.start();
+                        //Appare la richiesta di selezione IP
+                        ipSelector = new IP_Selector(playerName);
                     }
                 }
                 else{
@@ -136,22 +135,40 @@ public class Listener extends JFrame implements ActionListener, WindowListener {
 
                 if(map.client == null){
                     map.server.mapTwo.gameText.setText("In attesa dell altro giocatore");
+
+                    map.server.ready = true;
                 }else{
                     map.client.mapTwo.gameText.setText("In attesa dell altro giocatore");
-                }
 
+                    map.client.bufferOut.write("ready");
+                    map.client.bufferOut.newLine();
+                    map.client.bufferOut.flush();
+                }
             }
         }catch (Exception e1){
             System.out.println("Errore nell'action performed di map");
         }
+
+        //Metodi richiamati da IP Selector
         try {
-            if(e.getSource().equals(ipSelector.send)){
-                ipSelector.sent = true;
+            if(e.getSource() == ipSelector.send){
+                //Genero il client e inserisco l'indirizzo IPv4 del server
+                if(!ipSelector.IP.getText().equals("")){
+                    ipSelector.setVisible(false);   //Scompare troppo tardi dallo schermo altrimenti
+
+                    //Uso il multithreading, altrimenti ottengo un freeze dell'interfaccia
+                    Thread client = new Thread(new Client(ipSelector.playerName, ipSelector.IP.getText()));
+                    client.start();
+
+                    ipSelector.dispose();   //Chiudo IP selector
+                }else{
+                    ipSelector.IP.setBackground(Color.RED);
+                }
             } else {
-                ipSelector.IP.setText("");
+                ipSelector.IP.setText(null);    //Cancello il testo dell'IP
             }
         } catch (Exception e1) {
-
+            System.out.println("Errore nell'action performed di IP selector");
         }
     }
 

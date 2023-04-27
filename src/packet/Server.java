@@ -6,8 +6,10 @@ import java.io.*;
 
 public class Server extends JFrame implements Runnable{
     final static int serverPort = 50000;
+    String str;
     String ip;
     boolean yourTurn = true;
+    boolean ready = false;
 
     ServerSocket server;
     InputStreamReader inStream;
@@ -68,7 +70,7 @@ public class Server extends JFrame implements Runnable{
                     //Messaggi a console riguardanti la connessione
                     System.out.println("Connesso col client");
 
-                    String str = bufferIn.readLine();
+                    str = bufferIn.readLine();
                     System.out.println("Client avente indirizzo ip: " + str);
 
                     bufferOut.write(ip);
@@ -88,7 +90,7 @@ public class Server extends JFrame implements Runnable{
                     //Una volta connesso continua a comunicare
                     while(true){
                         if(!yourTurn){
-                            bufferIn.readLine();
+                            str = bufferIn.readLine();
                         }
                     }
                 }

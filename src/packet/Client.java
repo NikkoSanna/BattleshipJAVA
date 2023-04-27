@@ -6,7 +6,7 @@ import java.io.*;
 import java.util.Scanner;
 
 public class Client extends JFrame implements Runnable {
-    static String ipServer;
+    String ipServer;
     final static int serverPort = 50000;
     String ip;
     boolean yourTurn = false;
@@ -20,7 +20,9 @@ public class Client extends JFrame implements Runnable {
     Map mapOne;
     Map mapTwo;
 
-    public Client(String playerName) throws IOException {
+    public Client(String playerName, String ipServer) throws IOException {
+        this.ipServer = ipServer;
+
         mapOne = new Map(null, this);
         mapTwo = new Map(null, this);
 
@@ -34,9 +36,6 @@ public class Client extends JFrame implements Runnable {
         mapTwo.gameText.setText("Connettiti ad un server...");
 
         this.setVisible(false);
-
-        //Finestra per inserire l'indirizzo IPv4 del host
-        ipServer =
 
         //Ottengo l'indirizzo IPv4 locale, uguale a quello che ottengo da cmd
         //Ció non é necessario per il client, ma scriverlo in console potrebbe risultare utile

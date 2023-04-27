@@ -29,12 +29,13 @@ public class ShipSelector extends JFrame {
         setTitle("Ship Select");
 
         //Impostazioni dei layout
-        ships.setLayout(new GridLayout(2,2, 20,20));
+        ships.setLayout(new GridLayout(1,4, 20,20));
         ships.setBorder(new EmptyBorder(20,20,20,20));
+        ships.setBackground(Color.GRAY);
 
         //Comandi per l'estetica dei bottoni
         ship2.setContentAreaFilled(false);
-        ship2.setBorderPainted(false);
+        //ship2.setBorderPainted(false);
         ship3.setContentAreaFilled(false);
         ship3.setBorderPainted(false);
         ship4.setContentAreaFilled(false);
@@ -71,7 +72,7 @@ public class ShipSelector extends JFrame {
         ship5.addActionListener(listener);
 
         //Impostazioni di visualizzazione
-        this.setSize(1050,250);
+        this.setSize(1063,250);
         this.setLocation(ScreenSize.getWidth() / 2 - 525, ScreenSize.getHeight() - 300);
         this.setResizable(false);
         this.setVisible(true);

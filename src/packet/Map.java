@@ -3,7 +3,6 @@ import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.io.File;
-import java.nio.file.attribute.FileOwnerAttributeView;
 
 public class Map extends JFrame {
     private final int dimension = 11;    //Per comoditá le dimensioni sono su una variabile di tipo int costante
