@@ -5,19 +5,19 @@ import java.net.*;
 import java.io.*;
 import java.util.Scanner;
 
-public class Client extends JFrame implements Runnable {
+public class Client implements Runnable {
     final static int serverPort = 50000;
     String ipServer;
     String ip;
-    String str;
-    boolean yourTurn = false;
+    String str;     //stringa usata per la ricezione dal server
     boolean started = false;    //booleano usato quando ancora entrambi non hanno cliccato pronto
+    boolean yourTurn = false;       //booleano che gestisce i turni
 
     Socket client;
     InputStreamReader inStream;
     OutputStreamWriter outStream;
-    BufferedReader bufferIn;
-    BufferedWriter bufferOut;
+    BufferedReader bufferIn;        //Usato per la ricezione dati
+    BufferedWriter bufferOut;       //Usato per l'invio dati
 
     Map mapOne;
     Map mapTwo;
@@ -25,19 +25,19 @@ public class Client extends JFrame implements Runnable {
     public Client(String playerName, String ipServer) throws IOException {
         this.ipServer = ipServer;
 
+        //Genero le mappe di gioco
         mapOne = new Map(null, this);
         mapTwo = new Map(null, this);
+        mapTwo.shipselect.dispose();
 
         mapOne.playerName.setText(playerName);
 
+        //La mappa 2 avrá qualche differenza dalla mappa 1
         mapTwo.setLocation((ScreenSize.getWidth() / 2) + 25, (ScreenSize.getHeight() / 3) - 250);
-        mapTwo.shipselect.dispose();
         mapTwo.bottomBar.remove(mapTwo.ready);
         mapTwo.bottomBar.add(mapTwo.gameText);
 
         mapTwo.gameText.setText("Connettiti ad un server...");
-
-        this.setVisible(false);
 
         //Ottengo l'indirizzo IPv4 locale, uguale a quello che ottengo da cmd
         //Ció non é necessario per il client, ma scriverlo in console potrebbe risultare utile
@@ -51,7 +51,7 @@ public class Client extends JFrame implements Runnable {
     public void run() {
         //Comunicazione con il server
         try {
-            client = new Socket(ipServer, 50000);
+            client = new Socket(ipServer, serverPort);
 
             inStream = new InputStreamReader(client.getInputStream());
             outStream = new OutputStreamWriter(client.getOutputStream());
@@ -93,9 +93,14 @@ public class Client extends JFrame implements Runnable {
                     mapTwo.gameText.setText("E il tuo turno!");
                 }else {
                     str = bufferIn.readLine();
+                    String[] coordinates = str.split(",");     //Splitto le coordinate
+                    int x = Integer.parseInt(coordinates[0]);     //Converto la coordinata x in intero
+                    int y = Integer.parseInt(coordinates[1]);     //Converto la coordinata y in intero
+
+                    mapOne.tile[x][y].tileHit(x,y);
                 }
             }
-        } catch (IOException e) {
+        } catch (IOException e1) {
             System.out.println("Client non startato");
         }
     }

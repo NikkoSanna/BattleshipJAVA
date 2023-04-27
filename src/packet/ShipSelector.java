@@ -35,7 +35,7 @@ public class ShipSelector extends JFrame {
 
         //Comandi per l'estetica dei bottoni
         ship2.setContentAreaFilled(false);
-        //ship2.setBorderPainted(false);
+        ship2.setBorderPainted(false);
         ship3.setContentAreaFilled(false);
         ship3.setBorderPainted(false);
         ship4.setContentAreaFilled(false);
@@ -112,7 +112,7 @@ public class ShipSelector extends JFrame {
             System.out.println(map.shipFive_Tiles[4]);
             */
 
-            dispose();
+            this.dispose();
         }
     }
 }

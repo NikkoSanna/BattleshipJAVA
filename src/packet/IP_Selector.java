@@ -28,7 +28,7 @@ public class IP_Selector extends JFrame{
         frame.setLayout(new GridLayout(3,1, 10,10));
         frame.setBorder(new EmptyBorder(20,20,20,20));
 
-        //Aggiunta delle richiesta dell'indirizzo IPv4
+        //Aggiunta delle richieste dell'indirizzo IPv4
         message.setText("Inserisci l'indirizzo IP del server");
         frame.add(message);
         frame.add(IP);
@@ -46,8 +46,8 @@ public class IP_Selector extends JFrame{
         c.add(frame);
 
         //Impostazioni di visualizzazione
-        this.pack();
-        this.setLocation(ScreenSize.getWidth() / 2, ScreenSize.getHeight() / 2);
+        this.setSize(250,200);
+        this.setLocation(ScreenSize.getWidth() / 2 - 125, ScreenSize.getHeight() / 2 - 100);
         this.setResizable(false);
         this.setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE);
         this.setVisible(true);

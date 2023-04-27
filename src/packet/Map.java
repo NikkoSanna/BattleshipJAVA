@@ -70,7 +70,7 @@ public class Map extends JFrame {
         //Font da file esterno
         try{
             font  = Font.createFont(Font.TRUETYPE_FONT, new File("Font.ttf")).deriveFont(Font.PLAIN, 25);
-        } catch (Exception e){}
+        } catch (Exception ignored){}
 
         //Aggiunta font agli elementi
         playerName.setFont(font);

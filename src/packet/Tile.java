@@ -3,6 +3,7 @@ package packet;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.io.IOException;
 
 public class Tile extends JButton implements MouseListener {
     //Attributi della casella
@@ -211,12 +212,38 @@ public class Tile extends JButton implements MouseListener {
                 }
             } catch (Exception ignored) {}
         }
+        //Se sono nella fase di gioco invio le informazioni sulla casella cliccata all'altro giocatore
+        else{
+            if(map.client == null){
+                if (map.server.yourTurn){
+                    //Invio al client la posizione della casella colpita
+                    try {
+                        map.server.bufferOut.write(i + "," + j);
+                        map.server.bufferOut.newLine();
+                        map.server.bufferOut.flush();
+                    } catch (IOException e1) {
+                        throw new RuntimeException(e1);
+                    }
+                }
+            }else{
+                if(map.client.yourTurn){
+                    //Invio al server la posizione della casella colpita
+                    try {
+                        map.client.bufferOut.write(i + "," + j );
+                        map.client.bufferOut.newLine();
+                        map.client.bufferOut.flush();
+                    } catch (IOException e1) {
+                        throw new RuntimeException(e1);
+                    }
+                }
+            }
+        }
     }
 
     //Metodo che viene richiamato per il piazzamento della barca nella fase di piazzamento
     public void placeShip(String shipType){
         //Se la barca selezionata é quella da 2
-        if(shipType == "ship2"){
+        if(shipType.equals("ship2")){
             hasShip = true;
             map.tile[i-1][j].hasShip = true;
 
@@ -225,7 +252,7 @@ public class Tile extends JButton implements MouseListener {
             map.shipTwo_Tiles[1] = (i - 1) + "," + (j - 1);
         }
         //Se la barca selezionata é quella da 3
-        else if(shipType == "ship3"){
+        else if(shipType.equals("ship3")){
             hasShip = true;
             map.tile[i-1][j].hasShip = true;
             map.tile[i+1][j].hasShip = true;
@@ -236,7 +263,7 @@ public class Tile extends JButton implements MouseListener {
             map.shipThree_Tiles[2] = (map.tile[i+1][j].i - 1) + "," + (map.tile[i+1][j].j - 1);
         }
         //Se la barca selezionata é la terza
-        else if(shipType == "ship4"){
+        else if(shipType.equals("ship4")){
             hasShip = true;
             map.tile[i-1][j].hasShip = true;
             map.tile[i+1][j].hasShip = true;
@@ -249,14 +276,14 @@ public class Tile extends JButton implements MouseListener {
             map.shipFour_Tiles[3] = (map.tile[i+1][j].i - 1) + "," + (map.tile[i+1][j].j - 1);
         }
         //Se la barca selezionata é quella da 5
-        else if(shipType == "ship5"){
+        else if(shipType.equals("ship5")){
             hasShip = true;
             map.tile[i-1][j].hasShip = true;
             map.tile[i+1][j].hasShip = true;
             map.tile[i-2][j].hasShip = true;
             map.tile[i+2][j].hasShip = true;
 
-            //Inserimeno all'interno di un array delle coordinate che occupa la barca
+            //Inserimento all'interno di un array delle coordinate che occupa la barca
             map.shipFive_Tiles[0] = (map.tile[i-2][j].i - 1) + "," + (map.tile[i-2][j].j - 1);
             map.shipFive_Tiles[1] = (map.tile[i-1][j].i - 1) + "," + (map.tile[i-1][j].j - 1);
             map.shipFive_Tiles[2] = (i - 1) + "," + (j - 1);
@@ -271,7 +298,7 @@ public class Tile extends JButton implements MouseListener {
 
 
     //Metodo che viene richiamato quando si clicca su una casella
-    public void tileHit() {
+    public void tileHit(int i, int j) {
         //Se quella casella non era stata cliccata allora posso procedere
         if (!isHit) {
             isHit = true;   //Imposto la casella come colpita

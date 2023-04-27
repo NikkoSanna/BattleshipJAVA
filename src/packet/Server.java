@@ -6,16 +6,16 @@ import java.io.*;
 
 public class Server extends JFrame implements Runnable{
     final static int serverPort = 50000;
-    String str;
     String ip;
-    int ready = 2;
-    boolean yourTurn = true;
+    String str;     //stringa usata per la ricezione dal client
+    int ready = 2;      //booleano che si decrementa per capire quando entrambi sono pronti
+    boolean yourTurn = false;      //booleano che gestisce i turni
 
     ServerSocket server;
     InputStreamReader inStream;
     OutputStreamWriter outStream;
-    BufferedReader bufferIn;
-    BufferedWriter bufferOut;
+    BufferedReader bufferIn;        //Usato per la ricezione dati
+    BufferedWriter bufferOut;       //Usato per l'invio dati
 
     Map mapOne;
     Map mapTwo;
@@ -23,11 +23,12 @@ public class Server extends JFrame implements Runnable{
     public Server(String playerName) throws IOException {
         mapOne = new Map(this, null);
         mapTwo = new Map(this, null);
+        mapTwo.shipselect.dispose();
 
         mapOne.playerName.setText(playerName);
 
+        //La mappa 2 avrá qualche differenza dalla mappa 1
         mapTwo.setLocation((ScreenSize.getWidth() / 2) + 25, (ScreenSize.getHeight() / 3) - 250);
-        mapTwo.shipselect.dispose();
         mapTwo.bottomBar.remove(mapTwo.ready);
         mapTwo.bottomBar.add(mapTwo.gameText);
 
@@ -102,11 +103,16 @@ public class Server extends JFrame implements Runnable{
                             mapTwo.gameText.setText("E il tuo turno!");
                         }else {
                             str = bufferIn.readLine();
+                            String[] coordinates = str.split(",");     //Splitto le coordinate
+                            int x = Integer.parseInt(coordinates[0]);     //Converto la coordinata x in intero
+                            int y = Integer.parseInt(coordinates[1]);     //Converto la coordinata y in intero
+
+                            mapOne.tile[x][y].tileHit(x,y);
                         }
                     }
                 }
             }
-        } catch (IOException e) {
+        } catch (IOException e1) {
             System.out.println("Server non startato");
         }
     }
