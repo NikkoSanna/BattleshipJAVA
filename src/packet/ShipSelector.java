@@ -84,12 +84,7 @@ public class ShipSelector extends JFrame {
         if(!ship2.isEnabled() && !ship3.isEnabled() && !ship4.isEnabled() && !ship5.isEnabled()){
             map.actuallyPlaying = true;     //Passo alla fase di gioco
 
-            do{
-                if(map.server.connected){
-                    map.ready.setEnabled(true);
-                }
-            }while (!map.server.connected);
-
+            map.ready.setEnabled(true);
 
             //Stampa delle coordinate delle barche
             /*

@@ -12,7 +12,6 @@ public class Client implements Runnable {
     String str;     //stringa usata per la ricezione dal server
     boolean started = false;    //booleano usato quando ancora entrambi non hanno cliccato pronto
     boolean yourTurn = false;       //booleano che gestisce i turni
-    boolean connected = false;      //booleano che tiene conto del fatto che sia avvenuta o meno una connessione
 
     Socket client;
     InputStreamReader inStream;
@@ -79,7 +78,6 @@ public class Client implements Runnable {
 
             mapTwo.gameText.setText("Connessione riuscita");
 
-            connected = true;       //Vado a usare questo valore per evitare di rompere tutto se clicco il button pronto
 
             //Una volta connesso continua a comunicare
             while(true){

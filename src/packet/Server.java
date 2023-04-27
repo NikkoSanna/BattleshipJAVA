@@ -10,7 +10,6 @@ public class Server extends JFrame implements Runnable{
     String str;     //stringa usata per la ricezione dal client
     int ready = 2;      //booleano che si decrementa per capire quando entrambi sono pronti
     boolean yourTurn = false;      //booleano che gestisce i turni
-    boolean connected = false;      //booleano che tiene conto del fatto che sia avvenuta o meno una connessione
 
     ServerSocket server;
     InputStreamReader inStream;
@@ -88,8 +87,6 @@ public class Server extends JFrame implements Runnable{
                     mapTwo.playerName.setText(enemyName);
 
                     mapTwo.gameText.setText("Connessione riuscita");
-
-                    connected = true;       //Vado a usare questo valore per evitare di rompere tutto se clicco il button pronto
 
                     //Una volta connesso continua a comunicare
                     while(true){
