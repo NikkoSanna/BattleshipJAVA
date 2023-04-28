@@ -10,7 +10,8 @@ public class Server implements Runnable{
     String ip;
     String str;     //stringa usata per la ricezione dal client
     int ready = 2;      //booleano che si decrementa per capire quando entrambi sono pronti
-    boolean yourTurn = false;      //booleano che gestisce i turni
+    boolean yourTurn = true;      //booleano che gestisce i turni
+    boolean loop = true;        //Usata solamente per evitare un blocco quando si clicca pronto
 
     ServerSocket server;
     InputStreamReader inStream;
@@ -96,13 +97,15 @@ public class Server implements Runnable{
                     //Una volta connesso continua a comunicare
                     while(true){
                         //Finché entrambi non sono pronti il gioco non inizia
-                        while(ready > 0){
-                            str = bufferIn.readLine();
-                            if(str.equals("ready")){
-                                ready -= 1;
-                            }
-                            if(ready == 0){
-                                yourTurn = true;
+                        while(ready > 0 || loop){
+                            //Se non uso un altro booleano rischio che si blocchi nella riga di lettura per sempre
+                            if(loop){
+                                str = bufferIn.readLine();
+                                if(str.equals("ready")){
+                                    ready -= 1;
+                                    System.out.println("fattttttto");
+                                    loop = false;
+                                }
                             }
                         }
 
@@ -125,5 +128,10 @@ public class Server implements Runnable{
         } catch (IOException e1) {
             System.out.println("Server non startato");
         }
+    }
+
+    //Non ho idea del perché ma senza non funziona altrimenti
+    public void decrement(){
+        ready -= 1;
     }
 }

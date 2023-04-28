@@ -136,7 +136,8 @@ public class Listener extends JFrame implements ActionListener, WindowListener {
                 if(map.client == null){
                     map.server.mapTwo.gameText.setText("In attesa dell altro giocatore");
 
-                    map.server.ready -= 1;      //Decremento il valore per capire se entrambi i giocatori sono pronti
+                    //Non so perché ma se faccio direttamente qui la sottrazione non va
+                    map.server.decrement();      //Decremento il valore per capire se entrambi i giocatori sono pronti
                 }else{
                     map.client.mapTwo.gameText.setText("In attesa dell altro giocatore");
 
