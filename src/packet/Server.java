@@ -107,6 +107,7 @@ public class Server implements Runnable{
                                     loop = false;
                                 }
                             }
+                            System.out.println(" ");    //Si...questa riga se manca si rompe tutto - 3 ore buttate
                         }
 
                         //Gestisco i turni di gioco
@@ -128,10 +129,5 @@ public class Server implements Runnable{
         } catch (IOException e1) {
             System.out.println("Server non startato");
         }
-    }
-
-    //Non ho idea del perché ma senza non funziona altrimenti
-    public void decrement(){
-        ready -= 1;
     }
 }
