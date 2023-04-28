@@ -103,7 +103,6 @@ public class Server implements Runnable{
                                 str = bufferIn.readLine();
                                 if(str.equals("ready")){
                                     ready -= 1;
-                                    System.out.println("fattttttto");
                                     loop = false;
                                 }
                             }

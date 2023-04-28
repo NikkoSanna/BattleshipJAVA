@@ -50,9 +50,7 @@ public class Listener extends JFrame implements ActionListener, WindowListener {
             else {
                 //Settings opt = new Settings();
             }
-        }catch (Exception e1){
-            System.out.println("Errore nell'action performed di menu");
-        }
+        }catch (Exception ignored){}
 
         //Metodi richiamati dal ship selector
         try{
@@ -92,9 +90,7 @@ public class Listener extends JFrame implements ActionListener, WindowListener {
                 //Imposto il tipo di barca che andró a piazzare
                 shipSelect.map.setShipType(e.getActionCommand());
             }
-        }catch(Exception e1){
-            System.out.println("Errore nell'action performed di shipselector");
-        }
+        }catch(Exception ignored){}
 
         //Metodi richiamati dal selettore ruolo
         try{
@@ -120,9 +116,7 @@ public class Listener extends JFrame implements ActionListener, WindowListener {
                     playerRole.playerName.setBackground(Color.RED);
                 }
             }
-        }catch (Exception e1){
-            System.out.println("Errore nell'action performed di playerRole");
-        }
+        }catch (Exception ignored){}
 
         //Metodi richiamati dalla mappa
         try{
@@ -146,9 +140,7 @@ public class Listener extends JFrame implements ActionListener, WindowListener {
                     map.client.bufferOut.flush();
                 }
             }
-        }catch (Exception e1){
-            System.out.println("Errore nell'action performed di map");
-        }
+        }catch (Exception ignored){}
 
         //Metodi richiamati da IP Selector
         try {
@@ -168,9 +160,7 @@ public class Listener extends JFrame implements ActionListener, WindowListener {
             } else {
                 ipSelector.IP.setText(null);    //Cancello il testo dell'IP
             }
-        } catch (Exception e1) {
-            System.out.println("Errore nell'action performed di IP selector");
-        }
+        }catch (Exception ignored) {}
     }
 
     //Apparizione di una finestra di conferma per la chiusura dei frame
