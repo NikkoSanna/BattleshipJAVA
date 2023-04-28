@@ -4,8 +4,9 @@ import javax.swing.*;
 import java.net.*;
 import java.io.*;
 
-public class Server extends JFrame implements Runnable{
+public class Server implements Runnable{
     final static int serverPort = 50000;
+    String playerName;
     String ip;
     String str;     //stringa usata per la ricezione dal client
     int ready = 2;      //booleano che si decrementa per capire quando entrambi sono pronti
@@ -19,31 +20,16 @@ public class Server extends JFrame implements Runnable{
 
     Map mapOne;
     Map mapTwo;
+    IP_Announcer ipAnnouncer;
 
     public Server(String playerName) throws IOException {
-        mapOne = new Map(this, null);
-        mapTwo = new Map(this, null);
-        mapTwo.shipselect.dispose();
-
-        mapOne.playerName.setText(playerName);
-
-        //La mappa 2 avrá qualche differenza dalla mappa 1
-        mapTwo.setLocation((ScreenSize.getWidth() / 2) + 25, (ScreenSize.getHeight() / 3) - 250);
-        mapTwo.bottomBar.remove(mapTwo.ready);
-        mapTwo.bottomBar.add(mapTwo.gameText);
-
-        mapTwo.gameText.setText("In attesa di una connessione...");
-
-        this.setVisible(false);
+        this.playerName = playerName;
 
         //Ottengo l'indirizzo IPv4 locale, uguale a quello che ottengo da cmd
         try (final DatagramSocket socket = new DatagramSocket()) {
             socket.connect(InetAddress.getByName("8.8.8.8"), serverPort);
             ip = socket.getLocalAddress().getHostAddress();
             System.out.println("il tuo indirizzo ip é " + ip + " e la porta 50000");
-
-            //Finestra che informa dell'indirizzo IPv4 del host
-            JOptionPane.showMessageDialog(this,"Comunica al secondo giocatore il codice " + ip + " per poter giocare","Attenzione",JOptionPane.INFORMATION_MESSAGE);
         }
 
         /* MACOS
@@ -51,6 +37,9 @@ public class Server extends JFrame implements Runnable{
         socket.connect(new InetSocketAddress("google.com", 80));
         System.out.println(socket.getLocalAddress());
          */
+
+        //Finestra che comunica l'indirizzo IPv4 finché non si connette qualcuno
+        ipAnnouncer = new IP_Announcer(ip);
     }
 
     @Override
@@ -62,7 +51,10 @@ public class Server extends JFrame implements Runnable{
             //Continua a provare a connettersi
             while(true){
                 try(Socket client = server.accept()){
+                    //Posso chiudere la finestra che comunica l'IPv4 e generare le mappe
+                    ipAnnouncer.dispose();
 
+                    //Creazione oggetti che verranno usati nella comunicazione
                     inStream = new InputStreamReader(client.getInputStream());
                     outStream = new OutputStreamWriter(client.getOutputStream());
                     bufferIn = new BufferedReader(inStream);         //Usare solo questo oggetto per gli input
@@ -77,6 +69,19 @@ public class Server extends JFrame implements Runnable{
                     bufferOut.write(ip);
                     bufferOut.newLine();     //Riga piú importante qui
                     bufferOut.flush();     //Impone la scrittura dei dati presenti nel buffer sul dispositivo di output
+
+
+                    //Genero le mappe di gioco
+                    mapOne = new Map(this, null);
+                    mapTwo = new Map(this, null);
+                    mapTwo.shipselect.dispose();
+
+                    mapOne.playerName.setText(playerName);
+
+                    //La mappa 2 avrá qualche differenza dalla mappa 1
+                    mapTwo.setLocation((ScreenSize.getWidth() / 2) + 25, (ScreenSize.getHeight() / 3) - 250);
+                    mapTwo.bottomBar.remove(mapTwo.ready);
+                    mapTwo.bottomBar.add(mapTwo.gameText);
 
                     //Scambio dei nickname
                     bufferOut.write(mapOne.playerName.getText());

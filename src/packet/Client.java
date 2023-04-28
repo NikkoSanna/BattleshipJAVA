@@ -5,8 +5,9 @@ import java.net.*;
 import java.io.*;
 import java.util.Scanner;
 
-public class Client implements Runnable {
+public class Client extends JFrame implements Runnable {
     final static int serverPort = 50000;
+    String playerName;
     String ipServer;
     String ip;
     String str;     //stringa usata per la ricezione dal server
@@ -23,21 +24,10 @@ public class Client implements Runnable {
     Map mapTwo;
 
     public Client(String playerName, String ipServer) throws IOException {
+        this.setVisible(false);
+
+        this.playerName = playerName;
         this.ipServer = ipServer;
-
-        //Genero le mappe di gioco
-        mapOne = new Map(null, this);
-        mapTwo = new Map(null, this);
-        mapTwo.shipselect.dispose();
-
-        mapOne.playerName.setText(playerName);
-
-        //La mappa 2 avrá qualche differenza dalla mappa 1
-        mapTwo.setLocation((ScreenSize.getWidth() / 2) + 25, (ScreenSize.getHeight() / 3) - 250);
-        mapTwo.bottomBar.remove(mapTwo.ready);
-        mapTwo.bottomBar.add(mapTwo.gameText);
-
-        mapTwo.gameText.setText("Connettiti ad un server...");
 
         //Ottengo l'indirizzo IPv4 locale, uguale a quello che ottengo da cmd
         //Ció non é necessario per il client, ma scriverlo in console potrebbe risultare utile
@@ -53,6 +43,7 @@ public class Client implements Runnable {
         try {
             client = new Socket(ipServer, serverPort);
 
+            //Creazione oggetti che verranno usati nella comunicazione
             inStream = new InputStreamReader(client.getInputStream());
             outStream = new OutputStreamWriter(client.getOutputStream());
             bufferIn = new BufferedReader(inStream);        //Usare solo questo oggetto per gli input
@@ -67,6 +58,21 @@ public class Client implements Runnable {
 
             str = bufferIn.readLine();
             System.out.println("server avente indirizzo ip: " + str);
+
+
+            //Genero le mappe di gioco
+            mapOne = new Map(null, this);
+            mapTwo = new Map(null, this);
+            mapTwo.shipselect.dispose();
+
+            mapOne.playerName.setText(playerName);
+
+            //La mappa 2 avrá qualche differenza dalla mappa 1
+            mapTwo.setLocation((ScreenSize.getWidth() / 2) + 25, (ScreenSize.getHeight() / 3) - 250);
+            mapTwo.bottomBar.remove(mapTwo.ready);
+            mapTwo.bottomBar.add(mapTwo.gameText);
+
+            mapTwo.gameText.setText("Connettiti ad un server...");
 
             //Scambio dei nickname
             bufferOut.write(mapOne.playerName.getText());
@@ -104,7 +110,14 @@ public class Client implements Runnable {
                 }
             }
         } catch (IOException e1) {
-            System.out.println("Client non startato");
+            //Avviso in caso di qualche problema con la connessione
+            JOptionPane.showMessageDialog(this,"<html>Potresti aver riscontrato uno di questi problemi: <br><br>" +
+                    "1) Il client potrebbe non essere stato avviato correttamente. <br>" +
+                    "2) L'host potrebbe non essere stato trovato. <br>" +
+                    "3) L'host potrebbe essersi disconnesso.</html>","Attenzione qualcosa é andato storto",JOptionPane.ERROR_MESSAGE);
+
+            //Chiudo l'intero programma
+            System.exit(0);
         }
     }
 }
