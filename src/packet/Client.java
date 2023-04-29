@@ -57,7 +57,7 @@ public class Client extends JFrame implements Runnable {
             bufferOut.flush();     //Impone la scrittura dei dati presenti nel buffer sul dispositivo di output
 
             str = bufferIn.readLine();
-            System.out.println("server avente indirizzo ip: " + str);
+            System.out.println("Server avente indirizzo ip: " + str);
 
 
             //Genero le mappe di gioco
@@ -71,8 +71,6 @@ public class Client extends JFrame implements Runnable {
             mapTwo.setLocation((ScreenSize.getWidth() / 2) + 25, (ScreenSize.getHeight() / 3) - 250);
             mapTwo.bottomBar.remove(mapTwo.ready);
             mapTwo.bottomBar.add(mapTwo.gameText);
-
-            mapTwo.gameText.setText("Connettiti ad un server...");
 
             //Scambio dei nickname
             bufferOut.write(mapOne.playerName.getText());
@@ -94,10 +92,14 @@ public class Client extends JFrame implements Runnable {
                     }
                 }
 
+                mapTwo.actuallyPlaying = true;
+
                 //Gestisco i turni di gioco
                 if(yourTurn){
                     mapTwo.gameText.setText("E il tuo turno!");
                 }else {
+                    mapTwo.gameText.setText("Turno avversario!");
+
                     str = bufferIn.readLine();
                     String[] coordinates = str.split(",");     //Splitto le coordinate
                     int x = Integer.parseInt(coordinates[0]);     //Converto la coordinata x in intero

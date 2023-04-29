@@ -49,19 +49,15 @@ public class Tile extends JButton implements MouseListener {
     //Se sto cliccando su una casella questa deve darmi un feedback visivo
     @Override
     public void mousePressed(MouseEvent e) {
-        if (!map.actuallyPlaying) {
-            setContentAreaFilled(true);
-            setBackground(Color.GRAY);
-        }
+        setContentAreaFilled(true);
+        setBackground(Color.GRAY);
     }
 
     //Come rilascio la casella questa deve tornare visivamente come prima
     @Override
     public void mouseReleased(MouseEvent e) {
-        if (!map.actuallyPlaying) {
-            setContentAreaFilled(false);
-            setBackground(null);
-        }
+        setContentAreaFilled(false);
+        setBackground(null);
     }
 
 
@@ -221,6 +217,8 @@ public class Tile extends JButton implements MouseListener {
                         map.server.bufferOut.write(i + "," + j);
                         map.server.bufferOut.newLine();
                         map.server.bufferOut.flush();
+
+                        map.server.yourTurn = false;
                     } catch (IOException e1) {
                         throw new RuntimeException(e1);
                     }
@@ -232,6 +230,8 @@ public class Tile extends JButton implements MouseListener {
                         map.client.bufferOut.write(i + "," + j );
                         map.client.bufferOut.newLine();
                         map.client.bufferOut.flush();
+
+                        map.client.yourTurn = false;
                     } catch (IOException e1) {
                         throw new RuntimeException(e1);
                     }

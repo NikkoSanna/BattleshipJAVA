@@ -3,6 +3,7 @@ package packet;
 import javax.swing.*;
 import java.net.*;
 import java.io.*;
+import java.sql.SQLOutput;
 
 public class Server implements Runnable{
     final static int serverPort = 50000;
@@ -106,13 +107,24 @@ public class Server implements Runnable{
                                     loop = false;
                                 }
                             }
-                            System.out.println(" ");    //Si...questa riga se manca si rompe tutto - 3 ore buttate
+                            //System.out.println(" ");    //Si...questa riga se manca si rompe tutto - 3 ore buttate
+                            try{
+                                Thread.sleep(1000);     //Almeno non spamma la console
+                            } catch (InterruptedException e) {
+                                throw new RuntimeException(e);
+                            }
+
                         }
+
+                        mapTwo.actuallyPlaying = true;
 
                         //Gestisco i turni di gioco
                         if(yourTurn){
                             mapTwo.gameText.setText("E il tuo turno!");
+                            System.out.println("BB");
                         }else {
+                            mapTwo.gameText.setText("Turno avversario!");
+
                             str = bufferIn.readLine();
                             String[] coordinates = str.split(",");     //Splitto le coordinate
                             int x = Integer.parseInt(coordinates[0]);     //Converto la coordinata x in intero
