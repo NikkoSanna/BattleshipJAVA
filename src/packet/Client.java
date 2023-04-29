@@ -117,7 +117,6 @@ public class Client extends JFrame implements Runnable {
 
                     mapOne.tile[x][y].tileHit(x,y);
 
-                    System.out.println("AAAAAAA");
                     yourTurn = true;
                 }
             }

@@ -32,6 +32,8 @@ public class Tile extends JButton implements MouseListener {
     ImageIcon ship5_4 = new ImageIcon(new ImageIcon("images/ship5/ship5_4.png").getImage().getScaledInstance(36, 36, Image.SCALE_SMOOTH));
     ImageIcon ship5_5 = new ImageIcon(new ImageIcon("images/ship5/ship5_5.png").getImage().getScaledInstance(36, 36, Image.SCALE_SMOOTH));
 
+    ImageIcon shipHit = new ImageIcon(new ImageIcon("images/shipHit.png").getImage().getScaledInstance(36, 36, Image.SCALE_SMOOTH));
+    ImageIcon badHit = new ImageIcon(new ImageIcon("images/badHit.png").getImage().getScaledInstance(36, 36, Image.SCALE_SMOOTH));
 
     Map map;    //La casella deve conoscere la mappa per permettere modifiche grafiche
 
@@ -209,8 +211,7 @@ public class Tile extends JButton implements MouseListener {
             } catch (Exception ignored) {}
         }
         //Se sono nella fase di gioco invio le informazioni sulla casella cliccata all'altro giocatore
-        else if(map.actuallyPlaying && map.mapNumber.equals("mapTwo")){
-            System.out.println("KKKKK");
+        else if(map.mapNumber.equals("mapTwo")){
             if(map.client == null){
                 if (map.server.yourTurn){
                     //Invio al client la posizione della casella colpita
@@ -219,7 +220,7 @@ public class Tile extends JButton implements MouseListener {
                         map.server.bufferOut.newLine();
                         map.server.bufferOut.flush();
 
-                        map.server.yourTurn = false;
+                        map.server.yourTurn = false;        //Il turno é dell'avversario
                     } catch (IOException e1) {
                         throw new RuntimeException(e1);
                     }
@@ -232,7 +233,7 @@ public class Tile extends JButton implements MouseListener {
                         map.client.bufferOut.newLine();
                         map.client.bufferOut.flush();
 
-                        map.client.yourTurn = false;
+                        map.client.yourTurn = false;        //Il turno é dell'avversario
                     } catch (IOException e1) {
                         throw new RuntimeException(e1);
                     }
@@ -304,9 +305,17 @@ public class Tile extends JButton implements MouseListener {
         if (!isHit) {
             isHit = true;   //Imposto la casella come colpita
 
-            //Se é presente una barca allora devo mostrare che questa é stata colpita
+            //Se é presente una barca allora devo mostrare che questa é stata colpita e informare l'avversario
             if (hasShip) {
-                setText("O");   //Imposto il testo della casella come O
+                setIcon(shipHit);
+
+                try{
+                    map.client.bufferOut.write("goodHit");
+                    map.client.bufferOut.newLine();
+                    map.client.bufferOut.flush();
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
 
                 //Controllo se é stata colpita una casella della barca da 2
                 for (int a = 0; a < map.shipTwo_Tiles.length; a++){
@@ -400,13 +409,36 @@ public class Tile extends JButton implements MouseListener {
 
                 //Controllo se tutte le barche sono affondate
                 if (map.shipTwo_Sunk && map.shipThree_Sunk && map.shipFour_Sunk && map.shipFive_Sunk){
-                    JOptionPane.showMessageDialog(null, "Hai vinto!");
-                    System.exit(0);
+                    if(map.client == null){
+                        try{
+                            map.server.bufferOut.write("lost");
+                            map.server.bufferOut.newLine();
+                            map.server.bufferOut.flush();
+                        } catch (IOException e) {
+                            throw new RuntimeException(e);
+                        }
+                    }else{
+                        try{
+                            map.client.bufferOut.write("lost");
+                            map.client.bufferOut.newLine();
+                            map.client.bufferOut.flush();
+                        } catch (IOException e) {
+                            throw new RuntimeException(e);
+                        }
+                    }
                 }
             }
-            //Se non é presenta devo mostrare che quella casella é stata colpita ma a vuoto
+            //Se non é presenta devo mostrare che quella casella é stata colpita ma a vuoto e informare l'avversario
             else {
-                setText("X");   //Imposto il testo della casella come X
+                setIcon(badHit);
+
+                try{
+                    map.client.bufferOut.write("badHit");
+                    map.client.bufferOut.newLine();
+                    map.client.bufferOut.flush();
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
             }
         }
     }

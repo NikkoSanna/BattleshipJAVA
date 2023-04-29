@@ -119,6 +119,9 @@ public class Server implements Runnable{
                         //Gestisco i turni di gioco
                         if(yourTurn){
                             mapTwo.gameText.setText("E il tuo turno!");
+
+                            str = bufferIn.readLine();
+
                         }else {
                             mapTwo.gameText.setText("Turno avversario!");
 
@@ -128,7 +131,6 @@ public class Server implements Runnable{
                             int y = Integer.parseInt(coordinates[1]);     //Converto la coordinata y in intero
 
                             mapOne.tile[x][y].tileHit(x,y);
-                            System.out.println("AAAAAAA");
 
                             yourTurn = true;
                         }
