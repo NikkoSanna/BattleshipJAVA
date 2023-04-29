@@ -114,6 +114,8 @@ public class Server implements Runnable{
                             }
                         }
 
+                        mapTwo.actuallyPlaying = true;
+
                         //Gestisco i turni di gioco
                         if(yourTurn){
                             mapTwo.gameText.setText("E il tuo turno!");

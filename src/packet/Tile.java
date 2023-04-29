@@ -49,19 +49,15 @@ public class Tile extends JButton implements MouseListener {
     //Se sto cliccando su una casella questa deve darmi un feedback visivo
     @Override
     public void mousePressed(MouseEvent e) {
-        if (!map.actuallyPlaying) {
-            setContentAreaFilled(true);
-            setBackground(Color.GRAY);
-        }
+        setContentAreaFilled(true);
+        setBackground(Color.GRAY);
     }
 
     //Come rilascio la casella questa deve tornare visivamente come prima
     @Override
     public void mouseReleased(MouseEvent e) {
-        if (!map.actuallyPlaying) {
-            setContentAreaFilled(false);
-            setBackground(null);
-        }
+        setContentAreaFilled(false);
+        setBackground(null);
     }
 
 
@@ -213,7 +209,7 @@ public class Tile extends JButton implements MouseListener {
             } catch (Exception ignored) {}
         }
         //Se sono nella fase di gioco invio le informazioni sulla casella cliccata all'altro giocatore
-        else if(map.mapNumber.equals("mapTwo")){
+        else if(map.actuallyPlaying && map.mapNumber.equals("mapTwo")){
             System.out.println("KKKKK");
             if(map.client == null){
                 if (map.server.yourTurn){
