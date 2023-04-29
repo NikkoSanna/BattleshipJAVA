@@ -423,21 +423,21 @@ public class Tile extends JButton implements MouseListener {
                 if (map.shipTwo_Sunk && map.shipThree_Sunk && map.shipFour_Sunk && map.shipFive_Sunk){
                     if(map.client == null){
                         try{
-                            map.server.bufferOut.write("lost");
+                            map.server.bufferOut.write("win");
                             map.server.bufferOut.newLine();
                             map.server.bufferOut.flush();
 
-                            new VictoryScreen("win");
+                            new VictoryScreen("lost");
                         } catch (IOException e) {
                             throw new RuntimeException(e);
                         }
                     }else{
                         try{
-                            map.client.bufferOut.write("lost");
+                            map.client.bufferOut.write("win");
                             map.client.bufferOut.newLine();
                             map.client.bufferOut.flush();
 
-                            new VictoryScreen("win");
+                            new VictoryScreen("lost");
                         } catch (IOException e) {
                             throw new RuntimeException(e);
                         }
