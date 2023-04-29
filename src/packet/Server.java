@@ -7,9 +7,12 @@ import java.sql.SQLOutput;
 
 public class Server implements Runnable{
     final static int serverPort = 50000;
+
     String playerName;
     String ip;
     String str;     //stringa usata per la ricezione dal client
+    String tileUsed;    //Stringa che contiene la casella che ho cliccato
+
     int ready = 2;      //booleano che si decrementa per capire quando entrambi sono pronti
     boolean yourTurn = true;      //booleano che gestisce i turni
     boolean loop = true;        //Usata solamente per evitare un blocco quando si clicca pronto
@@ -116,12 +119,23 @@ public class Server implements Runnable{
 
                         mapTwo.actuallyPlaying = true;
 
-                        //Gestisco i turni di gioco
+                        //Gestisco il mio turno di gioco
                         if(yourTurn){
                             mapTwo.gameText.setText("E il tuo turno!");
 
+                            //Controllo se la casella colpita ha o meno una barca
                             str = bufferIn.readLine();
 
+                            String[] coordinates = tileUsed.split(",");     //Splitto le coordinate
+                            int x = Integer.parseInt(coordinates[0]);     //Converto la coordinata x in intero
+                            int y = Integer.parseInt(coordinates[1]);     //Converto la coordinata y in intero
+
+                            if(str.equals("goodHit")){
+                                mapTwo.tile[x][y].setIcon(mapTwo.tile[x][y].shipHit);
+                            }else{
+                                mapTwo.tile[x][y].setIcon(mapTwo.tile[x][y].badHit);
+                            }
+                        //Gestisco il turno di gioco dell'avversario
                         }else {
                             mapTwo.gameText.setText("Turno avversario!");
 

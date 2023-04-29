@@ -7,10 +7,13 @@ import java.util.Scanner;
 
 public class Client extends JFrame implements Runnable {
     final static int serverPort = 50000;
+
     String playerName;
     String ipServer;
     String ip;
     String str;     //stringa usata per la ricezione dal server
+    String tileUsed;    //Stringa che contiene la casella che ho cliccato
+
     boolean started = false;    //booleano usato quando ancora entrambi non hanno cliccato pronto
     boolean loop = true;        //Usata solamente per evitare di iniziare la partita prima del server
     boolean yourTurn = false;       //booleano che gestisce i turni
@@ -104,9 +107,23 @@ public class Client extends JFrame implements Runnable {
 
                 mapTwo.actuallyPlaying = true;
 
-                //Gestisco i turni di gioco
+                //Gestisco il mio turno di gioco
                 if(yourTurn){
                     mapTwo.gameText.setText("E il tuo turno!");
+
+                    //Controllo se la casella colpita ha o meno una barca
+                    str = bufferIn.readLine();
+
+                    String[] coordinates = tileUsed.split(",");     //Splitto le coordinate
+                    int x = Integer.parseInt(coordinates[0]);     //Converto la coordinata x in intero
+                    int y = Integer.parseInt(coordinates[1]);     //Converto la coordinata y in intero
+
+                    if(str.equals("goodHit")){
+                        mapTwo.tile[x][y].setIcon(mapTwo.tile[x][y].shipHit);
+                    }else{
+                        mapTwo.tile[x][y].setIcon(mapTwo.tile[x][y].badHit);
+                    }
+                //Gestisco il turno di gioco dell'avversario
                 }else {
                     mapTwo.gameText.setText("Turno avversario!");
 

@@ -210,13 +210,16 @@ public class Tile extends JButton implements MouseListener {
                 }
             } catch (Exception ignored) {}
         }
+
         //Se sono nella fase di gioco invio le informazioni sulla casella cliccata all'altro giocatore
         else if(map.mapNumber.equals("mapTwo")){
             if(map.client == null){
                 if (map.server.yourTurn){
                     //Invio al client la posizione della casella colpita
                     try {
-                        map.server.bufferOut.write(i + "," + j);
+                        map.server.tileUsed = (i + "," + j);
+
+                        map.server.bufferOut.write(map.server.tileUsed);
                         map.server.bufferOut.newLine();
                         map.server.bufferOut.flush();
 
@@ -229,7 +232,9 @@ public class Tile extends JButton implements MouseListener {
                 if(map.client.yourTurn){
                     //Invio al server la posizione della casella colpita
                     try {
-                        map.client.bufferOut.write(i + "," + j );
+                        map.client.tileUsed = (i + "," + j);
+
+                        map.client.bufferOut.write(map.client.tileUsed);
                         map.client.bufferOut.newLine();
                         map.client.bufferOut.flush();
 
