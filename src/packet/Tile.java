@@ -306,13 +306,6 @@ public class Tile extends JButton implements MouseListener {
         if (!isHit) {
             isHit = true;   //Imposto la casella come colpita
 
-            //Questa condizione la metto qui, cosí se clicco 2 volte la stessa casella non salto il turno
-            if(map.client == null){
-                map.server.yourTurn = false;        //Il turno é dell'avversario
-            }else{
-                map.client.yourTurn = false;        //Il turno é dell'avversario
-            }
-
             //Se é presente una barca allora devo mostrare che questa é stata colpita e informare l'avversario
             if (hasShip) {
                 setIcon(shipHit);

@@ -99,7 +99,7 @@ public class Client extends JFrame implements Runnable {
                     }
                     //System.out.println(" ");    //Si...questa riga se manca si rompe tutto - 3 ore buttate
                     try{
-                        Thread.sleep(1000);     //Almeno non spamma la console
+                        Thread.sleep(500);     //Almeno non spamma la console
                     } catch (InterruptedException e) {
                         throw new RuntimeException(e);
                     }
@@ -123,6 +123,8 @@ public class Client extends JFrame implements Runnable {
                     }else{
                         mapTwo.tile[x][y].setIcon(mapTwo.tile[x][y].badHit);
                     }
+
+                    yourTurn = false;
                 //Gestisco il turno di gioco dell'avversario
                 }else {
                     mapTwo.gameText.setText("Turno avversario!");
