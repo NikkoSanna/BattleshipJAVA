@@ -5,6 +5,8 @@ import java.awt.*;
 import java.io.File;
 
 public class Map extends JFrame {
+    public String mapNumber;        //Usato all'interno di Tile per capire con quale delle 2 mappe ho a che fare
+
     private final int dimension = 11;    //Per comoditá le dimensioni sono su una variabile di tipo int costante
 
     public boolean shipTwo_Sunk = false;    //Attributo che indica se la barca da 2 é affondata
@@ -59,13 +61,14 @@ public class Map extends JFrame {
     Server server;
     Client client;
 
-    public Map(Server server, Client client) {
+    public Map(Server server, Client client, String mapNumber) {
         setTitle("GameMap");
 
         shipselect = new ShipSelector(this);   //La mappa genera il ship selector
 
         this.server = server;
         this.client = client;
+        this.mapNumber = mapNumber;     //Mi permette di capire quale delle 2 mappe sta venendo usata in Tile
 
         //Font da file esterno
         try{

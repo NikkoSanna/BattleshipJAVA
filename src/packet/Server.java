@@ -1,8 +1,6 @@
 package packet;
 
 import javax.swing.*;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.net.*;
 import java.io.*;
 import java.sql.SQLOutput;
@@ -74,10 +72,9 @@ public class Server implements Runnable{
                     bufferOut.newLine();     //Riga piú importante qui
                     bufferOut.flush();     //Impone la scrittura dei dati presenti nel buffer sul dispositivo di output
 
-
                     //Genero le mappe di gioco
-                    mapOne = new Map(this, null);
-                    mapTwo = new Map(this, null);
+                    mapOne = new Map(this, null, "mapOne");
+                    mapTwo = new Map(this, null, "mapTwo");
                     mapTwo.shipselect.dispose();
 
                     mapOne.playerName.setText(playerName);
@@ -86,8 +83,6 @@ public class Server implements Runnable{
                     mapTwo.setLocation((ScreenSize.getWidth() / 2) + 25, (ScreenSize.getHeight() / 3) - 250);
                     mapTwo.bottomBar.remove(mapTwo.ready);
                     mapTwo.bottomBar.add(mapTwo.gameText);
-
-                    overrideMouseClicked();
 
                     //Scambio dei nickname
                     bufferOut.write(mapOne.playerName.getText());
@@ -142,48 +137,6 @@ public class Server implements Runnable{
             }
         } catch (IOException e1) {
             System.out.println("Server non startato");
-        }
-    }
-
-    private void overrideMouseClicked() {
-        for(int i = 0; i < mapOne.getDimension() - 1; i++){
-            for(int j = 0; j < mapOne.getDimension() - 1; j++){
-                int x = i;
-                int y = j;
-                mapTwo.tile[i][j].addMouseListener(new MouseAdapter() {
-                    @Override
-                    public void mouseClicked(MouseEvent e) {
-                        //Se sono nella fase di gioco invio le informazioni sulla casella cliccata all'altro giocatore
-                        if(mapTwo.client == null){
-                            if (mapTwo.server.yourTurn){
-                                //Invio al client la posizione della casella colpita
-                                try {
-                                    mapTwo.server.bufferOut.write(mapTwo.tile[x][y].i + "," + mapTwo.tile[x][y].j);
-                                    mapTwo.server.bufferOut.newLine();
-                                    mapTwo.server.bufferOut.flush();
-
-                                    mapTwo.server.yourTurn = false;
-                                } catch (IOException e1) {
-                                    throw new RuntimeException(e1);
-                                }
-                            }
-                        }else{
-                            if(mapTwo.client.yourTurn){
-                                //Invio al server la posizione della casella colpita
-                                try {
-                                    mapTwo.client.bufferOut.write(mapTwo.tile[x][y].i + "," + mapTwo.tile[x][y].j);
-                                    mapTwo.client.bufferOut.newLine();
-                                    mapTwo.client.bufferOut.flush();
-
-                                    mapTwo.client.yourTurn = false;
-                                } catch (IOException e1) {
-                                    throw new RuntimeException(e1);
-                                }
-                            }
-                        }
-                    }
-                });
-            }
         }
     }
 }

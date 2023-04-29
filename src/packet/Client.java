@@ -61,8 +61,8 @@ public class Client extends JFrame implements Runnable {
 
 
             //Genero le mappe di gioco
-            mapOne = new Map(null, this);
-            mapTwo = new Map(null, this);
+            mapOne = new Map(null, this, "mapOne");
+            mapTwo = new Map(null, this, "mapTwo");
             mapTwo.shipselect.dispose();
 
             mapOne.playerName.setText(playerName);
