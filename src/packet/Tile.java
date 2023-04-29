@@ -314,13 +314,24 @@ public class Tile extends JButton implements MouseListener {
             if (hasShip) {
                 setIcon(shipHit);
 
-                try{
-                    map.client.bufferOut.write("goodHit");
-                    map.client.bufferOut.newLine();
-                    map.client.bufferOut.flush();
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
+                if(map.client == null){
+                    try{
+                        map.server.bufferOut.write("goodHit");
+                        map.server.bufferOut.newLine();
+                        map.server.bufferOut.flush();
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+                }else{
+                    try{
+                        map.client.bufferOut.write("goodHit");
+                        map.client.bufferOut.newLine();
+                        map.client.bufferOut.flush();
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
                 }
+
 
                 //Controllo se é stata colpita una casella della barca da 2
                 for (int a = 0; a < map.shipTwo_Tiles.length; a++){
@@ -437,12 +448,22 @@ public class Tile extends JButton implements MouseListener {
             else {
                 setIcon(badHit);
 
-                try{
-                    map.client.bufferOut.write("badHit");
-                    map.client.bufferOut.newLine();
-                    map.client.bufferOut.flush();
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
+                if(map.client == null){
+                    try{
+                        map.server.bufferOut.write("badHit");
+                        map.server.bufferOut.newLine();
+                        map.server.bufferOut.flush();
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+                }else{
+                    try{
+                        map.client.bufferOut.write("badHit");
+                        map.client.bufferOut.newLine();
+                        map.client.bufferOut.flush();
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
                 }
             }
         }
