@@ -112,7 +112,6 @@ public class Server implements Runnable{
                             } catch (InterruptedException e) {
                                 throw new RuntimeException(e);
                             }
-
                         }
 
                         //Gestisco i turni di gioco

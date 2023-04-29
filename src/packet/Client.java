@@ -94,6 +94,12 @@ public class Client extends JFrame implements Runnable {
                             started = true;
                         }
                     }
+                    //System.out.println(" ");    //Si...questa riga se manca si rompe tutto - 3 ore buttate
+                    try{
+                        Thread.sleep(1000);     //Almeno non spamma la console
+                    } catch (InterruptedException e) {
+                        throw new RuntimeException(e);
+                    }
                 }
 
                 //Gestisco i turni di gioco
