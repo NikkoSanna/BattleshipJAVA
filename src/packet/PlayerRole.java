@@ -87,7 +87,7 @@ public class PlayerRole extends JFrame {
         this.addWindowListener(listener);   //Aggiunta di un window listener al frame
 
         this.pack();
-        this.setLocation(ScreenSize.getWidth() / 3, ScreenSize.getHeight() / 4);
+        this.setLocation(ScreenSize.getWidth() / 2 - 306, ScreenSize.getHeight() / 2 - 306);
         this.setResizable(false);
         this.setVisible(true);
         this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);

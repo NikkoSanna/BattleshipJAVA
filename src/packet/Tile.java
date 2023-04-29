@@ -49,15 +49,19 @@ public class Tile extends JButton implements MouseListener {
     //Se sto cliccando su una casella questa deve darmi un feedback visivo
     @Override
     public void mousePressed(MouseEvent e) {
-        setContentAreaFilled(true);
-        setBackground(Color.GRAY);
+        if (!map.actuallyPlaying) {
+            setContentAreaFilled(true);
+            setBackground(Color.GRAY);
+        }
     }
 
     //Come rilascio la casella questa deve tornare visivamente come prima
     @Override
     public void mouseReleased(MouseEvent e) {
-        setContentAreaFilled(false);
-        setBackground(null);
+        if (!map.actuallyPlaying) {
+            setContentAreaFilled(false);
+            setBackground(null);
+        }
     }
 
 
@@ -208,36 +212,6 @@ public class Tile extends JButton implements MouseListener {
                 }
             } catch (Exception ignored) {}
         }
-        //Se sono nella fase di gioco invio le informazioni sulla casella cliccata all'altro giocatore
-        else{
-            if(map.client == null){
-                if (map.server.yourTurn){
-                    //Invio al client la posizione della casella colpita
-                    try {
-                        map.server.bufferOut.write(i + "," + j);
-                        map.server.bufferOut.newLine();
-                        map.server.bufferOut.flush();
-
-                        map.server.yourTurn = false;
-                    } catch (IOException e1) {
-                        throw new RuntimeException(e1);
-                    }
-                }
-            }else{
-                if(map.client.yourTurn){
-                    //Invio al server la posizione della casella colpita
-                    try {
-                        map.client.bufferOut.write(i + "," + j );
-                        map.client.bufferOut.newLine();
-                        map.client.bufferOut.flush();
-
-                        map.client.yourTurn = false;
-                    } catch (IOException e1) {
-                        throw new RuntimeException(e1);
-                    }
-                }
-            }
-        }
     }
 
     //Metodo che viene richiamato per il piazzamento della barca nella fase di piazzamento
@@ -247,7 +221,7 @@ public class Tile extends JButton implements MouseListener {
             hasShip = true;
             map.tile[i-1][j].hasShip = true;
 
-            //Inserimeno all'interno di un array delle coordinate che occupa la barca
+            //Inserimento all'interno di un array delle coordinate che occupa la barca
             map.shipTwo_Tiles[0] = (map.tile[i-1][j].i - 1) + "," + (map.tile[i-1][j].j - 1);
             map.shipTwo_Tiles[1] = (i - 1) + "," + (j - 1);
         }
@@ -257,7 +231,7 @@ public class Tile extends JButton implements MouseListener {
             map.tile[i-1][j].hasShip = true;
             map.tile[i+1][j].hasShip = true;
 
-            //Inserimeno all'interno di un array delle coordinate che occupa la barca
+            //Inserimento all'interno di un array delle coordinate che occupa la barca
             map.shipThree_Tiles[0] = (map.tile[i-1][j].i - 1) + "," + (map.tile[i-1][j].j - 1);
             map.shipThree_Tiles[1] = (i - 1) + "," + (j - 1);
             map.shipThree_Tiles[2] = (map.tile[i+1][j].i - 1) + "," + (map.tile[i+1][j].j - 1);
