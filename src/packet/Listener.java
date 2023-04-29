@@ -131,7 +131,12 @@ public class Listener extends JFrame implements ActionListener, WindowListener {
                     map.server.mapTwo.gameText.setText("In attesa dell altro giocatore");
 
                     map.server.ready -= 1;      //Decremento il valore per capire se entrambi i giocatori sono pronti
+
+                    map.server.bufferOut.write("ready");
+                    map.server.bufferOut.newLine();
+                    map.server.bufferOut.flush();
                 }else{
+                    map.client.loop = false;
                     map.client.mapTwo.gameText.setText("In attesa dell altro giocatore");
 
                     map.client.bufferOut.write("ready");

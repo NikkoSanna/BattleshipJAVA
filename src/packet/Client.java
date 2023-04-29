@@ -12,6 +12,7 @@ public class Client extends JFrame implements Runnable {
     String ip;
     String str;     //stringa usata per la ricezione dal server
     boolean started = false;    //booleano usato quando ancora entrambi non hanno cliccato pronto
+    boolean loop = true;        //Usata solamente per evitare di iniziare la partita prima del server
     boolean yourTurn = false;       //booleano che gestisce i turni
 
     Socket client;
@@ -85,7 +86,7 @@ public class Client extends JFrame implements Runnable {
             //Una volta connesso continua a comunicare
             while(true){
                 //Finché entrambi non sono pronti il gioco non inizia
-                while(!started){
+                while(!started && loop){
                     str = bufferIn.readLine();
                     if(str.equals("ready")){
                         started = true;

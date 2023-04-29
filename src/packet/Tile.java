@@ -214,6 +214,7 @@ public class Tile extends JButton implements MouseListener {
         }
         //Se sono nella fase di gioco invio le informazioni sulla casella cliccata all'altro giocatore
         else if(map.mapNumber.equals("mapTwo")){
+            System.out.println("KKKKK");
             if(map.client == null){
                 if (map.server.yourTurn){
                     //Invio al client la posizione della casella colpita
