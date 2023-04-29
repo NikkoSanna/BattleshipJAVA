@@ -142,13 +142,31 @@ public class Server implements Runnable{
                             mapTwo.gameText.setText("Turno avversario!");
 
                             str = bufferIn.readLine();
-                            String[] coordinates = str.split(",");     //Splitto le coordinate
-                            int x = Integer.parseInt(coordinates[0]);     //Converto la coordinata x in intero
-                            int y = Integer.parseInt(coordinates[1]);     //Converto la coordinata y in intero
 
-                            mapOne.tile[x][y].tileHit(x,y);
+                            //Controllo se ho perso
+                            if(str.equals("lost")){
+                                mapTwo.gameText.setText("Hai perso");
 
-                            yourTurn = true;
+                                new VictoryScreen(str);
+
+                                //Chiudo il programma
+                                try{
+                                    Thread.sleep(4000);
+                                    System.exit(0);
+                                } catch (InterruptedException e) {
+                                    throw new RuntimeException(e);
+                                }
+
+                            //Controllo quali caselle sono state colpite
+                            }else{
+                                String[] coordinates = str.split(",");     //Splitto le coordinate
+                                int x = Integer.parseInt(coordinates[0]);     //Converto la coordinata x in intero
+                                int y = Integer.parseInt(coordinates[1]);     //Converto la coordinata y in intero
+
+                                mapOne.tile[x][y].tileHit(x,y);
+
+                                yourTurn = true;
+                            }
                         }
                     }
                 }
