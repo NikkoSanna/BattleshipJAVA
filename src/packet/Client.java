@@ -86,10 +86,13 @@ public class Client extends JFrame implements Runnable {
             //Una volta connesso continua a comunicare
             while(true){
                 //Finché entrambi non sono pronti il gioco non inizia
-                while(!started && loop){
-                    str = bufferIn.readLine();
-                    if(str.equals("ready")){
-                        started = true;
+                while(!started || loop){
+                    //Se non uso un altro booleano rischio che si blocchi nella riga di lettura per sempre
+                    if(!started){
+                        str = bufferIn.readLine();
+                        if(str.equals("ready")){
+                            started = true;
+                        }
                     }
                 }
 
