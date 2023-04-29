@@ -222,8 +222,6 @@ public class Tile extends JButton implements MouseListener {
                         map.server.bufferOut.write(map.server.tileUsed);
                         map.server.bufferOut.newLine();
                         map.server.bufferOut.flush();
-
-                        map.server.yourTurn = false;        //Il turno é dell'avversario
                     } catch (IOException e1) {
                         throw new RuntimeException(e1);
                     }
@@ -237,8 +235,6 @@ public class Tile extends JButton implements MouseListener {
                         map.client.bufferOut.write(map.client.tileUsed);
                         map.client.bufferOut.newLine();
                         map.client.bufferOut.flush();
-
-                        map.client.yourTurn = false;        //Il turno é dell'avversario
                     } catch (IOException e1) {
                         throw new RuntimeException(e1);
                     }
@@ -309,6 +305,13 @@ public class Tile extends JButton implements MouseListener {
         //Se quella casella non era stata cliccata allora posso procedere
         if (!isHit) {
             isHit = true;   //Imposto la casella come colpita
+
+            //Questa condizione la metto qui, cosí se clicco 2 volte la stessa casella non salto il turno
+            if(map.client == null){
+                map.server.yourTurn = false;        //Il turno é dell'avversario
+            }else{
+                map.client.yourTurn = false;        //Il turno é dell'avversario
+            }
 
             //Se é presente una barca allora devo mostrare che questa é stata colpita e informare l'avversario
             if (hasShip) {
