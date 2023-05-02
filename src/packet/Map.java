@@ -64,7 +64,10 @@ public class Map extends JFrame {
     public Map(Server server, Client client, String mapNumber) {
         setTitle("GameMap");
 
-        shipselect = new ShipSelector(this);   //La mappa genera il ship selector
+        //Genero ship selector solo se sono mappa uno
+        if(mapNumber.equals("mapOne")){
+            shipselect = new ShipSelector(this);   //La mappa genera il ship selector
+        }
 
         this.server = server;
         this.client = client;
