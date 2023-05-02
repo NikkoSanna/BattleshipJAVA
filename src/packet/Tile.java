@@ -222,6 +222,9 @@ public class Tile extends JButton implements MouseListener {
                         map.server.bufferOut.write(map.server.tileUsed);
                         map.server.bufferOut.newLine();
                         map.server.bufferOut.flush();
+
+                        //Controllo se la casella colpita ha o meno una barca
+                        map.server.str = map.server.bufferIn.readLine();
                     } catch (IOException e1) {
                         throw new RuntimeException(e1);
                     }
@@ -235,6 +238,9 @@ public class Tile extends JButton implements MouseListener {
                         map.client.bufferOut.write(map.client.tileUsed);
                         map.client.bufferOut.newLine();
                         map.client.bufferOut.flush();
+
+                        //Controllo se la casella colpita ha o meno una barca
+                        map.client.str = map.client.bufferIn.readLine();
                     } catch (IOException e1) {
                         throw new RuntimeException(e1);
                     }

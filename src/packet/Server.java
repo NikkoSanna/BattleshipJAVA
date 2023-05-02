@@ -16,6 +16,7 @@ public class Server implements Runnable{
     int ready = 2;      //booleano che si decrementa per capire quando entrambi sono pronti
     boolean yourTurn = true;      //booleano che gestisce i turni
     boolean loop = true;        //Usata solamente per evitare un blocco quando si clicca pronto
+    boolean pressed = false;
 
     ServerSocket server;
     InputStreamReader inStream;
@@ -64,16 +65,16 @@ public class Server implements Runnable{
                     mapTwo = new Map(this, null, "mapTwo");
                     mapOne.playerName.setText(playerName);
 
+                    //La mappa 2 avrá qualche differenza dalla mappa 1
+                    mapTwo.setLocation((ScreenSize.getWidth() / 2) + 25, (ScreenSize.getHeight() / 3) - 250);
+                    mapTwo.bottomBar.remove(mapTwo.ready);
+                    mapTwo.bottomBar.add(mapTwo.gameText);
+
                     //Creazione oggetti che verranno usati nella comunicazione
                     inStream = new InputStreamReader(client.getInputStream());
                     outStream = new OutputStreamWriter(client.getOutputStream());
                     bufferIn = new BufferedReader(inStream);         //Usare solo questo oggetto per gli input
                     bufferOut = new BufferedWriter(outStream);       //Usare solo questo oggetto per gli output
-
-                    //La mappa 2 avrá qualche differenza dalla mappa 1
-                    mapTwo.setLocation((ScreenSize.getWidth() / 2) + 25, (ScreenSize.getHeight() / 3) - 250);
-                    mapTwo.bottomBar.remove(mapTwo.ready);
-                    mapTwo.bottomBar.add(mapTwo.gameText);
 
                     //Messaggi a console riguardanti la connessione
                     System.out.println("Connesso col client");
@@ -121,20 +122,21 @@ public class Server implements Runnable{
                         if(yourTurn){
                             mapTwo.gameText.setText("E il tuo turno!");
 
-                            //Controllo se la casella colpita ha o meno una barca
-                            str = bufferIn.readLine();
+                            if(pressed){
+                                String[] coordinates = tileUsed.split(",");     //Splitto le coordinate
+                                int x = Integer.parseInt(coordinates[0]);     //Converto la coordinata x in intero
+                                int y = Integer.parseInt(coordinates[1]);     //Converto la coordinata y in intero
 
-                            String[] coordinates = tileUsed.split(",");     //Splitto le coordinate
-                            int x = Integer.parseInt(coordinates[0]);     //Converto la coordinata x in intero
-                            int y = Integer.parseInt(coordinates[1]);     //Converto la coordinata y in intero
+                                if(str.equals("goodHit")){
+                                    mapTwo.tile[x][y].setIcon(mapTwo.tile[x][y].shipHit);
+                                }else{
+                                    mapTwo.tile[x][y].setIcon(mapTwo.tile[x][y].badHit);
+                                }
 
-                            if(str.equals("goodHit")){
-                                mapTwo.tile[x][y].setIcon(mapTwo.tile[x][y].shipHit);
-                            }else{
-                                mapTwo.tile[x][y].setIcon(mapTwo.tile[x][y].badHit);
+                                yourTurn = false;
+                                tileUsed = null;
+                                pressed = false;
                             }
-
-                            yourTurn = false;
                         //Gestisco il turno di gioco dell'avversario
                         }else {
                             mapTwo.gameText.setText("Turno avversario!");
