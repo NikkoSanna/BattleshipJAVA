@@ -17,7 +17,7 @@ public class Client extends JFrame implements Runnable {
     boolean started = false;    //booleano usato quando ancora entrambi non hanno cliccato pronto
     boolean loop = true;        //Usata solamente per evitare di iniziare la partita prima del server
     boolean yourTurn = false;       //booleano che gestisce i turni
-    boolean pressed = false;
+    boolean validHit = false;
 
     Socket client;
     InputStreamReader inStream;
@@ -85,18 +85,18 @@ public class Client extends JFrame implements Runnable {
             mapTwo.gameText.setText("Connessione riuscita");
 
             //Una volta connesso continua a comunicare
-            while(true){
+            while (true) {
                 //Finché entrambi non sono pronti il gioco non inizia
-                while(!started || loop){
+                while (!started || loop) {
                     //Se non uso un altro booleano rischio che si blocchi nella riga di lettura per sempre
-                    if(!started){
+                    if (!started) {
                         str = bufferIn.readLine();
-                        if(str.equals("ready")){
+                        if (str.equals("ready")) {
                             started = true;
                         }
                     }
                     //System.out.println(" ");    //Si...questa riga se manca si rompe tutto - 3 ore buttate
-                    try{
+                    try {
                         Thread.sleep(500);     //Almeno non spamma la console
                     } catch (InterruptedException e) {
                         throw new RuntimeException(e);
@@ -106,62 +106,66 @@ public class Client extends JFrame implements Runnable {
                 mapTwo.actuallyPlaying = true;
 
                 //Gestisco il mio turno di gioco
-                if(yourTurn){
+                if (yourTurn) {
                     mapTwo.gameText.setText("E il tuo turno!");
 
-                    if(pressed){
+                    while (bufferIn.equals("no")) {
+                        System.out.println("aaa");
+
                         String[] coordinates = tileUsed.split(",");     //Splitto le coordinate
                         int x = Integer.parseInt(coordinates[0]);     //Converto la coordinata x in intero
                         int y = Integer.parseInt(coordinates[1]);     //Converto la coordinata y in intero
 
-                        if(str.equals("goodHit")){
+                        if (str.equals("goodHit")) {
                             mapTwo.tile[x][y].setIcon(mapTwo.tile[x][y].shipHit);
-                        }else{
+                        } else {
                             mapTwo.tile[x][y].setIcon(mapTwo.tile[x][y].badHit);
                         }
-
-                        yourTurn = false;
-                        tileUsed = null;
-                        pressed = false;
                     }
+
+                    yourTurn = false;
+                    tileUsed = null;
+
                 //Gestisco il turno di gioco dell'avversario
-                }else {
+                } else {
                     mapTwo.gameText.setText("Turno avversario!");
 
-                    str = bufferIn.readLine();
+                    while (!validHit) {
+                        str = bufferIn.readLine();
 
-                    //Controllo se ho perso
-                    if(str.equals("lost")){
-                        mapTwo.gameText.setText("Hai perso");
+                        //Controllo se ho perso
+                        if (str.equals("lost")) {
+                            mapTwo.gameText.setText("Hai perso");
 
-                        new VictoryScreen(str);
+                            new VictoryScreen(str);
 
-                        //Chiudo il programma
-                        try{
-                            Thread.sleep(4000);
-                            System.exit(0);
-                        } catch (InterruptedException e) {
-                            throw new RuntimeException(e);
+                            //Chiudo il programma
+                            try {
+                                Thread.sleep(4000);
+                                System.exit(0);
+                            } catch (InterruptedException e) {
+                                throw new RuntimeException(e);
+                            }
+
+                            //Controllo quali caselle sono state colpite
+                        } else {
+                            String[] coordinates = str.split(",");     //Splitto le coordinate
+                            int x = Integer.parseInt(coordinates[0]);     //Converto la coordinata x in intero
+                            int y = Integer.parseInt(coordinates[1]);     //Converto la coordinata y in intero
+
+                            mapOne.tile[x][y].tileHit(x, y);
                         }
-
-                    //Controllo quali caselle sono state colpite
-                    }else{
-                        String[] coordinates = str.split(",");     //Splitto le coordinate
-                        int x = Integer.parseInt(coordinates[0]);     //Converto la coordinata x in intero
-                        int y = Integer.parseInt(coordinates[1]);     //Converto la coordinata y in intero
-
-                        mapOne.tile[x][y].tileHit(x,y);
-
-                        yourTurn = true;
                     }
+
+                    yourTurn = true;
                 }
             }
         } catch (IOException e1) {
             //Avviso in caso di qualche problema con la connessione
-            JOptionPane.showMessageDialog(this,"<html>Potresti aver riscontrato uno di questi problemi: <br><br>" +
+            JOptionPane.showMessageDialog(this, "<html>Potresti aver riscontrato uno di questi problemi: <br><br>" +
                     "1) Il client potrebbe non essere stato avviato correttamente. <br>" +
                     "2) L'host potrebbe non essere stato trovato. <br>" +
-                    "3) L'host potrebbe essersi disconnesso.</html>","Attenzione qualcosa é andato storto",JOptionPane.ERROR_MESSAGE);
+                    "3) L'host potrebbe essersi disconnesso.</html>", "Attenzione qualcosa é andato storto", JOptionPane.ERROR_MESSAGE);
 
             //Chiudo l'intero programma
             System.exit(0);
