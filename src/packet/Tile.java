@@ -12,7 +12,6 @@ public class Tile extends JButton implements MouseListener {
     int i;      //Coordinate ordinata
     int j;      //Coordinate ascissa
 
-
     //Immagini salvate
     ImageIcon ship2_1 = new ImageIcon(new ImageIcon("images/ship2/ship2_1.png").getImage().getScaledInstance(36, 36, Image.SCALE_SMOOTH));
     ImageIcon ship2_2 = new ImageIcon(new ImageIcon("images/ship2/ship2_2.png").getImage().getScaledInstance(36, 36, Image.SCALE_SMOOTH));
