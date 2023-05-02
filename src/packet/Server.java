@@ -59,11 +59,21 @@ public class Server implements Runnable{
                     //Posso chiudere la finestra che comunica l'IPv4 e generare le mappe
                     ipAnnouncer.dispose();
 
+                    //Genero le mappe di gioco
+                    mapOne = new Map(this, null, "mapOne");
+                    mapTwo = new Map(this, null, "mapTwo");
+                    mapOne.playerName.setText(playerName);
+
                     //Creazione oggetti che verranno usati nella comunicazione
                     inStream = new InputStreamReader(client.getInputStream());
                     outStream = new OutputStreamWriter(client.getOutputStream());
                     bufferIn = new BufferedReader(inStream);         //Usare solo questo oggetto per gli input
                     bufferOut = new BufferedWriter(outStream);       //Usare solo questo oggetto per gli output
+
+                    //La mappa 2 avrá qualche differenza dalla mappa 1
+                    mapTwo.setLocation((ScreenSize.getWidth() / 2) + 25, (ScreenSize.getHeight() / 3) - 250);
+                    mapTwo.bottomBar.remove(mapTwo.ready);
+                    mapTwo.bottomBar.add(mapTwo.gameText);
 
                     //Messaggi a console riguardanti la connessione
                     System.out.println("Connesso col client");
@@ -74,18 +84,6 @@ public class Server implements Runnable{
                     bufferOut.write(ip);
                     bufferOut.newLine();     //Riga piú importante qui
                     bufferOut.flush();     //Impone la scrittura dei dati presenti nel buffer sul dispositivo di output
-
-                    //Genero le mappe di gioco
-                    mapOne = new Map(this, null, "mapOne");
-                    mapTwo = new Map(this, null, "mapTwo");
-                    mapTwo.shipselect.dispose();
-
-                    mapOne.playerName.setText(playerName);
-
-                    //La mappa 2 avrá qualche differenza dalla mappa 1
-                    mapTwo.setLocation((ScreenSize.getWidth() / 2) + 25, (ScreenSize.getHeight() / 3) - 250);
-                    mapTwo.bottomBar.remove(mapTwo.ready);
-                    mapTwo.bottomBar.add(mapTwo.gameText);
 
                     //Scambio dei nickname
                     bufferOut.write(mapOne.playerName.getText());
