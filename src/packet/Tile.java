@@ -32,6 +32,24 @@ public class Tile extends JButton implements MouseListener {
     ImageIcon ship5_4 = new ImageIcon(new ImageIcon("images/ship5/ship5_4.png").getImage().getScaledInstance(36, 36, Image.SCALE_SMOOTH));
     ImageIcon ship5_5 = new ImageIcon(new ImageIcon("images/ship5/ship5_5.png").getImage().getScaledInstance(36, 36, Image.SCALE_SMOOTH));
 
+    ImageIcon ship2_1Hit = new ImageIcon(new ImageIcon("images/ship2/ship2_1Hit.png").getImage().getScaledInstance(36, 36, Image.SCALE_SMOOTH));
+    ImageIcon ship2_2Hit = new ImageIcon(new ImageIcon("images/ship2/ship2_2Hit.png").getImage().getScaledInstance(36, 36, Image.SCALE_SMOOTH));
+
+    ImageIcon ship3_1Hit = new ImageIcon(new ImageIcon("images/ship3/ship3_1Hit.png").getImage().getScaledInstance(36, 36, Image.SCALE_SMOOTH));
+    ImageIcon ship3_2Hit = new ImageIcon(new ImageIcon("images/ship3/ship3_2Hit.png").getImage().getScaledInstance(36, 36, Image.SCALE_SMOOTH));
+    ImageIcon ship3_3Hit = new ImageIcon(new ImageIcon("images/ship3/ship3_3Hit.png").getImage().getScaledInstance(36, 36, Image.SCALE_SMOOTH));
+
+    ImageIcon ship4_1Hit = new ImageIcon(new ImageIcon("images/ship4/ship4_1Hit.png").getImage().getScaledInstance(36, 36, Image.SCALE_SMOOTH));
+    ImageIcon ship4_2Hit = new ImageIcon(new ImageIcon("images/ship4/ship4_2Hit.png").getImage().getScaledInstance(36, 36, Image.SCALE_SMOOTH));
+    ImageIcon ship4_3Hit = new ImageIcon(new ImageIcon("images/ship4/ship4_3Hit.png").getImage().getScaledInstance(36, 36, Image.SCALE_SMOOTH));
+    ImageIcon ship4_4Hit = new ImageIcon(new ImageIcon("images/ship4/ship4_4Hit.png").getImage().getScaledInstance(36, 36, Image.SCALE_SMOOTH));
+
+    ImageIcon ship5_1Hit = new ImageIcon(new ImageIcon("images/ship5/ship5_1Hit.png").getImage().getScaledInstance(36, 36, Image.SCALE_SMOOTH));
+    ImageIcon ship5_2Hit = new ImageIcon(new ImageIcon("images/ship5/ship5_2Hit.png").getImage().getScaledInstance(36, 36, Image.SCALE_SMOOTH));
+    ImageIcon ship5_3Hit = new ImageIcon(new ImageIcon("images/ship5/ship5_3Hit.png").getImage().getScaledInstance(36, 36, Image.SCALE_SMOOTH));
+    ImageIcon ship5_4Hit = new ImageIcon(new ImageIcon("images/ship5/ship5_4Hit.png").getImage().getScaledInstance(36, 36, Image.SCALE_SMOOTH));
+    ImageIcon ship5_5Hit = new ImageIcon(new ImageIcon("images/ship5/ship5_5Hit.png").getImage().getScaledInstance(36, 36, Image.SCALE_SMOOTH));
+
     ImageIcon shipHit = new ImageIcon(new ImageIcon("images/shipHit.png").getImage().getScaledInstance(36, 36, Image.SCALE_SMOOTH));
     ImageIcon badHit = new ImageIcon(new ImageIcon("images/badHit.png").getImage().getScaledInstance(36, 36, Image.SCALE_SMOOTH));
 
