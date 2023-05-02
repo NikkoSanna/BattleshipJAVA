@@ -64,11 +64,6 @@ public class Map extends JFrame {
     public Map(Server server, Client client, String mapNumber) {
         setTitle("GameMap");
 
-        //Genero ship selector solo se sono mappa uno
-        if(mapNumber.equals("mapOne")){
-            shipselect = new ShipSelector(this);   //La mappa genera il ship selector
-        }
-
         this.server = server;
         this.client = client;
         this.mapNumber = mapNumber;     //Mi permette di capire quale delle 2 mappe sta venendo usata in Tile
@@ -150,6 +145,11 @@ public class Map extends JFrame {
         ready.addActionListener(listener);  //Aggiunta di un action listener al bottone
 
         this.addWindowListener(listener);   //Aggiunta di un window listener al frame
+
+        //Genero ship selector solo se sono mappa uno
+        if(mapNumber.equals("mapOne")){
+            shipselect = new ShipSelector(this);   //La mappa genera il ship selector
+        }
 
         //Impostazioni di visualizzazione
         this.pack();
