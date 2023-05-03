@@ -55,133 +55,135 @@ public class Server implements Runnable {
         try {
             server = new ServerSocket(serverPort);
 
-            //Continua a provare a connettersi
-            try (Socket client = server.accept()) {
-                //Posso chiudere la finestra che comunica l'IPv4 e generare le mappe
-                ipAnnouncer.dispose();
+            while (true) {
+                //Continua a provare a connettersi
+                try (Socket client = server.accept()) {
+                    //Posso chiudere la finestra che comunica l'IPv4 e generare le mappe
+                    ipAnnouncer.dispose();
 
-                //Genero le mappe di gioco
-                mapOne = new Map(this, null, "mapOne");
-                mapTwo = new Map(this, null, "mapTwo");
-                mapOne.playerName.setText(playerName);
+                    //Genero le mappe di gioco
+                    mapOne = new Map(this, null, "mapOne");
+                    mapTwo = new Map(this, null, "mapTwo");
+                    mapOne.playerName.setText(playerName);
 
-                //La mappa 2 avrá qualche differenza dalla mappa 1
-                mapTwo.setLocation((ScreenSize.getWidth() / 2) + 25, (ScreenSize.getHeight() / 3) - 250);
-                mapTwo.bottomBar.remove(mapTwo.ready);
-                mapTwo.bottomBar.add(mapTwo.gameText);
+                    //La mappa 2 avrá qualche differenza dalla mappa 1
+                    mapTwo.setLocation((ScreenSize.getWidth() / 2) + 25, (ScreenSize.getHeight() / 3) - 250);
+                    mapTwo.bottomBar.remove(mapTwo.ready);
+                    mapTwo.bottomBar.add(mapTwo.gameText);
 
-                //Creazione oggetti che verranno usati nella comunicazione
-                inStream = new InputStreamReader(client.getInputStream());
-                outStream = new OutputStreamWriter(client.getOutputStream());
-                bufferIn = new BufferedReader(inStream);         //Usare solo questo oggetto per gli input
-                bufferOut = new BufferedWriter(outStream);       //Usare solo questo oggetto per gli output
+                    //Creazione oggetti che verranno usati nella comunicazione
+                    inStream = new InputStreamReader(client.getInputStream());
+                    outStream = new OutputStreamWriter(client.getOutputStream());
+                    bufferIn = new BufferedReader(inStream);         //Usare solo questo oggetto per gli input
+                    bufferOut = new BufferedWriter(outStream);       //Usare solo questo oggetto per gli output
 
-                //Messaggi a console riguardanti la connessione
-                System.out.println("Connesso col client");
+                    //Messaggi a console riguardanti la connessione
+                    System.out.println("Connesso col client");
 
-                str = bufferIn.readLine();
-                System.out.println("Client avente indirizzo ip: " + str);
+                    str = bufferIn.readLine();
+                    System.out.println("Client avente indirizzo ip: " + str);
 
-                bufferOut.write(ip);
-                bufferOut.newLine();     //Riga piú importante qui
-                bufferOut.flush();     //Impone la scrittura dei dati presenti nel buffer sul dispositivo di output
+                    bufferOut.write(ip);
+                    bufferOut.newLine();     //Riga piú importante qui
+                    bufferOut.flush();     //Impone la scrittura dei dati presenti nel buffer sul dispositivo di output
 
-                //Scambio dei nickname
-                bufferOut.write(mapOne.playerName.getText());
-                bufferOut.newLine();
-                bufferOut.flush();
+                    //Scambio dei nickname
+                    bufferOut.write(mapOne.playerName.getText());
+                    bufferOut.newLine();
+                    bufferOut.flush();
 
-                String enemyName = bufferIn.readLine();
-                mapTwo.playerName.setText(enemyName);
+                    String enemyName = bufferIn.readLine();
+                    mapTwo.playerName.setText(enemyName);
 
-                mapTwo.gameText.setText("Connessione riuscita");
+                    mapTwo.gameText.setText("Connessione riuscita");
 
-                //Una volta connesso continua a comunicare
-                while (true) {
-                    //Finché entrambi non sono pronti il gioco non inizia
-                    while (ready > 0 || loop) {
-                        //Se non uso un altro booleano rischio che si blocchi nella riga di lettura per sempre
-                        if (loop) {
-                            str = bufferIn.readLine();
-                            if (str.equals("ready")) {
-                                ready -= 1;
-                                loop = false;
-                            }
-                        }
-                        //System.out.println(" ");    //Si...questa riga se manca si rompe tutto - 3 ore buttate
-                        try {
-                            Thread.sleep(500);     //Almeno non spamma la console
-                        } catch (InterruptedException e) {
-                            throw new RuntimeException(e);
-                        }
-                    }
-
-                    mapTwo.actuallyPlaying = true;
-
-                    //Gestisco il mio turno di gioco
-                    if (yourTurn) {
-                        mapTwo.gameText.setText("E il tuo turno!");
-
-                        do {
-                            System.out.println("aaa");
-
-                            str = bufferIn.readLine();
-
-                            if (str.equals("goodHit")) {
-                                String[] coordinates = tileUsed.split(",");     //Splitto le coordinate
-                                int x = Integer.parseInt(coordinates[0]);     //Converto la coordinata x in intero
-                                int y = Integer.parseInt(coordinates[1]);     //Converto la coordinata y in intero
-
-                                mapTwo.tile[x][y].setIcon(mapTwo.tile[x][y].shipHit);
-
-                            } else if (str.equals("badHit")) {
-                                String[] coordinates = tileUsed.split(",");     //Splitto le coordinate
-                                int x = Integer.parseInt(coordinates[0]);     //Converto la coordinata x in intero
-                                int y = Integer.parseInt(coordinates[1]);     //Converto la coordinata y in intero
-
-                                mapTwo.tile[x][y].setIcon(mapTwo.tile[x][y].badHit);
-
-                            } else {
-                                clickAgain = true;
-                            }
-                        } while (clickAgain);
-
-                        yourTurn = false;
-                        tileUsed = null;
-
-                        //Gestisco il turno di gioco dell'avversario
-                    } else {
-                        mapTwo.gameText.setText("Turno avversario!");
-
-                        while (!validHit) {
-                            str = bufferIn.readLine();
-
-                            //Controllo se ho perso
-                            if (str.equals("lost") || str.equals("win")) {
-                                mapTwo.gameText.setText("Hai perso");
-
-                                new VictoryScreen(str);
-
-                                //Chiudo il programma
-                                try {
-                                    Thread.sleep(4000);
-                                    System.exit(0);
-                                } catch (InterruptedException e) {
-                                    throw new RuntimeException(e);
+                    //Una volta connesso continua a comunicare
+                    while (true) {
+                        //Finché entrambi non sono pronti il gioco non inizia
+                        while (ready > 0 || loop) {
+                            //Se non uso un altro booleano rischio che si blocchi nella riga di lettura per sempre
+                            if (loop) {
+                                str = bufferIn.readLine();
+                                if (str.equals("ready")) {
+                                    ready -= 1;
+                                    loop = false;
                                 }
-
-                                //Controllo quali caselle sono state colpite
-                            } else {
-
-                                String[] coordinates = str.split(",");     //Splitto le coordinate
-                                int x = Integer.parseInt(coordinates[0]);     //Converto la coordinata x in intero
-                                int y = Integer.parseInt(coordinates[1]);     //Converto la coordinata y in intero
-
-                                mapOne.tile[x][y].tileHit(x, y);
+                            }
+                            //System.out.println(" ");    //Si...questa riga se manca si rompe tutto - 3 ore buttate
+                            try {
+                                Thread.sleep(500);     //Almeno non spamma la console
+                            } catch (InterruptedException e) {
+                                throw new RuntimeException(e);
                             }
                         }
 
-                        yourTurn = true;
+                        mapTwo.actuallyPlaying = true;
+
+                        //Gestisco il mio turno di gioco
+                        if (yourTurn) {
+                            mapTwo.gameText.setText("E il tuo turno!");
+
+                            do {
+                                System.out.println("aaa");
+
+                                str = bufferIn.readLine();
+
+                                if (str.equals("goodHit")) {
+                                    String[] coordinates = tileUsed.split(",");     //Splitto le coordinate
+                                    int x = Integer.parseInt(coordinates[0]);     //Converto la coordinata x in intero
+                                    int y = Integer.parseInt(coordinates[1]);     //Converto la coordinata y in intero
+
+                                    mapTwo.tile[x][y].setIcon(mapTwo.tile[x][y].shipHit);
+
+                                } else if (str.equals("badHit")) {
+                                    String[] coordinates = tileUsed.split(",");     //Splitto le coordinate
+                                    int x = Integer.parseInt(coordinates[0]);     //Converto la coordinata x in intero
+                                    int y = Integer.parseInt(coordinates[1]);     //Converto la coordinata y in intero
+
+                                    mapTwo.tile[x][y].setIcon(mapTwo.tile[x][y].badHit);
+
+                                } else {
+                                    clickAgain = true;
+                                }
+                            } while (clickAgain);
+
+                            yourTurn = false;
+                            tileUsed = null;
+
+                            //Gestisco il turno di gioco dell'avversario
+                        } else {
+                            mapTwo.gameText.setText("Turno avversario!");
+
+                            while (!validHit) {
+                                str = bufferIn.readLine();
+
+                                //Controllo se ho perso
+                                if (str.equals("lost") || str.equals("win")) {
+                                    mapTwo.gameText.setText("Hai perso");
+
+                                    new VictoryScreen(str);
+
+                                    //Chiudo il programma
+                                    try {
+                                        Thread.sleep(4000);
+                                        System.exit(0);
+                                    } catch (InterruptedException e) {
+                                        throw new RuntimeException(e);
+                                    }
+
+                                    //Controllo quali caselle sono state colpite
+                                } else {
+
+                                    String[] coordinates = str.split(",");     //Splitto le coordinate
+                                    int x = Integer.parseInt(coordinates[0]);     //Converto la coordinata x in intero
+                                    int y = Integer.parseInt(coordinates[1]);     //Converto la coordinata y in intero
+
+                                    mapOne.tile[x][y].tileHit(x, y);
+                                }
+                            }
+
+                            yourTurn = true;
+                        }
                     }
                 }
             }
