@@ -121,7 +121,7 @@ public class Server implements Runnable {
                     if (yourTurn) {
                         mapTwo.gameText.setText("E il tuo turno!");
 
-                        while(bufferIn.equals("no")){
+                        do {
                             System.out.println("aaa");
 
                             String[] coordinates = tileUsed.split(",");     //Splitto le coordinate
@@ -132,13 +132,16 @@ public class Server implements Runnable {
                                 mapTwo.tile[x][y].setIcon(mapTwo.tile[x][y].shipHit);
                             } else {
                                 mapTwo.tile[x][y].setIcon(mapTwo.tile[x][y].badHit);
+
+                            } else {
+                                clickAgain = true;
                             }
-                        }
+                        } while (clickAgain);
 
                         yourTurn = false;
                         tileUsed = null;
 
-                    //Gestisco il turno di gioco dell'avversario
+                        //Gestisco il turno di gioco dell'avversario
                     } else {
                         mapTwo.gameText.setText("Turno avversario!");
 

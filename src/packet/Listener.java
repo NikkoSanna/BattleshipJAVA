@@ -38,13 +38,13 @@ public class Listener extends JFrame implements ActionListener, WindowListener {
         //Metodi richiamati dal menú
         try{
             //Apertura della mappa
-            if(e.getSource() == menu.new_game){
-                PlayerRole playerRole = new PlayerRole();
-                menu.dispose();
+            if(e.getSource() == menu.singleplayer){
+                //Work in progress
             }
             //Continuo della partita precedente
-            else if(e.getSource() == menu.old_game){
-                //Work in progress
+            else if(e.getSource() == menu.multiplayer){
+                PlayerRole playerRole = new PlayerRole();
+                menu.dispose();
             }
             //Apertura della pagina impostazioni
             else {

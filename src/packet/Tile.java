@@ -394,13 +394,9 @@ public class Tile extends JButton implements MouseListener {
                                 int x = Integer.parseInt(coordinates[0]);     //Converto la coordinata x in intero
                                 int y = Integer.parseInt(coordinates[1]);     //Converto la coordinata y in intero
 
-                                map.tile[x + 1][y + 1].setContentAreaFilled(true);
-                                map.tile[x + 1][y + 1].setBackground(Color.RED);
-                            }
                             break;    //Evito ripetizioni inutili di controllo se la barca é affondata
                         }
                     }
-
                 }
                 //Controllo se é stata colpita una casella della barca da 4
                 for (int a = 0; a < map.shipFour_Tiles.length; a++) {
@@ -411,21 +407,16 @@ public class Tile extends JButton implements MouseListener {
                         if (map.shipFour_Iterator == 0) {     //Se il contatore é arrivato a 0 allora la barca é stata affondata
                             map.shipFour_Sunk = true;    //Imposto la barca come affondata
 
-                            //Mostro graficamente la barca affondata
-                            for (int b = 0; b < map.shipFour_Tiles.length; b++) {
-                                String[] coordinates = map.shipFour_Tiles[b].split(",");     //Splitto le coordinate
-                                int x = Integer.parseInt(coordinates[0]);     //Converto la coordinata x in intero
-                                int y = Integer.parseInt(coordinates[1]);     //Converto la coordinata y in intero
+                            setIcon(ship4_3Hit);
+                            map.tile[i - 1][j].setIcon(ship4_2Hit);
+                            map.tile[i + 1][j].setIcon(ship4_4Hit);
+                            map.tile[i - 2][j].setIcon(ship4_1Hit);
 
-                                map.tile[x + 1][y + 1].setContentAreaFilled(true);
-                                map.tile[x + 1][y + 1].setBackground(Color.RED);
-                            }
                             break;    //Evito ripetizioni inutili di controllo se la barca é affondata
-
                         }
                     }
-
                 }
+
                 //Controllo se é stata colpita una casella della barca da 5
                 for (int a = 0; a < map.shipFive_Tiles.length; a++) {
                     if (map.shipFive_Tiles[a].equals((i - 1) + "," + (j - 1))) {
@@ -435,17 +426,13 @@ public class Tile extends JButton implements MouseListener {
                         if (map.shipFive_Iterator == 0) {     //Se il contatore é arrivato a 0 allora la barca é stata affondata
                             map.shipFive_Sunk = true;    //Imposto la barca come affondata
 
-                            //Mostro graficamente la barca affondata
-                            for (int b = 0; b < map.shipFive_Tiles.length; b++) {
-                                String[] coordinates = map.shipFive_Tiles[b].split(",");     //Splitto le coordinate
-                                int x = Integer.parseInt(coordinates[0]);     //Converto la coordinata x in intero
-                                int y = Integer.parseInt(coordinates[1]);     //Converto la coordinata y in intero
+                            setIcon(ship5_3Hit);
+                            map.tile[i - 1][j].setIcon(ship5_2Hit);
+                            map.tile[i + 1][j].setIcon(ship5_4Hit);
+                            map.tile[i - 2][j].setIcon(ship5_1Hit);
+                            map.tile[i + 2][j].setIcon(ship5_5Hit);
 
-                                map.tile[x + 1][y + 1].setContentAreaFilled(true);
-                                map.tile[x + 1][y + 1].setBackground(Color.RED);
-                            }
                             break;    //Evito ripetizioni inutili di controllo se la barca é affondata
-
                         }
                     }
                 }
@@ -474,11 +461,8 @@ public class Tile extends JButton implements MouseListener {
                         }
                     }
                 }
-            }
-            //Se non é presenta devo mostrare che quella casella é stata colpita ma a vuoto e informare l'avversario
-            else {
+            } else {        //Se non é presenta devo mostrare che quella casella é stata colpita ma a vuoto e informare l'avversario
                 setIcon(badHit);
-
                 if (map.client == null) {
                     try {
                         map.server.bufferOut.write("badHit");
@@ -500,17 +484,17 @@ public class Tile extends JButton implements MouseListener {
         } else {
             if (map.client == null) {
                 try{
-                    map.server.bufferOut.write("no");
+                    map.server.bufferOut.write("reClick");
                     map.server.bufferOut.newLine();
                     map.server.bufferOut.flush();
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }
             } else {
-                try {
-                    map.client.bufferOut.write("no");
-                    map.client.bufferOut.newLine();
-                    map.client.bufferOut.flush();
+                try{
+                    map.client.bufferOut.write("reClick");
+                    map.server.bufferOut.newLine();
+                    map.server.bufferOut.flush();
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }

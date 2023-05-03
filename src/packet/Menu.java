@@ -14,8 +14,8 @@ public class Menu extends JFrame {
     //Oggetti legati all'interfaccia
     Container c = this.getContentPane();
     JPanel panel = new JPanel();
-    JButton new_game = new JButton("Nuova Partita");
-    JButton old_game = new JButton("Continua partita");     //Non implementato
+    JButton singleplayer = new JButton("Singleplayer"); //Non implementato
+    JButton multiplayer = new JButton("Multiplayer");
     JButton settings = new JButton("Impostazioni");      //Non implementato
 
     JLabel background = new JLabel();
@@ -36,12 +36,12 @@ public class Menu extends JFrame {
         background.setIcon(seaImage);
 
         //Aspetto grafico dei bottoni
-        new_game.setFont(font);
-        new_game.setBorder(BorderFactory.createLineBorder(Color.GRAY, 2));
-        new_game.setBackground(Color.WHITE);
-        old_game.setFont(font);
-        old_game.setBorder(BorderFactory.createLineBorder(Color.GRAY, 2));
-        old_game.setBackground(Color.WHITE);
+        singleplayer.setFont(font);
+        singleplayer.setBorder(BorderFactory.createLineBorder(Color.GRAY, 2));
+        singleplayer.setBackground(Color.WHITE);
+        multiplayer.setFont(font);
+        multiplayer.setBorder(BorderFactory.createLineBorder(Color.GRAY, 2));
+        multiplayer.setBackground(Color.WHITE);
         settings.setFont(font);
         settings.setBorder(BorderFactory.createLineBorder(Color.GRAY, 2));
         settings.setBackground(Color.WHITE);
@@ -50,8 +50,8 @@ public class Menu extends JFrame {
         panel.setBorder(new EmptyBorder(250,100,100,100));
         panel.setLayout(new GridLayout(3, 1, 20,30));
         panel.setOpaque(false);
-        panel.add(new_game);
-        panel.add(old_game);
+        panel.add(singleplayer);
+        panel.add(multiplayer);
         panel.add(settings);
 
         background.add(panel);   //Aggiunta del panel al label
@@ -60,8 +60,8 @@ public class Menu extends JFrame {
 
 
         //Aggiunta di action listener per i bottoni
-        new_game.addActionListener(listener);
-        old_game.addActionListener(listener);
+        singleplayer.addActionListener(listener);
+        multiplayer.addActionListener(listener);
         settings.addActionListener(listener);
 
         this.addWindowListener(listener);   //Aggiunta di un window listener al frame

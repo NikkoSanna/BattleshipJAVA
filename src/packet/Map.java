@@ -1,4 +1,5 @@
 package packet;
+
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
@@ -34,7 +35,7 @@ public class Map extends JFrame {
 
     //Immagini usate
     ImageIcon seaImage = new ImageIcon(new ImageIcon("images/backgrounds/seaBackground.png").getImage().getScaledInstance(500, 550, Image.SCALE_SMOOTH));
-    ImageIcon captainImage = new ImageIcon(new ImageIcon("images/captainImage.png").getImage().getScaledInstance(60,60,Image.SCALE_SMOOTH));
+    ImageIcon captainImage = new ImageIcon(new ImageIcon("images/captainImage.png").getImage().getScaledInstance(60, 60, Image.SCALE_SMOOTH));
 
     //Oggetti legati all'interfaccia
     Container c = this.getContentPane();
@@ -69,9 +70,10 @@ public class Map extends JFrame {
         this.mapNumber = mapNumber;     //Mi permette di capire quale delle 2 mappe sta venendo usata in Tile
 
         //Font da file esterno
-        try{
-            font  = Font.createFont(Font.TRUETYPE_FONT, new File("Font.ttf")).deriveFont(Font.PLAIN, 25);
-        } catch (Exception ignored){}
+        try {
+            font = Font.createFont(Font.TRUETYPE_FONT, new File("Font.ttf")).deriveFont(Font.PLAIN, 25);
+        } catch (Exception ignored) {
+        }
 
         //Aggiunta font agli elementi
         playerName.setFont(font);
@@ -79,14 +81,14 @@ public class Map extends JFrame {
         ready.setFont(font);
         gameText.setFont(font.deriveFont(Font.PLAIN, 20));
 
-        c.setLayout(new BoxLayout(c,BoxLayout.Y_AXIS));      //Impostazione del layout del content pane
+        c.setLayout(new BoxLayout(c, BoxLayout.Y_AXIS));      //Impostazione del layout del content pane
 
         //Aggiunta dello sfondo a un label
         background.setLayout(new BorderLayout());
         background.setIcon(seaImage);
 
         //Aggiunta di una barra superiore al frame
-        upperBar.setLayout(new GridLayout(1,3));
+        upperBar.setLayout(new GridLayout(1, 3));
         shipSunkCounter.setText("Barche Affondate: 0");
         playerCharacter.setIcon(captainImage);
         playerName.setHorizontalAlignment(JLabel.CENTER);
@@ -146,8 +148,9 @@ public class Map extends JFrame {
 
         this.addWindowListener(listener);   //Aggiunta di un window listener al frame
 
+
         //Genero ship selector solo se sono mappa uno
-        if(mapNumber.equals("mapOne")){
+        if (mapNumber.equals("mapOne")) {
             shipselect = new ShipSelector(this);   //La mappa genera il ship selector
         }
 
@@ -170,7 +173,7 @@ public class Map extends JFrame {
     }
 
     //Getter della dimensione della griglia
-    public int getDimension(){
+    public int getDimension() {
         return dimension;
     }
 }
