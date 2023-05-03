@@ -187,6 +187,8 @@ public class Server implements Runnable {
                     }
                 }
             }
+
+        //Se il server non si apre
         } catch (IOException e1) {
             System.out.println("Server non startato");
         }
