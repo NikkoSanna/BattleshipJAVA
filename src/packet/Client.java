@@ -15,9 +15,10 @@ public class Client extends JFrame implements Runnable {
     String tileUsed;    //Stringa che contiene la casella che ho cliccato
 
     boolean started = false;    //booleano usato quando ancora entrambi non hanno cliccato pronto
-    boolean loop = true;        //Usata solamente per evitare di iniziare la partita prima del server
     boolean yourTurn = false;       //booleano che gestisce i turni
-    boolean validHit = false;
+    boolean loop = true;        //Usata solamente per evitare di iniziare la partita prima del server
+    boolean validHit = false;       //Usata per rileggere le coordinate dell'avversario se ha cliccato una casella già cliccata in precedenza
+    boolean clickAgain = false;     //Usata per rifare i cicli se si clicca su una casella già cliccata in precedenza
 
     Socket client;
     InputStreamReader inStream;
@@ -109,19 +110,29 @@ public class Client extends JFrame implements Runnable {
                 if (yourTurn) {
                     mapTwo.gameText.setText("E il tuo turno!");
 
-                    while (bufferIn.equals("no")) {
+                    do {
                         System.out.println("aaa");
 
-                        String[] coordinates = tileUsed.split(",");     //Splitto le coordinate
-                        int x = Integer.parseInt(coordinates[0]);     //Converto la coordinata x in intero
-                        int y = Integer.parseInt(coordinates[1]);     //Converto la coordinata y in intero
+                        str = bufferIn.readLine();
 
                         if (str.equals("goodHit")) {
+                            String[] coordinates = tileUsed.split(",");     //Splitto le coordinate
+                            int x = Integer.parseInt(coordinates[0]);     //Converto la coordinata x in intero
+                            int y = Integer.parseInt(coordinates[1]);     //Converto la coordinata y in intero
+
                             mapTwo.tile[x][y].setIcon(mapTwo.tile[x][y].shipHit);
-                        } else {
+
+                        } else if (str.equals("badHit")) {
+                            String[] coordinates = tileUsed.split(",");     //Splitto le coordinate
+                            int x = Integer.parseInt(coordinates[0]);     //Converto la coordinata x in intero
+                            int y = Integer.parseInt(coordinates[1]);     //Converto la coordinata y in intero
+
                             mapTwo.tile[x][y].setIcon(mapTwo.tile[x][y].badHit);
+
+                        } else {
+                            clickAgain = true;
                         }
-                    }
+                    } while (clickAgain);
 
                     yourTurn = false;
                     tileUsed = null;
