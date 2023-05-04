@@ -321,7 +321,7 @@ public class Tile extends JButton implements MouseListener {
 
 
     //Metodo che viene richiamato quando si clicca su una casella
-    public void tileHit(int i, int j) {
+    public void tileHit() {
         //Se quella casella non era stata cliccata allora posso procedere
         if (!isHit) {
             isHit = true;   //Imposto la casella come colpita
@@ -373,9 +373,19 @@ public class Tile extends JButton implements MouseListener {
                         if (map.shipThree_Iterator == 0) {     //Se il contatore é arrivato a 0 allora la barca é stata affondata
                             map.shipThree_Sunk = true;    //Imposto la barca come affondata
 
-                            setIcon(ship3_2Hit);
-                            map.tile[i - 1][j].setIcon(ship3_1Hit);
-                            map.tile[i + 1][j].setIcon(ship3_3Hit);
+                            for(int b = 0; b < map.shipThree_Tiles.length; b++){
+                                String[] coordinates = map.shipThree_Tiles[b].split(",");     //Splitto le coordinate
+                                int x = Integer.parseInt(coordinates[0]);     //Converto la coordinata x in intero
+                                int y = Integer.parseInt(coordinates[1]);     //Converto la coordinata y in intero
+
+                                if(b == 0){
+                                    map.tile[x][y].setIcon(ship3_1Hit);
+                                }else if(b == 1){
+                                    map.tile[x][y].setIcon(ship3_2Hit);
+                                }else if(b == 2){
+                                    map.tile[x][y].setIcon(ship3_3Hit);
+                                }
+                            }
 
                             break;    //Evito ripetizioni inutili di controllo se la barca é affondata
                         }

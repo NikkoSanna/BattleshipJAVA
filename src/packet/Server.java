@@ -123,8 +123,6 @@ public class Server implements Runnable {
                             mapTwo.gameText.setText("E il tuo turno!");
 
                             do {
-                                System.out.println("aaa");
-
                                 str = bufferIn.readLine();
 
                                 if (str.equals("goodHit")) {
@@ -185,7 +183,7 @@ public class Server implements Runnable {
                                     int x = Integer.parseInt(coordinates[0]);     //Converto la coordinata x in intero
                                     int y = Integer.parseInt(coordinates[1]);     //Converto la coordinata y in intero
 
-                                    mapOne.tile[x][y].tileHit(x, y);
+                                    mapOne.tile[x][y].tileHit();
                                 }
                             }
 
