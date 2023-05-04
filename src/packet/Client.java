@@ -111,11 +111,10 @@ public class Client extends JFrame implements Runnable {
                     mapTwo.gameText.setText("E il tuo turno!");
 
                     do {
-                        System.out.println("aaa");
-
                         str = bufferIn.readLine();
 
                         if (str.equals("goodHit")) {
+                            clickAgain = false;
                             String[] coordinates = tileUsed.split(",");     //Splitto le coordinate
                             int x = Integer.parseInt(coordinates[0]);     //Converto la coordinata x in intero
                             int y = Integer.parseInt(coordinates[1]);     //Converto la coordinata y in intero
@@ -126,6 +125,7 @@ public class Client extends JFrame implements Runnable {
                             bufferOut.newLine();
                             bufferOut.flush();
                         } else if (str.equals("badHit")) {
+                            clickAgain = false;
                             String[] coordinates = tileUsed.split(",");     //Splitto le coordinate
                             int x = Integer.parseInt(coordinates[0]);     //Converto la coordinata x in intero
                             int y = Integer.parseInt(coordinates[1]);     //Converto la coordinata y in intero
@@ -175,6 +175,7 @@ public class Client extends JFrame implements Runnable {
                         }
                     }
 
+                    validHit = false;
                     yourTurn = true;
                 }
             }

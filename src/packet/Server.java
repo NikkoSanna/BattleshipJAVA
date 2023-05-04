@@ -128,6 +128,7 @@ public class Server implements Runnable {
                                 str = bufferIn.readLine();
 
                                 if (str.equals("goodHit")) {
+                                    clickAgain = false;
                                     String[] coordinates = tileUsed.split(",");     //Splitto le coordinate
                                     int x = Integer.parseInt(coordinates[0]);     //Converto la coordinata x in intero
                                     int y = Integer.parseInt(coordinates[1]);     //Converto la coordinata y in intero
@@ -138,6 +139,7 @@ public class Server implements Runnable {
                                     bufferOut.newLine();
                                     bufferOut.flush();
                                 } else if (str.equals("badHit")) {
+                                    clickAgain = false;
                                     String[] coordinates = tileUsed.split(",");     //Splitto le coordinate
                                     int x = Integer.parseInt(coordinates[0]);     //Converto la coordinata x in intero
                                     int y = Integer.parseInt(coordinates[1]);     //Converto la coordinata y in intero
@@ -179,7 +181,6 @@ public class Server implements Runnable {
                                     validHit = true;
                                 //Controllo quali caselle sono state colpite
                                 } else {
-
                                     String[] coordinates = str.split(",");     //Splitto le coordinate
                                     int x = Integer.parseInt(coordinates[0]);     //Converto la coordinata x in intero
                                     int y = Integer.parseInt(coordinates[1]);     //Converto la coordinata y in intero
