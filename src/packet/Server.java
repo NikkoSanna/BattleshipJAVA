@@ -256,8 +256,8 @@ public class Server extends JFrame implements Runnable {
                             str = bufferIn.readLine();
 
                             //Controllo se ho perso
-                            if (str.equals("lost")) {
-                                mapTwo.gameText.setText("Hai perso");
+                            if (str.equals("win")) {
+                                mapTwo.gameText.setText("Hai vinto");
 
                                 new VictoryScreen(str);
 
