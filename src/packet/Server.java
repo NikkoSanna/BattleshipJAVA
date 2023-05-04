@@ -134,6 +134,9 @@ public class Server implements Runnable {
 
                                     mapTwo.tile[x][y].setIcon(mapTwo.tile[x][y].shipHit);
 
+                                    bufferOut.write("stopCicle");
+                                    bufferOut.newLine();
+                                    bufferOut.flush();
                                 } else if (str.equals("badHit")) {
                                     String[] coordinates = tileUsed.split(",");     //Splitto le coordinate
                                     int x = Integer.parseInt(coordinates[0]);     //Converto la coordinata x in intero
@@ -141,6 +144,9 @@ public class Server implements Runnable {
 
                                     mapTwo.tile[x][y].setIcon(mapTwo.tile[x][y].badHit);
 
+                                    bufferOut.write("stopCicle");
+                                    bufferOut.newLine();
+                                    bufferOut.flush();
                                 } else {
                                     clickAgain = true;
                                 }
@@ -169,8 +175,9 @@ public class Server implements Runnable {
                                     } catch (InterruptedException e) {
                                         throw new RuntimeException(e);
                                     }
-
-                                    //Controllo quali caselle sono state colpite
+                                }else if(str.equals("stopCicle")){
+                                    validHit = true;
+                                //Controllo quali caselle sono state colpite
                                 } else {
 
                                     String[] coordinates = str.split(",");     //Splitto le coordinate
@@ -181,6 +188,7 @@ public class Server implements Runnable {
                                 }
                             }
 
+                            validHit = false;
                             yourTurn = true;
                         }
                     }

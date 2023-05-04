@@ -122,6 +122,9 @@ public class Client extends JFrame implements Runnable {
 
                             mapTwo.tile[x][y].setIcon(mapTwo.tile[x][y].shipHit);
 
+                            bufferOut.write("stopCicle");
+                            bufferOut.newLine();
+                            bufferOut.flush();
                         } else if (str.equals("badHit")) {
                             String[] coordinates = tileUsed.split(",");     //Splitto le coordinate
                             int x = Integer.parseInt(coordinates[0]);     //Converto la coordinata x in intero
@@ -129,6 +132,9 @@ public class Client extends JFrame implements Runnable {
 
                             mapTwo.tile[x][y].setIcon(mapTwo.tile[x][y].badHit);
 
+                            bufferOut.write("stopCicle");
+                            bufferOut.newLine();
+                            bufferOut.flush();
                         } else {
                             clickAgain = true;
                         }
@@ -137,7 +143,7 @@ public class Client extends JFrame implements Runnable {
                     yourTurn = false;
                     tileUsed = null;
 
-                //Gestisco il turno di gioco dell'avversario
+                    //Gestisco il turno di gioco dell'avversario
                 } else {
                     mapTwo.gameText.setText("Turno avversario!");
 
@@ -157,8 +163,9 @@ public class Client extends JFrame implements Runnable {
                             } catch (InterruptedException e) {
                                 throw new RuntimeException(e);
                             }
-
-                            //Controllo quali caselle sono state colpite
+                        } else if (str.equals("stopCicle")) {
+                            validHit = true;
+                        //Controllo quali caselle sono state colpite
                         } else {
                             String[] coordinates = str.split(",");     //Splitto le coordinate
                             int x = Integer.parseInt(coordinates[0]);     //Converto la coordinata x in intero

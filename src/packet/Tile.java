@@ -332,7 +332,6 @@ public class Tile extends JButton implements MouseListener {
 
                 if (map.client == null) {
                     try {
-                        map.server.validHit = true;
                         map.server.bufferOut.write("goodHit");
                         map.server.bufferOut.newLine();
                         map.server.bufferOut.flush();
@@ -341,7 +340,6 @@ public class Tile extends JButton implements MouseListener {
                     }
                 } else {
                     try {
-                        map.client.validHit = true;
                         map.client.bufferOut.write("goodHit");
                         map.client.bufferOut.newLine();
                         map.client.bufferOut.flush();
