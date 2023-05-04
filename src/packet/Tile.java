@@ -476,8 +476,8 @@ public class Tile extends JButton implements MouseListener {
             } else {
                 try{
                     map.client.bufferOut.write("reClick");
-                    map.server.bufferOut.newLine();
-                    map.server.bufferOut.flush();
+                    map.client.bufferOut.newLine();
+                    map.client.bufferOut.flush();
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }
