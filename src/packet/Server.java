@@ -128,15 +128,42 @@ public class Server extends JFrame implements Runnable {
 
                                 if (str.equals("goodHit")) {
                                     clickAgain = false;
-                                    String[] coordinates = tileUsed.split(",");     //Splitto le coordinate
-                                    int x = Integer.parseInt(coordinates[0]);     //Converto la coordinata x in intero
-                                    int y = Integer.parseInt(coordinates[1]);     //Converto la coordinata y in intero
+                                    String[] coordinates1 = tileUsed.split(",");     //Splitto le coordinate
+                                    int x1 = Integer.parseInt(coordinates1[0]);     //Converto la coordinata x in intero
+                                    int y1 = Integer.parseInt(coordinates1[1]);     //Converto la coordinata y in intero
 
-                                    mapTwo.tile[x][y].setIcon(mapTwo.tile[x][y].shipHit);
+                                    mapTwo.tile[x1][y1].setIcon(mapTwo.tile[x1][y1].shipHit);
 
                                     bufferOut.write("stopCicle");
                                     bufferOut.newLine();
                                     bufferOut.flush();
+
+                                    //Controllo se ho affondato una barca
+                                    str = bufferIn.readLine();
+
+                                    if(str.equals("shipTwoSunk")){
+                                        for(int a = 0; a < mapTwo.shipTwo_Tiles.length; a++){
+                                            str = bufferIn.readLine();
+
+                                            String[] coordinates2 = str.split(",");     //Splitto le coordinate
+                                            int x2 = Integer.parseInt(coordinates2[0]) + 1;     //Converto la coordinata x in intero
+                                            int y2 = Integer.parseInt(coordinates2[1]) + 1;     //Converto la coordinata y in intero
+
+                                            if(a == 0){
+                                                mapTwo.tile[x2][y2].setIcon(mapTwo.tile[x2][y2].ship2_1Hit);
+                                            }else if(a == 1) {
+                                                mapTwo.tile[x2][y2].setIcon(mapTwo.tile[x2][y2].ship2_1Hit);
+                                            }
+                                        }
+                                    }else if(str.equals("shipThreeSunk")){
+
+                                    }else if(str.equals("shipFourSunk")){
+
+                                    }else if(str.equals("shipFiveSunk")){
+
+                                    }else{
+                                        System.out.println("Nessuna barca affondata");
+                                    }
                                 } else if (str.equals("badHit")) {
                                     clickAgain = false;
                                     String[] coordinates = tileUsed.split(",");     //Splitto le coordinate
