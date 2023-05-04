@@ -68,12 +68,12 @@ public class Client extends JFrame implements Runnable {
             //Messaggi a console riguardanti la connessione
             System.out.println("Connesso al server");
 
-            str = bufferIn.readLine();
-            System.out.println("Server avente indirizzo ip: " + str);
-
             bufferOut.write(ip);
             bufferOut.newLine();    //Riga piú importante qui
             bufferOut.flush();     //Impone la scrittura dei dati presenti nel buffer sul dispositivo di output
+
+            str = bufferIn.readLine();
+            System.out.println("Server avente indirizzo ip: " + str);
 
             //Scambio dei nickname
             bufferOut.write(mapOne.playerName.getText());

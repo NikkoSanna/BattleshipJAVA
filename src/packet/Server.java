@@ -5,7 +5,7 @@ import java.net.*;
 import java.io.*;
 import java.sql.SQLOutput;
 
-public class Server implements Runnable {
+public class Server extends JFrame implements Runnable {
     final static int serverPort = 50000;
 
     String playerName;
@@ -30,6 +30,7 @@ public class Server implements Runnable {
     IP_Announcer ipAnnouncer;
 
     public Server(String playerName) throws IOException {
+        this.setVisible(false);
         this.playerName = playerName;
 
         //Ottengo l'indirizzo IPv4 locale, uguale a quello che ottengo da cmd
@@ -194,7 +195,11 @@ public class Server implements Runnable {
                 }
         //Se il server non si apre
         } catch (IOException e1) {
-            System.out.println("Server non startato");
+            //Avviso in caso di qualche problema con la connessione
+            JOptionPane.showMessageDialog(this, "Il client potrebbe essersi disconnesso","Attenzione qualcosa é andato storto", JOptionPane.ERROR_MESSAGE);
+
+            //Chiudo l'intero programma
+            System.exit(0);
         }
     }
 }
