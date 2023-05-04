@@ -151,7 +151,7 @@ public class Client extends JFrame implements Runnable {
                         str = bufferIn.readLine();
 
                         //Controllo se ho perso
-                        if (str.equals("lost")) {
+                        if (str.equals("lost") || str.equals("win")) {
                             mapTwo.gameText.setText("Hai perso");
 
                             new VictoryScreen(str);

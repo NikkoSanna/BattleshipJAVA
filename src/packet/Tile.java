@@ -357,8 +357,17 @@ public class Tile extends JButton implements MouseListener {
                         if (map.shipTwo_Iterator == 0) {     //Se il contatore é arrivato a 0 allora la barca é stata affondata
                             map.shipTwo_Sunk = true;    //Imposto la barca come affondata
 
-                            setIcon(ship2_2Hit);
-                            map.tile[i - 1][j].setIcon(ship2_1Hit);
+                            for(int b = 0; b < map.shipTwo_Tiles.length; b++){
+                                String[] coordinates = map.shipTwo_Tiles[b].split(",");     //Splitto le coordinate
+                                int x = Integer.parseInt(coordinates[0]) + 1;     //Converto la coordinata x in intero
+                                int y = Integer.parseInt(coordinates[1]) + 1;     //Converto la coordinata y in intero
+
+                                if(b == 0){
+                                    map.tile[x][y].setIcon(ship2_1Hit);
+                                }else if(b == 1) {
+                                    map.tile[x][y].setIcon(ship2_2Hit);
+                                }
+                            }
 
                             break;    //Evito ripetizioni inutili di controllo se la barca é affondata
                         }
@@ -375,8 +384,8 @@ public class Tile extends JButton implements MouseListener {
 
                             for(int b = 0; b < map.shipThree_Tiles.length; b++){
                                 String[] coordinates = map.shipThree_Tiles[b].split(",");     //Splitto le coordinate
-                                int x = Integer.parseInt(coordinates[0]);     //Converto la coordinata x in intero
-                                int y = Integer.parseInt(coordinates[1]);     //Converto la coordinata y in intero
+                                int x = Integer.parseInt(coordinates[0]) + 1;     //Converto la coordinata x in intero
+                                int y = Integer.parseInt(coordinates[1]) + 1;     //Converto la coordinata y in intero
 
                                 if(b == 0){
                                     map.tile[x][y].setIcon(ship3_1Hit);
@@ -400,10 +409,21 @@ public class Tile extends JButton implements MouseListener {
                         if (map.shipFour_Iterator == 0) {     //Se il contatore é arrivato a 0 allora la barca é stata affondata
                             map.shipFour_Sunk = true;    //Imposto la barca come affondata
 
-                            setIcon(ship4_3Hit);
-                            map.tile[i - 1][j].setIcon(ship4_2Hit);
-                            map.tile[i + 1][j].setIcon(ship4_4Hit);
-                            map.tile[i - 2][j].setIcon(ship4_1Hit);
+                            for(int b = 0; b < map.shipFour_Tiles.length; b++){
+                                String[] coordinates = map.shipFour_Tiles[b].split(",");     //Splitto le coordinate
+                                int x = Integer.parseInt(coordinates[0]) + 1;     //Converto la coordinata x in intero
+                                int y = Integer.parseInt(coordinates[1]) + 1;     //Converto la coordinata y in intero
+
+                                if(b == 0){
+                                    map.tile[x][y].setIcon(ship4_1Hit);
+                                }else if(b == 1){
+                                    map.tile[x][y].setIcon(ship4_2Hit);
+                                }else if(b == 2){
+                                    map.tile[x][y].setIcon(ship4_3Hit);
+                                }else if(b == 3){
+                                    map.tile[x][y].setIcon(ship4_4Hit);
+                                }
+                            }
 
                             break;    //Evito ripetizioni inutili di controllo se la barca é affondata
                         }
@@ -419,11 +439,23 @@ public class Tile extends JButton implements MouseListener {
                         if (map.shipFive_Iterator == 0) {     //Se il contatore é arrivato a 0 allora la barca é stata affondata
                             map.shipFive_Sunk = true;    //Imposto la barca come affondata
 
-                            setIcon(ship5_3Hit);
-                            map.tile[i - 1][j].setIcon(ship5_2Hit);
-                            map.tile[i + 1][j].setIcon(ship5_4Hit);
-                            map.tile[i - 2][j].setIcon(ship5_1Hit);
-                            map.tile[i + 2][j].setIcon(ship5_5Hit);
+                            for(int b = 0; b < map.shipFive_Tiles.length; b++){
+                                String[] coordinates = map.shipFive_Tiles[b].split(",");     //Splitto le coordinate
+                                int x = Integer.parseInt(coordinates[0]) + 1;     //Converto la coordinata x in intero
+                                int y = Integer.parseInt(coordinates[1]) + 1;     //Converto la coordinata y in intero
+
+                                if(b == 0){
+                                    map.tile[x][y].setIcon(ship5_1Hit);
+                                }else if(b == 1){
+                                    map.tile[x][y].setIcon(ship5_2Hit);
+                                }else if(b == 2){
+                                    map.tile[x][y].setIcon(ship5_3Hit);
+                                }else if(b == 3){
+                                    map.tile[x][y].setIcon(ship5_4Hit);
+                                }else if(b == 4){
+                                    map.tile[x][y].setIcon(ship5_5Hit);
+                                }
+                            }
 
                             break;    //Evito ripetizioni inutili di controllo se la barca é affondata
                         }
