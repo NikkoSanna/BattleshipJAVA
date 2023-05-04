@@ -9,6 +9,7 @@ public class Tile extends JButton implements MouseListener {
     //Attributi della casella
     boolean hasShip;    //Attributo che indica se é presente o meno una parte di barca
     boolean isHit = false;      //Attributo che indica se una parte di barca é stata colpita (fase di gioco)
+    boolean somethingSunk = false;      //Attributo usato per capire se c'é stato o meno un affondo
     int i;      //Coordinate ordinata
     int j;      //Coordinate ascissa
 
@@ -322,6 +323,8 @@ public class Tile extends JButton implements MouseListener {
 
     //Metodo che viene richiamato quando si clicca su una casella
     public void tileHit() {
+        somethingSunk = false;
+
         //Se quella casella non era stata cliccata allora posso procedere
         if (!isHit) {
             isHit = true;   //Imposto la casella come colpita
@@ -356,7 +359,9 @@ public class Tile extends JButton implements MouseListener {
                         //Controllo se quella barca é stata affondata
                         if (map.shipTwo_Iterator == 0) {     //Se il contatore é arrivato a 0 allora la barca é stata affondata
                             map.shipTwo_Sunk = true;    //Imposto la barca come affondata
+                            somethingSunk = true;
 
+                            //Comunico al giocatore avversario che ha affondato la barca da 2
                             if (map.client == null) {
                                 try {
                                     map.server.bufferOut.write("shipTwoSunk");
@@ -375,17 +380,19 @@ public class Tile extends JButton implements MouseListener {
                                 }
                             }
 
-                            for(int b = 0; b < map.shipTwo_Tiles.length; b++){
+                            //Cambio le icone nella mia mappa 1
+                            for (int b = 0; b < map.shipTwo_Tiles.length; b++) {
                                 String[] coordinates = map.shipTwo_Tiles[b].split(",");     //Splitto le coordinate
                                 int x = Integer.parseInt(coordinates[0]) + 1;     //Converto la coordinata x in intero
                                 int y = Integer.parseInt(coordinates[1]) + 1;     //Converto la coordinata y in intero
 
-                                if(b == 0){
+                                if (b == 0) {
                                     map.tile[x][y].setIcon(ship2_1Hit);
-                                }else if(b == 1) {
+                                } else if (b == 1) {
                                     map.tile[x][y].setIcon(ship2_2Hit);
                                 }
 
+                                //Comunico all'avversario le coordinate delle caselle della barca da 2 affondate
                                 if (map.client == null) {
                                     try {
                                         map.server.bufferOut.write(map.shipTwo_Tiles[b]);
@@ -408,26 +415,6 @@ public class Tile extends JButton implements MouseListener {
                             break;    //Evito ripetizioni inutili di controllo se la barca é affondata
                         }
                     }
-
-                    if(a == map.shipTwo_Tiles.length){
-                        if (map.client == null) {
-                            try {
-                                map.server.bufferOut.write("noSunk");
-                                map.server.bufferOut.newLine();
-                                map.server.bufferOut.flush();
-                            } catch (IOException e) {
-                                throw new RuntimeException(e);
-                            }
-                        } else {
-                            try {
-                                map.client.bufferOut.write("noSunk");
-                                map.client.bufferOut.newLine();
-                                map.client.bufferOut.flush();
-                            } catch (IOException e) {
-                                throw new RuntimeException(e);
-                            }
-                        }
-                    }
                 }
                 //Controllo se é stata colpita una casella della barca da 3
                 for (int a = 0; a < map.shipThree_Tiles.length; a++) {
@@ -437,18 +424,58 @@ public class Tile extends JButton implements MouseListener {
                         //Controllo se quella barca é stata affondata
                         if (map.shipThree_Iterator == 0) {     //Se il contatore é arrivato a 0 allora la barca é stata affondata
                             map.shipThree_Sunk = true;    //Imposto la barca come affondata
+                            somethingSunk = true;
 
-                            for(int b = 0; b < map.shipThree_Tiles.length; b++){
+                            //Comunico al giocatore avversario che ha affondato la barca da 2
+                            if (map.client == null) {
+                                try {
+                                    map.server.bufferOut.write("shipThreeSunk");
+                                    map.server.bufferOut.newLine();
+                                    map.server.bufferOut.flush();
+                                } catch (IOException e) {
+                                    throw new RuntimeException(e);
+                                }
+                            } else {
+                                try {
+                                    map.client.bufferOut.write("shipThreeSunk");
+                                    map.client.bufferOut.newLine();
+                                    map.client.bufferOut.flush();
+                                } catch (IOException e) {
+                                    throw new RuntimeException(e);
+                                }
+                            }
+
+                            //Cambio le icone nella mia mappa 1
+                            for (int b = 0; b < map.shipThree_Tiles.length; b++) {
                                 String[] coordinates = map.shipThree_Tiles[b].split(",");     //Splitto le coordinate
                                 int x = Integer.parseInt(coordinates[0]) + 1;     //Converto la coordinata x in intero
                                 int y = Integer.parseInt(coordinates[1]) + 1;     //Converto la coordinata y in intero
 
-                                if(b == 0){
+                                if (b == 0) {
                                     map.tile[x][y].setIcon(ship3_1Hit);
-                                }else if(b == 1){
+                                } else if (b == 1) {
                                     map.tile[x][y].setIcon(ship3_2Hit);
-                                }else if(b == 2){
+                                } else if (b == 2) {
                                     map.tile[x][y].setIcon(ship3_3Hit);
+                                }
+
+                                //Comunico all'avversario le coordinate delle caselle della barca da 3 affondate
+                                if (map.client == null) {
+                                    try {
+                                        map.server.bufferOut.write(map.shipThree_Tiles[b]);
+                                        map.server.bufferOut.newLine();
+                                        map.server.bufferOut.flush();
+                                    } catch (IOException e) {
+                                        throw new RuntimeException(e);
+                                    }
+                                } else {
+                                    try {
+                                        map.client.bufferOut.write(map.shipThree_Tiles[b]);
+                                        map.client.bufferOut.newLine();
+                                        map.client.bufferOut.flush();
+                                    } catch (IOException e) {
+                                        throw new RuntimeException(e);
+                                    }
                                 }
                             }
 
@@ -464,20 +491,60 @@ public class Tile extends JButton implements MouseListener {
                         //Controllo se quella barca é stata affondata
                         if (map.shipFour_Iterator == 0) {     //Se il contatore é arrivato a 0 allora la barca é stata affondata
                             map.shipFour_Sunk = true;    //Imposto la barca come affondata
+                            somethingSunk = true;
 
-                            for(int b = 0; b < map.shipFour_Tiles.length; b++){
+                            //Comunico al giocatore avversario che ha affondato la barca da 4
+                            if (map.client == null) {
+                                try {
+                                    map.server.bufferOut.write("shipFourSunk");
+                                    map.server.bufferOut.newLine();
+                                    map.server.bufferOut.flush();
+                                } catch (IOException e) {
+                                    throw new RuntimeException(e);
+                                }
+                            } else {
+                                try {
+                                    map.client.bufferOut.write("shipFourSunk");
+                                    map.client.bufferOut.newLine();
+                                    map.client.bufferOut.flush();
+                                } catch (IOException e) {
+                                    throw new RuntimeException(e);
+                                }
+                            }
+
+                            //Cambio le icone nella mia mappa 1
+                            for (int b = 0; b < map.shipFour_Tiles.length; b++) {
                                 String[] coordinates = map.shipFour_Tiles[b].split(",");     //Splitto le coordinate
                                 int x = Integer.parseInt(coordinates[0]) + 1;     //Converto la coordinata x in intero
                                 int y = Integer.parseInt(coordinates[1]) + 1;     //Converto la coordinata y in intero
 
-                                if(b == 0){
+                                if (b == 0) {
                                     map.tile[x][y].setIcon(ship4_1Hit);
-                                }else if(b == 1){
+                                } else if (b == 1) {
                                     map.tile[x][y].setIcon(ship4_2Hit);
-                                }else if(b == 2){
+                                } else if (b == 2) {
                                     map.tile[x][y].setIcon(ship4_3Hit);
-                                }else if(b == 3){
+                                } else if (b == 3) {
                                     map.tile[x][y].setIcon(ship4_4Hit);
+                                }
+
+                                //Comunico all'avversario le coordinate delle caselle della barca da 4 affondate
+                                if (map.client == null) {
+                                    try {
+                                        map.server.bufferOut.write(map.shipFour_Tiles[b]);
+                                        map.server.bufferOut.newLine();
+                                        map.server.bufferOut.flush();
+                                    } catch (IOException e) {
+                                        throw new RuntimeException(e);
+                                    }
+                                } else {
+                                    try {
+                                        map.client.bufferOut.write(map.shipFour_Tiles[b]);
+                                        map.client.bufferOut.newLine();
+                                        map.client.bufferOut.flush();
+                                    } catch (IOException e) {
+                                        throw new RuntimeException(e);
+                                    }
                                 }
                             }
 
@@ -494,22 +561,62 @@ public class Tile extends JButton implements MouseListener {
                         //Controllo se quella barca é stata affondata
                         if (map.shipFive_Iterator == 0) {     //Se il contatore é arrivato a 0 allora la barca é stata affondata
                             map.shipFive_Sunk = true;    //Imposto la barca come affondata
+                            somethingSunk = true;
 
-                            for(int b = 0; b < map.shipFive_Tiles.length; b++){
+                            //Comunico al giocatore avversario che ha affondato la barca da 5
+                            if (map.client == null) {
+                                try {
+                                    map.server.bufferOut.write("shipFiveSunk");
+                                    map.server.bufferOut.newLine();
+                                    map.server.bufferOut.flush();
+                                } catch (IOException e) {
+                                    throw new RuntimeException(e);
+                                }
+                            } else {
+                                try {
+                                    map.client.bufferOut.write("shipFiveSunk");
+                                    map.client.bufferOut.newLine();
+                                    map.client.bufferOut.flush();
+                                } catch (IOException e) {
+                                    throw new RuntimeException(e);
+                                }
+                            }
+
+                            //Cambio le icone nella mia mappa 1
+                            for (int b = 0; b < map.shipFive_Tiles.length; b++) {
                                 String[] coordinates = map.shipFive_Tiles[b].split(",");     //Splitto le coordinate
                                 int x = Integer.parseInt(coordinates[0]) + 1;     //Converto la coordinata x in intero
                                 int y = Integer.parseInt(coordinates[1]) + 1;     //Converto la coordinata y in intero
 
-                                if(b == 0){
+                                if (b == 0) {
                                     map.tile[x][y].setIcon(ship5_1Hit);
-                                }else if(b == 1){
+                                } else if (b == 1) {
                                     map.tile[x][y].setIcon(ship5_2Hit);
-                                }else if(b == 2){
+                                } else if (b == 2) {
                                     map.tile[x][y].setIcon(ship5_3Hit);
-                                }else if(b == 3){
+                                } else if (b == 3) {
                                     map.tile[x][y].setIcon(ship5_4Hit);
-                                }else if(b == 4){
+                                } else if (b == 4) {
                                     map.tile[x][y].setIcon(ship5_5Hit);
+                                }
+
+                                //Comunico all'avversario le coordinate delle caselle della barca da 5 affondate
+                                if (map.client == null) {
+                                    try {
+                                        map.server.bufferOut.write(map.shipFive_Tiles[b]);
+                                        map.server.bufferOut.newLine();
+                                        map.server.bufferOut.flush();
+                                    } catch (IOException e) {
+                                        throw new RuntimeException(e);
+                                    }
+                                } else {
+                                    try {
+                                        map.client.bufferOut.write(map.shipFive_Tiles[b]);
+                                        map.client.bufferOut.newLine();
+                                        map.client.bufferOut.flush();
+                                    } catch (IOException e) {
+                                        throw new RuntimeException(e);
+                                    }
                                 }
                             }
 
@@ -518,7 +625,28 @@ public class Tile extends JButton implements MouseListener {
                     }
                 }
 
-                //Controllo se tutte le barche sono affondate
+                //Se non c'é stato un affondo lo comunico all'avversario
+                if (!somethingSunk) {
+                    if (map.client == null) {
+                        try {
+                            map.server.bufferOut.write("noSunk");
+                            map.server.bufferOut.newLine();
+                            map.server.bufferOut.flush();
+                        } catch (IOException e) {
+                            throw new RuntimeException(e);
+                        }
+                    } else {
+                        try {
+                            map.client.bufferOut.write("noSunk");
+                            map.client.bufferOut.newLine();
+                            map.client.bufferOut.flush();
+                        } catch (IOException e) {
+                            throw new RuntimeException(e);
+                        }
+                    }
+                }
+
+                //Controllo se tutte le barche sono affondate e in caso lo comunico all'avversario
                 if (map.shipTwo_Sunk && map.shipThree_Sunk && map.shipFour_Sunk && map.shipFive_Sunk) {
                     if (map.client == null) {
                         try {
@@ -542,7 +670,8 @@ public class Tile extends JButton implements MouseListener {
                         }
                     }
                 }
-            } else {        //Se non é presenta devo mostrare che quella casella é stata colpita ma a vuoto e informare l'avversario
+            //Se non é presente una barca devo mostrare che quella casella é stata colpita ma a vuoto e informare l'avversario
+            } else {
                 setIcon(badHit);
                 if (map.client == null) {
                     try {
@@ -562,9 +691,10 @@ public class Tile extends JButton implements MouseListener {
                     }
                 }
             }
+        //Se l'avversario ha cliccato nuovamente su una casella colpita in precedenza ripeto i cicli
         } else {
             if (map.client == null) {
-                try{
+                try {
                     map.server.bufferOut.write("reClick");
                     map.server.bufferOut.newLine();
                     map.server.bufferOut.flush();
@@ -572,7 +702,7 @@ public class Tile extends JButton implements MouseListener {
                     throw new RuntimeException(e);
                 }
             } else {
-                try{
+                try {
                     map.client.bufferOut.write("reClick");
                     map.client.bufferOut.newLine();
                     map.client.bufferOut.flush();

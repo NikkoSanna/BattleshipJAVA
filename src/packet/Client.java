@@ -104,26 +104,117 @@ public class Client extends JFrame implements Runnable {
                     }
                 }
 
-                mapTwo.actuallyPlaying = true;
+                mapTwo.actuallyPlaying = true;      //Probabilmente superfluo
 
                 //Gestisco il mio turno di gioco
                 if (yourTurn) {
                     mapTwo.gameText.setText("E il tuo turno!");
 
+                    //L'avversario mi comunica se ho cliccato su una casella con barca o meno
+                    //Ció solo dopo che io ho cliccato su di una casella
                     do {
                         str = bufferIn.readLine();
 
+                        //Se ho colpito una barca allora devo mettere l'icona corretta e controllare per un affondo
                         if (str.equals("goodHit")) {
-                            clickAgain = false;
+                            clickAgain = false;     //Il ciclo di lettura si puó interrompere
+
+                            //Ottengo le coordinate sotto forma di unica stringa
                             String[] coordinates = tileUsed.split(",");     //Splitto le coordinate
                             int x = Integer.parseInt(coordinates[0]);     //Converto la coordinata x in intero
                             int y = Integer.parseInt(coordinates[1]);     //Converto la coordinata y in intero
 
                             mapTwo.tile[x][y].setIcon(mapTwo.tile[x][y].shipHit);
 
-                            bufferOut.write("stopCicle");
+                            //Comunico all'avversario che puó smettere di aspettare nuove coordinate
+                            bufferOut.write("stopCycle");
                             bufferOut.newLine();
                             bufferOut.flush();
+
+                            //Controllo se ho affondato una barca
+                            str = bufferIn.readLine();
+
+                            //Se l'ho fatto devo cambiare le icone delle caselle
+                            if(str.equals("shipTwoSunk")){
+                                //Uso un ciclo e leggo dal client tutte le coordinate delle caselle
+                                for(int a = 0; a < mapTwo.shipTwo_Tiles.length; a++){
+                                    str = bufferIn.readLine();
+
+                                    String[] coordinates2 = str.split(",");     //Splitto le coordinate
+                                    int x2 = Integer.parseInt(coordinates2[0]) + 1;     //Converto la coordinata x in intero
+                                    int y2 = Integer.parseInt(coordinates2[1]) + 1;     //Converto la coordinata y in intero
+
+                                    //Cambio le icone
+                                    if(a == 0){
+                                        mapTwo.tile[x2][y2].setIcon(mapTwo.tile[x2][y2].ship2_1Hit);
+                                    }else if(a == 1) {
+                                        mapTwo.tile[x2][y2].setIcon(mapTwo.tile[x2][y2].ship2_2Hit);
+                                    }
+                                }
+                            }else if(str.equals("shipThreeSunk")){
+                                //Uso un ciclo e leggo dal client tutte le coordinate delle caselle
+                                for(int a = 0; a < mapTwo.shipThree_Tiles.length; a++){
+                                    str = bufferIn.readLine();
+
+                                    String[] coordinates2 = str.split(",");     //Splitto le coordinate
+                                    int x2 = Integer.parseInt(coordinates2[0]) + 1;     //Converto la coordinata x in intero
+                                    int y2 = Integer.parseInt(coordinates2[1]) + 1;     //Converto la coordinata y in intero
+
+                                    //Cambio le icone
+                                    if(a == 0){
+                                        mapTwo.tile[x2][y2].setIcon(mapTwo.tile[x2][y2].ship3_1Hit);
+                                    }else if(a == 1) {
+                                        mapTwo.tile[x2][y2].setIcon(mapTwo.tile[x2][y2].ship3_2Hit);
+                                    }else if(a == 2){
+                                        mapTwo.tile[x2][y2].setIcon(mapTwo.tile[x2][y2].ship3_3Hit);
+                                    }
+                                }
+                            }else if(str.equals("shipFourSunk")){
+                                //Uso un ciclo e leggo dal client tutte le coordinate delle caselle
+                                for(int a = 0; a < mapTwo.shipFour_Tiles.length; a++){
+                                    str = bufferIn.readLine();
+
+                                    String[] coordinates2 = str.split(",");     //Splitto le coordinate
+                                    int x2 = Integer.parseInt(coordinates2[0]) + 1;     //Converto la coordinata x in intero
+                                    int y2 = Integer.parseInt(coordinates2[1]) + 1;     //Converto la coordinata y in intero
+
+                                    //Cambio le icone
+                                    if(a == 0){
+                                        mapTwo.tile[x2][y2].setIcon(mapTwo.tile[x2][y2].ship4_1Hit);
+                                    }else if(a == 1) {
+                                        mapTwo.tile[x2][y2].setIcon(mapTwo.tile[x2][y2].ship4_2Hit);
+                                    }else if(a == 2){
+                                        mapTwo.tile[x2][y2].setIcon(mapTwo.tile[x2][y2].ship4_3Hit);
+                                    }else if(a == 3){
+                                        mapTwo.tile[x2][y2].setIcon(mapTwo.tile[x2][y2].ship4_4Hit);
+                                    }
+                                }
+                            }else if(str.equals("shipFiveSunk")){
+                                //Uso un ciclo e leggo dal client tutte le coordinate delle caselle
+                                for(int a = 0; a < mapTwo.shipFive_Tiles.length; a++){
+                                    str = bufferIn.readLine();
+
+                                    String[] coordinates2 = str.split(",");     //Splitto le coordinate
+                                    int x2 = Integer.parseInt(coordinates2[0]) + 1;     //Converto la coordinata x in intero
+                                    int y2 = Integer.parseInt(coordinates2[1]) + 1;     //Converto la coordinata y in intero
+
+                                    //Cambio le icone
+                                    if(a == 0){
+                                        mapTwo.tile[x2][y2].setIcon(mapTwo.tile[x2][y2].ship5_1Hit);
+                                    }else if(a == 1) {
+                                        mapTwo.tile[x2][y2].setIcon(mapTwo.tile[x2][y2].ship5_2Hit);
+                                    }else if(a == 2){
+                                        mapTwo.tile[x2][y2].setIcon(mapTwo.tile[x2][y2].ship5_3Hit);
+                                    }else if(a == 3){
+                                        mapTwo.tile[x2][y2].setIcon(mapTwo.tile[x2][y2].ship5_4Hit);
+                                    }else if(a == 4){
+                                        mapTwo.tile[x2][y2].setIcon(mapTwo.tile[x2][y2].ship5_5Hit);
+                                    }
+                                }
+                            }else{
+                                System.out.println("Nessuna barca affondata");
+                            }
+                        //Se non ho colpito una barca devo mettere l'icona corretta
                         } else if (str.equals("badHit")) {
                             clickAgain = false;
                             String[] coordinates = tileUsed.split(",");     //Splitto le coordinate
@@ -132,7 +223,7 @@ public class Client extends JFrame implements Runnable {
 
                             mapTwo.tile[x][y].setIcon(mapTwo.tile[x][y].badHit);
 
-                            bufferOut.write("stopCicle");
+                            bufferOut.write("stopCycle");
                             bufferOut.newLine();
                             bufferOut.flush();
                         } else {
@@ -143,15 +234,16 @@ public class Client extends JFrame implements Runnable {
                     yourTurn = false;
                     tileUsed = null;
 
-                    //Gestisco il turno di gioco dell'avversario
+                //Gestisco il turno di gioco dell'avversario
                 } else {
                     mapTwo.gameText.setText("Turno avversario!");
 
+                    //Ripeto il ciclo in caso l'avversario abbia cliccato su una casella giá colpita in precedenza
                     while (!validHit) {
                         str = bufferIn.readLine();
 
                         //Controllo se ho perso
-                        if (str.equals("lost") || str.equals("win")) {
+                        if (str.equals("lost")) {
                             mapTwo.gameText.setText("Hai perso");
 
                             new VictoryScreen(str);
@@ -163,8 +255,11 @@ public class Client extends JFrame implements Runnable {
                             } catch (InterruptedException e) {
                                 throw new RuntimeException(e);
                             }
-                        } else if (str.equals("stopCicle")) {
+
+                        //Se l'avversario ha cliccato su di una casella valida interrompo il ciclo
+                        } else if (str.equals("stopCycle")) {
                             validHit = true;
+
                         //Controllo quali caselle sono state colpite
                         } else {
                             String[] coordinates = str.split(",");     //Splitto le coordinate
