@@ -55,7 +55,6 @@ public class Server implements Runnable {
         try {
             server = new ServerSocket(serverPort);
 
-            while (true) {
                 //Continua a provare a connettersi
                 try (Socket client = server.accept()) {
                     //Posso chiudere la finestra che comunica l'IPv4 e generare le mappe
@@ -186,8 +185,6 @@ public class Server implements Runnable {
                         }
                     }
                 }
-            }
-
         //Se il server non si apre
         } catch (IOException e1) {
             System.out.println("Server non startato");
