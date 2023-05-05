@@ -91,7 +91,7 @@ public class Map extends JFrame {
 
         //Aggiunta di una barra superiore al frame
         upperBar.setLayout(new GridLayout(1, 3));
-        shipSunkText.setText("Barche Affondate: 0");
+        shipSunkText.setText("Barche Affondate: " + shipSunkCounterInt);
         playerCharacter.setIcon(captainImage);
         playerName.setHorizontalAlignment(JLabel.CENTER);
         playerCharacter.setHorizontalAlignment(JLabel.CENTER);
@@ -113,11 +113,16 @@ public class Map extends JFrame {
                 }
                 //Numeratura prima riga con indici delle caselle
                 else if (i == 0 && j != 0) {
-                    grid.add(new JLabel(String.valueOf(j - 1), SwingConstants.CENTER));
+                    JLabel numbers = new JLabel(String.valueOf(j - 1), SwingConstants.CENTER);
+                    numbers.setFont(font.deriveFont(Font.PLAIN, 15));
+                    grid.add(numbers);
+
                 }
                 //Numeratura prima colonna con indici delle caselle
                 else if (j == 0 && i != 0) {
-                    grid.add(new JLabel(String.valueOf(i - 1), SwingConstants.CENTER));
+                    JLabel numbers = new JLabel(String.valueOf(i - 1), SwingConstants.CENTER);
+                    numbers.setFont(font.deriveFont(Font.PLAIN, 15));
+                    grid.add(numbers);
                 }
                 //Aggiunta delle caselle della mappa
                 else {

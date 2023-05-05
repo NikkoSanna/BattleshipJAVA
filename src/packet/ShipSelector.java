@@ -73,7 +73,7 @@ public class ShipSelector extends JFrame {
 
         //Impostazioni di visualizzazione
         this.setSize(1063,250);
-        this.setLocation(ScreenSize.getWidth() / 2 - 525, ScreenSize.getHeight() - 300);
+        this.setLocation(ScreenSize.getWidth() / 2 - 525, ScreenSize.getHeight() / 3 + 345);
         this.setResizable(false);
         this.setVisible(true);
         this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
