@@ -644,6 +644,14 @@ public class Tile extends JButton implements MouseListener {
                             throw new RuntimeException(e);
                         }
                     }
+                } else {
+                    map.shipSunkCounterInt++;    //Incremento il contatore delle barche affondate
+                    if (map.client == null) {
+                        map.server.mapOne.shipSunkText.setText("Barche affondate: " + map.shipSunkCounterInt);
+                    } else {
+                        map.client.mapOne.shipSunkText.setText("Barche affondate: " + map.shipSunkCounterInt);
+                    }
+
                 }
 
                 //Controllo se tutte le barche sono affondate e in caso lo comunico all'avversario

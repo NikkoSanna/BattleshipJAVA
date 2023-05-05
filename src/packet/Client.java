@@ -3,7 +3,6 @@ package packet;
 import javax.swing.*;
 import java.net.*;
 import java.io.*;
-import java.util.Scanner;
 
 public class Client extends JFrame implements Runnable {
     final static int serverPort = 50000;
@@ -13,6 +12,8 @@ public class Client extends JFrame implements Runnable {
     String ip;
     String str;     //stringa usata per la ricezione dal server
     String tileUsed;    //Stringa che contiene la casella che ho cliccato
+
+    int shipSunk = 0;       //Contatore delle navi affondate
 
     boolean started = false;    //booleano usato quando ancora entrambi non hanno cliccato pronto
     boolean yourTurn = false;       //booleano che gestisce i turni
@@ -136,6 +137,7 @@ public class Client extends JFrame implements Runnable {
 
                             //Se l'ho fatto devo cambiare le icone delle caselle
                             if(str.equals("shipTwoSunk")){
+                                shipSunk++;
                                 //Uso un ciclo e leggo dal client tutte le coordinate delle caselle
                                 for(int a = 0; a < mapTwo.shipTwo_Tiles.length; a++){
                                     str = bufferIn.readLine();
@@ -152,6 +154,7 @@ public class Client extends JFrame implements Runnable {
                                     }
                                 }
                             }else if(str.equals("shipThreeSunk")){
+                                shipSunk++;
                                 //Uso un ciclo e leggo dal client tutte le coordinate delle caselle
                                 for(int a = 0; a < mapTwo.shipThree_Tiles.length; a++){
                                     str = bufferIn.readLine();
@@ -170,6 +173,7 @@ public class Client extends JFrame implements Runnable {
                                     }
                                 }
                             }else if(str.equals("shipFourSunk")){
+                                shipSunk++;
                                 //Uso un ciclo e leggo dal client tutte le coordinate delle caselle
                                 for(int a = 0; a < mapTwo.shipFour_Tiles.length; a++){
                                     str = bufferIn.readLine();
@@ -190,6 +194,7 @@ public class Client extends JFrame implements Runnable {
                                     }
                                 }
                             }else if(str.equals("shipFiveSunk")){
+                                shipSunk++;
                                 //Uso un ciclo e leggo dal client tutte le coordinate delle caselle
                                 for(int a = 0; a < mapTwo.shipFive_Tiles.length; a++){
                                     str = bufferIn.readLine();
@@ -230,6 +235,10 @@ public class Client extends JFrame implements Runnable {
                             clickAgain = true;
                         }
                     } while (clickAgain);
+
+                    if (shipSunk != 0) {
+                        mapTwo.shipSunkText.setText("Navi affondate: " + shipSunk);
+                    }
 
                     yourTurn = false;
                     tileUsed = null;

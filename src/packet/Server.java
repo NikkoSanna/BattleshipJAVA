@@ -3,7 +3,6 @@ package packet;
 import javax.swing.*;
 import java.net.*;
 import java.io.*;
-import java.sql.SQLOutput;
 
 public class Server extends JFrame implements Runnable {
     final static int serverPort = 50000;
@@ -251,8 +250,10 @@ public class Server extends JFrame implements Runnable {
                             }
                         } while (clickAgain);
 
-                        if (shipSunk != 0)
-                            mapOne.shipSunkCounter.setText("Navi affondate: " + shipSunk);
+                        if (shipSunk != 0) {
+                            mapTwo.shipSunkText.setText("Navi affondate: " + shipSunk);
+                        }
+
                         yourTurn = false;
                         tileUsed = null;
 

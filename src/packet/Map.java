@@ -10,6 +10,8 @@ public class Map extends JFrame {
 
     private final int dimension = 11;    //Per comoditá le dimensioni sono su una variabile di tipo int costante
 
+    int shipSunkCounterInt = 0;     //Contatore delle barche affondate
+
     public boolean shipTwo_Sunk = false;    //Attributo che indica se la barca da 2 é affondata
     public boolean shipThree_Sunk = false;  //Attributo che indica se la barca da 3 é affondata
     public boolean shipFour_Sunk = false;   //Attributo che indica se la barca da 4 é affondata
@@ -43,7 +45,7 @@ public class Map extends JFrame {
     JPanel upperBar = new JPanel();
     JLabel playerName = new JLabel();
     JLabel playerCharacter = new JLabel();
-    JLabel shipSunkCounter = new JLabel();
+    JLabel shipSunkText = new JLabel();
     JLabel background = new JLabel();
 
     JPanel grid = new JPanel();
@@ -77,7 +79,7 @@ public class Map extends JFrame {
 
         //Aggiunta font agli elementi
         playerName.setFont(font);
-        shipSunkCounter.setFont(font.deriveFont(Font.PLAIN, 11));
+        shipSunkText.setFont(font.deriveFont(Font.PLAIN, 11));
         ready.setFont(font);
         gameText.setFont(font.deriveFont(Font.PLAIN, 20));
 
@@ -89,13 +91,13 @@ public class Map extends JFrame {
 
         //Aggiunta di una barra superiore al frame
         upperBar.setLayout(new GridLayout(1, 3));
-        shipSunkCounter.setText("Barche Affondate: 0");
+        shipSunkText.setText("Barche Affondate: 0");
         playerCharacter.setIcon(captainImage);
         playerName.setHorizontalAlignment(JLabel.CENTER);
         playerCharacter.setHorizontalAlignment(JLabel.CENTER);
         upperBar.add(playerName);
         upperBar.add(playerCharacter);
-        upperBar.add(shipSunkCounter);
+        upperBar.add(shipSunkText);
 
         background.add(upperBar, BorderLayout.NORTH);    //Aggiunta della barra superiore al content pane
 
