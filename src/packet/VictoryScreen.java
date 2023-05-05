@@ -11,19 +11,20 @@ public class VictoryScreen extends JFrame {
     JLabel text = new JLabel();
 
     Font font;
-    public VictoryScreen(String str){
+
+    public VictoryScreen(String str) {
         //Font da file esterno
-        try{
-            font  = Font.createFont(Font.TRUETYPE_FONT, new File("Font.ttf")).deriveFont(Font.PLAIN, 18);
-        } catch (Exception ignored){}
+        try {
+            font = Font.createFont(Font.TRUETYPE_FONT, new File("Font.ttf")).deriveFont(Font.PLAIN, 18);
+        } catch (Exception ignored) {}
 
         //Aggiunta del font
         text.setFont(font);
 
         //Selezione scritta in base alla vittoria/sconfitta
-        if(str.equals("lost")){
+        if (str.equals("lost")) {
             text.setText("Mi spiace ma hai perso");
-        }else{
+        } else {
             text.setText("Congratulazioni per aver vinto");
         }
 

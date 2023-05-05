@@ -2,7 +2,8 @@ package packet;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.*;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.io.IOException;
 
 public class Tile extends JButton implements MouseListener {
@@ -678,7 +679,7 @@ public class Tile extends JButton implements MouseListener {
                         }
                     }
                 }
-            //Se non é presente una barca devo mostrare che quella casella é stata colpita ma a vuoto e informare l'avversario
+                //Se non é presente una barca devo mostrare che quella casella é stata colpita ma a vuoto e informare l'avversario
             } else {
                 setIcon(badHit);
                 if (map.client == null) {
@@ -699,7 +700,7 @@ public class Tile extends JButton implements MouseListener {
                     }
                 }
             }
-        //Se l'avversario ha cliccato nuovamente su una casella colpita in precedenza ripeto i cicli
+            //Se l'avversario ha cliccato nuovamente su una casella colpita in precedenza ripeto i cicli
         } else {
             if (map.client == null) {
                 try {

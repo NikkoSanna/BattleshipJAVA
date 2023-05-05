@@ -1,8 +1,11 @@
 package packet;
 
 import javax.swing.*;
-import java.net.*;
 import java.io.*;
+import java.net.DatagramSocket;
+import java.net.InetAddress;
+import java.net.ServerSocket;
+import java.net.Socket;
 
 public class Server extends JFrame implements Runnable {
     final static int serverPort = 50000;
@@ -41,12 +44,6 @@ public class Server extends JFrame implements Runnable {
             ip = socket.getLocalAddress().getHostAddress();
             System.out.println("il tuo indirizzo ip é " + ip + " e la porta 50000");
         }
-
-        /* MACOS
-        Socket socket = new Socket();
-        socket.connect(new InetSocketAddress("google.com", 80));
-        System.out.println(socket.getLocalAddress());
-         */
 
         //Finestra che comunica l'indirizzo IPv4 finché non si connette qualcuno
         ipAnnouncer = new IP_Announcer(ip);
@@ -257,7 +254,7 @@ public class Server extends JFrame implements Runnable {
                         yourTurn = false;
                         tileUsed = null;
 
-                    //Gestisco il turno di gioco dell'avversario
+                        //Gestisco il turno di gioco dell'avversario
                     } else {
                         mapTwo.gameText.setText("Turno avversario!");
 
@@ -279,11 +276,11 @@ public class Server extends JFrame implements Runnable {
                                     throw new RuntimeException(e);
                                 }
 
-                            //Se l'avversario ha cliccato su di una casella valida interrompo il ciclo
+                                //Se l'avversario ha cliccato su di una casella valida interrompo il ciclo
                             } else if (str.equals("stopCycle")) {
                                 validHit = true;
 
-                            //Controllo quali caselle sono state colpite
+                                //Controllo quali caselle sono state colpite
                             } else {
                                 String[] coordinates = str.split(",");     //Splitto le coordinate
                                 int x = Integer.parseInt(coordinates[0]);     //Converto la coordinata x in intero

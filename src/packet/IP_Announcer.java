@@ -14,15 +14,15 @@ public class IP_Announcer extends JFrame {
 
     Font font;
 
-    public IP_Announcer(String ip){
+    public IP_Announcer(String ip) {
         setTitle("IP Announcer");
 
-        c.setLayout(new BoxLayout(c,BoxLayout.Y_AXIS));
+        c.setLayout(new BoxLayout(c, BoxLayout.Y_AXIS));
 
         //Font da file esterno
-        try{
-            font  = Font.createFont(Font.TRUETYPE_FONT, new File("Font.ttf")).deriveFont(Font.PLAIN, 18);
-        } catch (Exception ignored){}
+        try {
+            font = Font.createFont(Font.TRUETYPE_FONT, new File("Font.ttf")).deriveFont(Font.PLAIN, 18);
+        } catch (Exception ignored) {}
 
         //Aggiunta del font agli elementi
         textIP1.setFont(font);
@@ -30,8 +30,8 @@ public class IP_Announcer extends JFrame {
 
         textIP1.setText("Comunica al giocatore avversario il");
         textIP2.setText("codice " + ip + " per poter giocare");
-        textIP1.setBorder(new EmptyBorder(20,20,0,20));
-        textIP2.setBorder(new EmptyBorder(0,20,20,20));
+        textIP1.setBorder(new EmptyBorder(20, 20, 0, 20));
+        textIP2.setBorder(new EmptyBorder(0, 20, 20, 20));
 
         c.add(textIP1);
         c.add(textIP2);

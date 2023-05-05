@@ -20,16 +20,17 @@ public class Menu extends JFrame {
 
     JLabel background = new JLabel();
     Font font;
+
     public Menu() {
         setTitle("Menú");
 
         //Font da file esterno
-        try{
-            font  = Font.createFont(Font.TRUETYPE_FONT, new File("Font.ttf")).deriveFont(Font.PLAIN, 35);
-        } catch (Exception ignored){}
+        try {
+            font = Font.createFont(Font.TRUETYPE_FONT, new File("Font.ttf")).deriveFont(Font.PLAIN, 35);
+        } catch (Exception ignored) {}
 
 
-        c.setLayout(new BoxLayout(c,BoxLayout.Y_AXIS));      //Impostazione del layout del content pane
+        c.setLayout(new BoxLayout(c, BoxLayout.Y_AXIS));      //Impostazione del layout del content pane
 
         //Aggiunta dello sfondo a un label
         background.setLayout(new FlowLayout());
@@ -47,8 +48,8 @@ public class Menu extends JFrame {
         settings.setBackground(Color.WHITE);
 
         //Aggiunta dei bottoni al panel
-        panel.setBorder(new EmptyBorder(250,100,100,100));
-        panel.setLayout(new GridLayout(3, 1, 20,30));
+        panel.setBorder(new EmptyBorder(250, 100, 100, 100));
+        panel.setLayout(new GridLayout(3, 1, 20, 30));
         panel.setOpaque(false);
         panel.add(singleplayer);
         panel.add(multiplayer);

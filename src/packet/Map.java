@@ -74,8 +74,7 @@ public class Map extends JFrame {
         //Font da file esterno
         try {
             font = Font.createFont(Font.TRUETYPE_FONT, new File("Font.ttf")).deriveFont(Font.PLAIN, 25);
-        } catch (Exception ignored) {
-        }
+        } catch (Exception ignored) {}
 
         //Aggiunta font agli elementi
         playerName.setFont(font);
@@ -119,7 +118,7 @@ public class Map extends JFrame {
 
                 }
                 //Numeratura prima colonna con indici delle caselle
-                else if (j == 0 && i != 0) {
+                else if (i != 0 && j == 0) {
                     JLabel numbers = new JLabel(String.valueOf(i - 1), SwingConstants.CENTER);
                     numbers.setFont(font.deriveFont(Font.PLAIN, 15));
                     grid.add(numbers);

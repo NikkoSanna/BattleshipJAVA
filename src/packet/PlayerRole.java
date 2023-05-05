@@ -28,13 +28,14 @@ public class PlayerRole extends JFrame {
 
     JLabel background = new JLabel();
     Font font;
-    public PlayerRole(){
+
+    public PlayerRole() {
         setTitle("PlayerRole");
 
         //Font da file esterno
-        try{
-            font  = Font.createFont(Font.TRUETYPE_FONT, new File("Font.ttf")).deriveFont(Font.PLAIN, 20);
-        } catch (Exception ignored){}
+        try {
+            font = Font.createFont(Font.TRUETYPE_FONT, new File("Font.ttf")).deriveFont(Font.PLAIN, 20);
+        } catch (Exception ignored) {}
 
         //Aggiunta font agli elementi
         textName.setFont(font);
@@ -43,7 +44,7 @@ public class PlayerRole extends JFrame {
         hostRole.setFont(font);
         clientRole.setFont(font);
 
-        c.setLayout(new BoxLayout(c,BoxLayout.Y_AXIS));      //Impostazione del layout del content pane
+        c.setLayout(new BoxLayout(c, BoxLayout.Y_AXIS));      //Impostazione del layout del content pane
 
         //Aggiunta dello sfondo a un label
         background.setLayout(new FlowLayout());
@@ -51,25 +52,25 @@ public class PlayerRole extends JFrame {
 
         //Impostazione del layout e bordo del panel
         frame.setLayout(new BoxLayout(frame, BoxLayout.Y_AXIS));
-        frame.setBorder(new EmptyBorder(175,10,10,10));
+        frame.setBorder(new EmptyBorder(175, 10, 10, 10));
         frame.setOpaque(false);
 
         //Aggiunta della sezione di selezione nome
         textName.setText("Inserisci un nome:");
-        namePanel.setLayout(new GridLayout(1,2,5,5));
-        namePanel.setBorder(new EmptyBorder(10,10,50,10));
+        namePanel.setLayout(new GridLayout(1, 2, 5, 5));
+        namePanel.setBorder(new EmptyBorder(10, 10, 50, 10));
         namePanel.add(textName);
         namePanel.add(playerName);
         frame.add(namePanel);
 
         //Aggiunta della sezione di selezione ruolo
-        rolePanel.setLayout(new BoxLayout(rolePanel,BoxLayout.Y_AXIS));
+        rolePanel.setLayout(new BoxLayout(rolePanel, BoxLayout.Y_AXIS));
         textRole.setText("Con quale ruolo vuoi giocare?");
         textRole.setAlignmentX(JLabel.CENTER_ALIGNMENT);
         hostRole.setText("Host");
         clientRole.setText("Client");
         rolePanelBottom.setLayout(new FlowLayout(FlowLayout.CENTER));
-        rolePanelBottom.setBorder(new EmptyBorder(10,10,10,10));
+        rolePanelBottom.setBorder(new EmptyBorder(10, 10, 10, 10));
         rolePanelBottom.add(hostRole);
         rolePanelBottom.add(clientRole);
         rolePanel.add(textRole);

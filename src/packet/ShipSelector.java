@@ -1,4 +1,5 @@
 package packet;
+
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
@@ -23,14 +24,14 @@ public class ShipSelector extends JFrame {
     JButton ship4 = new JButton();
     JButton ship5 = new JButton();
 
-    public ShipSelector(Map map){
+    public ShipSelector(Map map) {
         this.map = map;     //Il ship selector é a conoscenza dell'intera struttura della mappa
 
         setTitle("Ship Select");
 
         //Impostazioni dei layout
-        ships.setLayout(new GridLayout(1,4, 20,20));
-        ships.setBorder(new EmptyBorder(20,20,20,20));
+        ships.setLayout(new GridLayout(1, 4, 20, 20));
+        ships.setBorder(new EmptyBorder(20, 20, 20, 20));
         ships.setBackground(Color.GRAY);
 
         //Comandi per l'estetica dei bottoni
@@ -72,7 +73,7 @@ public class ShipSelector extends JFrame {
         ship5.addActionListener(listener);
 
         //Impostazioni di visualizzazione
-        this.setSize(1063,250);
+        this.setSize(1063, 250);
         this.setLocation(ScreenSize.getWidth() / 2 - 525, ScreenSize.getHeight() / 3 + 345);
         this.setResizable(false);
         this.setVisible(true);
@@ -80,38 +81,11 @@ public class ShipSelector extends JFrame {
     }
 
     //Se nessuno dei bottoni é piú funzionante viene chiuso definitivamente ship selector
-    public void killShipSelector(){
-        if(!ship2.isEnabled() && !ship3.isEnabled() && !ship4.isEnabled() && !ship5.isEnabled()){
+    public void killShipSelector() {
+        if (!ship2.isEnabled() && !ship3.isEnabled() && !ship4.isEnabled() && !ship5.isEnabled()) {
             map.actuallyPlaying = true;     //Passo alla fase di gioco
 
             map.ready.setEnabled(true);
-
-            //Stampa delle coordinate delle barche
-            /*
-            System.out.println(map.shipTwo_Tiles[0]);
-            System.out.println(map.shipTwo_Tiles[1]);
-
-            System.out.println("-------------");
-
-            System.out.println(map.shipThree_Tiles[0]);
-            System.out.println(map.shipThree_Tiles[1]);
-            System.out.println(map.shipThree_Tiles[2]);
-
-            System.out.println("-------------");
-
-            System.out.println(map.shipFour_Tiles[0]);
-            System.out.println(map.shipFour_Tiles[1]);
-            System.out.println(map.shipFour_Tiles[2]);
-            System.out.println(map.shipFour_Tiles[3]);
-
-            System.out.println("-------------");
-
-            System.out.println(map.shipFive_Tiles[0]);
-            System.out.println(map.shipFive_Tiles[1]);
-            System.out.println(map.shipFive_Tiles[2]);
-            System.out.println(map.shipFive_Tiles[3]);
-            System.out.println(map.shipFive_Tiles[4]);
-            */
 
             this.dispose();
         }
