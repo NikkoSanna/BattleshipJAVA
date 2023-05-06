@@ -243,6 +243,19 @@ public class Server extends JFrame implements Runnable {
                                 bufferOut.write("stopCycle");
                                 bufferOut.newLine();
                                 bufferOut.flush();
+                            //Controllo se ho vinto
+                            }else if (str.equals("win")) {
+                                mapTwo.gameText.setText("Hai vinto");
+
+                                new VictoryScreen(str);
+
+                                //Chiudo il programma
+                                try {
+                                    Thread.sleep(4000);
+                                    System.exit(0);
+                                } catch (InterruptedException e) {
+                                    throw new RuntimeException(e);
+                                }
                             } else {
                                 clickAgain = true;
                             }
@@ -262,22 +275,8 @@ public class Server extends JFrame implements Runnable {
                         do {
                             str = bufferIn.readLine();
 
-                            //Controllo se ho perso
-                            if (str.equals("win")) {
-                                mapTwo.gameText.setText("Hai vinto");
-
-                                new VictoryScreen(str);
-
-                                //Chiudo il programma
-                                try {
-                                    Thread.sleep(4000);
-                                    System.exit(0);
-                                } catch (InterruptedException e) {
-                                    throw new RuntimeException(e);
-                                }
-
                             //Se l'avversario ha cliccato su di una casella valida interrompo il ciclo
-                            } else if (str.equals("stopCycle")) {
+                            if (str.equals("stopCycle")) {
                                 validHit = true;
 
                             //Controllo quali caselle sono state colpite
