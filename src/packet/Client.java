@@ -114,7 +114,7 @@ public class Client extends JFrame implements Runnable {
                     //Ció solo dopo che io ho cliccato su di una casella
                     do {
                         str = bufferIn.readLine();
-
+                        System.out.println(str);
                         //Se ho colpito una barca allora devo mettere l'icona corretta e controllare per un affondo
                         if (str.equals("goodHit")) {
                             clickAgain = false;     //Il ciclo di lettura si puó interrompere
