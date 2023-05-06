@@ -82,12 +82,8 @@ public class ShipSelector extends JFrame {
 
     //Se nessuno dei bottoni é piú funzionante viene chiuso definitivamente ship selector
     public void killShipSelector() {
-        if (!ship2.isEnabled() && !ship3.isEnabled() && !ship4.isEnabled() && !ship5.isEnabled()) {
-            map.actuallyPlaying = true;     //Passo alla fase di gioco
+        map.actuallyPlaying = true;     //Passo alla fase di gioco
 
-            map.ready.setEnabled(true);
-
-            this.dispose();
-        }
+        this.dispose();
     }
 }

@@ -55,7 +55,8 @@ public class Listener extends JFrame implements ActionListener, WindowListener {
             else {
                 //Settings opt = new Settings();
             }
-        } catch (Exception ignored) {}
+        } catch (Exception ignored) {
+        }
 
         //Metodi richiamati dal ship selector
         try {
@@ -95,7 +96,8 @@ public class Listener extends JFrame implements ActionListener, WindowListener {
                 //Imposto il tipo di barca che andró a piazzare
                 shipSelect.map.setShipType(e.getActionCommand());
             }
-        } catch (Exception ignored) {}
+        } catch (Exception ignored) {
+        }
 
         //Metodi richiamati dal selettore ruolo
         try {
@@ -120,12 +122,14 @@ public class Listener extends JFrame implements ActionListener, WindowListener {
                     playerRole.playerName.setBackground(Color.RED);
                 }
             }
-        } catch (Exception ignored) {}
+        } catch (Exception ignored) {
+        }
 
         //Metodi richiamati dalla mappa
         try {
             if (e.getSource() == map.ready) {
                 map.bottomBar.remove(map.ready);
+                map.bottomBar.remove(map.clear);
                 map.repaint();      //Aggiorna l'interfaccia grafica
 
                 map.bottomBar.add(map.gameText);
@@ -147,8 +151,22 @@ public class Listener extends JFrame implements ActionListener, WindowListener {
                     map.client.bufferOut.newLine();
                     map.client.bufferOut.flush();
                 }
+            } else if (e.getSource() == map.clear) {
+                map.ready.setEnabled(false);
+                for (int i = 1; i < map.getDimension(); i++) {
+                    for (int j = 1; j < map.getDimension(); j++) {
+                        map.tile[i][j].hasShip = false;
+                        map.tile[i][j].setIcon(null);
+                    }
+                }
+
+                map.shipselect.ship2.setEnabled(true);
+                map.shipselect.ship3.setEnabled(true);
+                map.shipselect.ship4.setEnabled(true);
+                map.shipselect.ship5.setEnabled(true);
             }
-        } catch (Exception ignored) {}
+        } catch (Exception ignored) {
+        }
 
         //Metodi richiamati da IP Selector
         try {
@@ -168,7 +186,8 @@ public class Listener extends JFrame implements ActionListener, WindowListener {
             } else {
                 ipSelector.IP.setText(null);    //Cancello il testo dell'IP
             }
-        } catch (Exception ignored) {}
+        } catch (Exception ignored) {
+        }
     }
 
     //Apparizione di una finestra di conferma per la chiusura dei frame
@@ -181,20 +200,26 @@ public class Listener extends JFrame implements ActionListener, WindowListener {
     }
 
     @Override
-    public void windowOpened(WindowEvent e) {}
+    public void windowOpened(WindowEvent e) {
+    }
 
     @Override
-    public void windowClosed(WindowEvent e) {}
+    public void windowClosed(WindowEvent e) {
+    }
 
     @Override
-    public void windowIconified(WindowEvent e) {}
+    public void windowIconified(WindowEvent e) {
+    }
 
     @Override
-    public void windowDeiconified(WindowEvent e) {}
+    public void windowDeiconified(WindowEvent e) {
+    }
 
     @Override
-    public void windowActivated(WindowEvent e) {}
+    public void windowActivated(WindowEvent e) {
+    }
 
     @Override
-    public void windowDeactivated(WindowEvent e) {}
+    public void windowDeactivated(WindowEvent e) {
+    }
 }

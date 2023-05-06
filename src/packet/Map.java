@@ -53,6 +53,7 @@ public class Map extends JFrame {
 
     JPanel bottomBar = new JPanel();
     JButton ready = new JButton();
+    JButton clear = new JButton();
     JLabel gameText = new JLabel();     //Usato su mapTwo
 
     Font font;
@@ -74,12 +75,14 @@ public class Map extends JFrame {
         //Font da file esterno
         try {
             font = Font.createFont(Font.TRUETYPE_FONT, new File("Font.ttf")).deriveFont(Font.PLAIN, 25);
-        } catch (Exception ignored) {}
+        } catch (Exception ignored) {
+        }
 
         //Aggiunta font agli elementi
         playerName.setFont(font);
         shipSunkText.setFont(font.deriveFont(Font.PLAIN, 11));
         ready.setFont(font);
+        clear.setFont(font);
         gameText.setFont(font.deriveFont(Font.PLAIN, 20));
 
         c.setLayout(new BoxLayout(c, BoxLayout.Y_AXIS));      //Impostazione del layout del content pane
@@ -142,10 +145,8 @@ public class Map extends JFrame {
         background.add(grid, BorderLayout.CENTER);   //Aggiunta della mappa di gioco al label principale
 
         //Aggiunta di una barra inferiore al frame
-        ready.setText("Pronto");
-        ready.setEnabled(false);
-        bottomBar.setLayout(new FlowLayout(FlowLayout.CENTER));
-        bottomBar.add(ready);
+        bottomBar.setLayout(new FlowLayout(FlowLayout.CENTER, 20, 0));
+
         background.add(bottomBar, BorderLayout.SOUTH);
 
         c.add(background);      //Aggiunta dell'intera interfaccia al content pane
@@ -159,6 +160,9 @@ public class Map extends JFrame {
         if (mapNumber.equals("mapOne")) {
             shipselect = new ShipSelector(this);   //La mappa genera il ship selector
         }
+
+
+
 
         //Impostazioni di visualizzazione
         this.pack();

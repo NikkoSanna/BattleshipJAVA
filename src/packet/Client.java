@@ -57,7 +57,6 @@ public class Client extends JFrame implements Runnable {
 
             //La mappa 2 avrá qualche differenza dalla mappa 1
             mapTwo.setLocation((ScreenSize.getWidth() / 2) + 25, (ScreenSize.getHeight() / 3) - 250);
-            mapTwo.bottomBar.remove(mapTwo.ready);
             mapTwo.bottomBar.add(mapTwo.gameText);
 
             //Creazione oggetti che verranno usati nella comunicazione
@@ -248,7 +247,7 @@ public class Client extends JFrame implements Runnable {
                     mapTwo.gameText.setText("Turno avversario!");
 
                     //Ripeto il ciclo in caso l'avversario abbia cliccato su una casella giá colpita in precedenza
-                    while (!validHit) {
+                    do {
                         str = bufferIn.readLine();
 
                         //Controllo se ho perso

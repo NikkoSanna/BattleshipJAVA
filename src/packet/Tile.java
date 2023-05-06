@@ -15,6 +15,7 @@ public class Tile extends JButton implements MouseListener {
     int j;      //Coordinate ascissa
 
     //Immagini salvate
+
     ImageIcon ship2_1 = new ImageIcon(new ImageIcon("images/ship2/ship2_1.png").getImage().getScaledInstance(36, 36, Image.SCALE_SMOOTH));
     ImageIcon ship2_2 = new ImageIcon(new ImageIcon("images/ship2/ship2_2.png").getImage().getScaledInstance(36, 36, Image.SCALE_SMOOTH));
 
@@ -52,7 +53,7 @@ public class Tile extends JButton implements MouseListener {
     ImageIcon ship5_5Hit = new ImageIcon(new ImageIcon("images/ship5/ship5_5Hit.png").getImage().getScaledInstance(36, 36, Image.SCALE_SMOOTH));
 
     ImageIcon shipHit = new ImageIcon(new ImageIcon("images/shipHit.png").getImage().getScaledInstance(36, 36, Image.SCALE_SMOOTH));
-    ImageIcon badHit = new ImageIcon(new ImageIcon("images/badHit.png").getImage().getScaledInstance(36, 36, Image.SCALE_SMOOTH));
+    ImageIcon badHit = new ImageIcon(new ImageIcon("images/badHit.png").getImage().getScaledInstance(24, 24, Image.SCALE_SMOOTH));
 
     Map map;    //La casella deve conoscere la mappa per permettere modifiche grafiche
 
@@ -318,7 +319,10 @@ public class Tile extends JButton implements MouseListener {
 
         map.setShipType("");
         map.shipselect.setVisible(true);
-        map.shipselect.killShipSelector();      //Se ho tutti i tasti dello ship selector non usabili lo chiude
+
+        if (!map.shipselect.ship2.isEnabled() && !map.shipselect.ship3.isEnabled() && !map.shipselect.ship4.isEnabled() && !map.shipselect.ship5.isEnabled()) {
+            map.ready.setEnabled(true);
+        }
     }
 
 
