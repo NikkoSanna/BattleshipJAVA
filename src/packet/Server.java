@@ -247,8 +247,11 @@ public class Server extends JFrame implements Runnable {
                             }else if (str.equals("win")) {
                                 mapTwo.gameText.setText("Hai vinto");
 
-                                new VictoryScreen(str);
+                                bufferOut.write("stopCycle");
+                                bufferOut.newLine();
+                                bufferOut.flush();
 
+                                new VictoryScreen(str);
                                 //Chiudo il programma
                                 try {
                                     Thread.sleep(4000);
