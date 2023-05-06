@@ -82,6 +82,8 @@ public class Map extends JFrame {
         ready.setBorder(BorderFactory.createLineBorder(Color.GRAY, 2));
         ready.setBackground(Color.WHITE);
         ready.setOpaque(true);
+        clear.setBackground(Color.WHITE);
+        clear.setOpaque(true);
 
         //Aggiunta font agli elementi
         playerName.setFont(font);
@@ -171,13 +173,7 @@ public class Map extends JFrame {
 
             ready.addActionListener(listener);  //Aggiunta di un action listener al bottone
             clear.addActionListener(listener);      //Aggiunta di un action listener al bottone
-
-
-
         }
-
-
-
 
         //Impostazioni di visualizzazione
         this.pack();
