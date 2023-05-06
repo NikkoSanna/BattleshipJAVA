@@ -135,6 +135,8 @@ public class Listener extends JFrame implements ActionListener, WindowListener {
                 map.bottomBar.add(map.gameText);
                 map.gameText.setText("Questa e la tua mappa");
 
+                map.shipselect.killShipSelector();
+
                 if (map.client == null) {
                     map.server.mapTwo.gameText.setText("In attesa dell altro giocatore");
 

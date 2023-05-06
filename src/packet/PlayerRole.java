@@ -44,6 +44,14 @@ public class PlayerRole extends JFrame {
         hostRole.setFont(font);
         clientRole.setFont(font);
 
+        //Aspetto grafico dei bottoni
+        hostRole.setBackground(Color.WHITE);
+        hostRole.setBorder(BorderFactory.createLineBorder(Color.GRAY, 2));
+        hostRole.setOpaque(true);
+        clientRole.setBorder(BorderFactory.createLineBorder(Color.GRAY, 2));
+        clientRole.setBackground(Color.WHITE);
+        clientRole.setOpaque(true);
+
         c.setLayout(new BoxLayout(c, BoxLayout.Y_AXIS));      //Impostazione del layout del content pane
 
         //Aggiunta dello sfondo a un label
@@ -69,7 +77,7 @@ public class PlayerRole extends JFrame {
         textRole.setAlignmentX(JLabel.CENTER_ALIGNMENT);
         hostRole.setText("Host");
         clientRole.setText("Client");
-        rolePanelBottom.setLayout(new FlowLayout(FlowLayout.CENTER));
+        rolePanelBottom.setLayout(new FlowLayout(FlowLayout.CENTER, 20,0));
         rolePanelBottom.setBorder(new EmptyBorder(10, 10, 10, 10));
         rolePanelBottom.add(hostRole);
         rolePanelBottom.add(clientRole);

@@ -668,6 +668,7 @@ public class Tile extends JButton implements MouseListener {
                             map.server.bufferOut.flush();
 
                             new VictoryScreen("lost");
+                            map.server.mapTwo.gameText.setText("Hai perso");
                         } catch (IOException e) {
                             throw new RuntimeException(e);
                         }
@@ -678,6 +679,7 @@ public class Tile extends JButton implements MouseListener {
                             map.client.bufferOut.flush();
 
                             new VictoryScreen("lost");
+                            map.client.mapTwo.gameText.setText("Hai perso");
                         } catch (IOException e) {
                             throw new RuntimeException(e);
                         }

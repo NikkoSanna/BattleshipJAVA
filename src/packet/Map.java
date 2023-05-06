@@ -78,6 +78,11 @@ public class Map extends JFrame {
         } catch (Exception ignored) {
         }
 
+        //Aspetto grafico dei bottoni
+        ready.setBorder(BorderFactory.createLineBorder(Color.GRAY, 2));
+        ready.setBackground(Color.WHITE);
+        ready.setOpaque(true);
+
         //Aggiunta font agli elementi
         playerName.setFont(font);
         shipSunkText.setFont(font.deriveFont(Font.PLAIN, 11));
@@ -151,14 +156,24 @@ public class Map extends JFrame {
 
         c.add(background);      //Aggiunta dell'intera interfaccia al content pane
 
-        ready.addActionListener(listener);  //Aggiunta di un action listener al bottone
-
         this.addWindowListener(listener);   //Aggiunta di un window listener al frame
-
 
         //Genero ship selector solo se sono mappa uno
         if (mapNumber.equals("mapOne")) {
             shipselect = new ShipSelector(this);   //La mappa genera il ship selector
+
+            ready.setText("Pronto");
+            ready.setEnabled(false);
+            bottomBar.add(ready);
+
+            clear.setText("Pulisci");
+            bottomBar.add(clear);
+
+            ready.addActionListener(listener);  //Aggiunta di un action listener al bottone
+            clear.addActionListener(listener);      //Aggiunta di un action listener al bottone
+
+
+
         }
 
 

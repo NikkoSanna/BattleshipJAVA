@@ -38,6 +38,15 @@ public class IP_Selector extends JFrame{
         clear.setFont(font);
         IP.setFont(font.deriveFont(Font.PLAIN, 17));
 
+        //Aspetto grafico dei bottoni
+        send.setBorder(BorderFactory.createLineBorder(Color.GRAY, 2));
+        send.setBackground(Color.WHITE);
+        send.setOpaque(true);
+        clear.setBackground(Color.WHITE);
+        clear.setBorder(BorderFactory.createLineBorder(Color.GRAY, 2));
+        clear.setOpaque(true);
+
+
         //Aggiunta layout del frame e un bordo invisibile
         frame.setLayout(new GridLayout(3,1, 10,10));
         frame.setBorder(new EmptyBorder(20,20,20,20));
@@ -49,6 +58,7 @@ public class IP_Selector extends JFrame{
         frame.add(IP);
 
         //Aggiunta dei bottoni invio e cancella
+        buttons.setLayout(new FlowLayout(FlowLayout.CENTER, 20,0));
         send.setText("Invia");
         buttons.add(send);
         send.addActionListener(listener);

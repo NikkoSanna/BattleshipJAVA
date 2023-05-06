@@ -137,11 +137,6 @@ public class Server extends JFrame implements Runnable {
 
                                 mapTwo.tile[x1][y1].setIcon(mapTwo.tile[x1][y1].shipHit);
 
-                                //Comunico all'avversario che puó smettere di aspettare nuove coordinate
-                                bufferOut.write("stopCycle");
-                                bufferOut.newLine();
-                                bufferOut.flush();
-
                                 //Controllo se ho affondato una barca
                                 str = bufferIn.readLine();
 
@@ -231,7 +226,14 @@ public class Server extends JFrame implements Runnable {
                                 }
                                 //Se non ho colpito una barca devo mettere l'icona corretta
                             } else if (str.equals("badHit")) {
+                                //Comunico all'avversario che puó smettere di aspettare nuove coordinate
+                                bufferOut.write("stopCycle");
+                                bufferOut.newLine();
+                                bufferOut.flush();
+
+                                yourTurn = false;
                                 clickAgain = false;
+
                                 String[] coordinates = tileUsed.split(",");     //Splitto le coordinate
                                 int x = Integer.parseInt(coordinates[0]);     //Converto la coordinata x in intero
                                 int y = Integer.parseInt(coordinates[1]);     //Converto la coordinata y in intero
@@ -250,7 +252,6 @@ public class Server extends JFrame implements Runnable {
                             mapTwo.shipSunkText.setText("Navi affondate: " + shipSunk);
                         }
 
-                        yourTurn = false;
                         tileUsed = null;
 
                         //Gestisco il turno di gioco dell'avversario
@@ -258,7 +259,7 @@ public class Server extends JFrame implements Runnable {
                         mapTwo.gameText.setText("Turno avversario!");
 
                         //Ripeto il ciclo in caso l'avversario abbia cliccato su una casella giá colpita in precedenza
-                        while (!validHit) {
+                        do {
                             str = bufferIn.readLine();
 
                             //Controllo se ho perso
@@ -275,11 +276,11 @@ public class Server extends JFrame implements Runnable {
                                     throw new RuntimeException(e);
                                 }
 
-                                //Se l'avversario ha cliccato su di una casella valida interrompo il ciclo
+                            //Se l'avversario ha cliccato su di una casella valida interrompo il ciclo
                             } else if (str.equals("stopCycle")) {
                                 validHit = true;
 
-                                //Controllo quali caselle sono state colpite
+                            //Controllo quali caselle sono state colpite
                             } else {
                                 String[] coordinates = str.split(",");     //Splitto le coordinate
                                 int x = Integer.parseInt(coordinates[0]);     //Converto la coordinata x in intero
@@ -287,7 +288,7 @@ public class Server extends JFrame implements Runnable {
 
                                 mapOne.tile[x][y].tileHit();
                             }
-                        }
+                        } while (!validHit);
 
                         validHit = false;
                         yourTurn = true;

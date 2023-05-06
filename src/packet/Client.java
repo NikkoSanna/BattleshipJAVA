@@ -126,11 +126,6 @@ public class Client extends JFrame implements Runnable {
 
                             mapTwo.tile[x][y].setIcon(mapTwo.tile[x][y].shipHit);
 
-                            //Comunico all'avversario che puó smettere di aspettare nuove coordinate
-                            bufferOut.write("stopCycle");
-                            bufferOut.newLine();
-                            bufferOut.flush();
-
                             //Controllo se ho affondato una barca
                             str = bufferIn.readLine();
 
@@ -220,7 +215,14 @@ public class Client extends JFrame implements Runnable {
                             }
                         //Se non ho colpito una barca devo mettere l'icona corretta
                         } else if (str.equals("badHit")) {
+                            //Comunico all'avversario che puó smettere di aspettare nuove coordinate
+                            bufferOut.write("stopCycle");
+                            bufferOut.newLine();
+                            bufferOut.flush();
+
+                            yourTurn = false;
                             clickAgain = false;
+
                             String[] coordinates = tileUsed.split(",");     //Splitto le coordinate
                             int x = Integer.parseInt(coordinates[0]);     //Converto la coordinata x in intero
                             int y = Integer.parseInt(coordinates[1]);     //Converto la coordinata y in intero
@@ -239,7 +241,6 @@ public class Client extends JFrame implements Runnable {
                         mapTwo.shipSunkText.setText("Navi affondate: " + shipSunk);
                     }
 
-                    yourTurn = false;
                     tileUsed = null;
 
                 //Gestisco il turno di gioco dell'avversario
@@ -276,7 +277,7 @@ public class Client extends JFrame implements Runnable {
 
                             mapOne.tile[x][y].tileHit();
                         }
-                    }
+                    } while (!validHit);
 
                     validHit = false;
                     yourTurn = true;

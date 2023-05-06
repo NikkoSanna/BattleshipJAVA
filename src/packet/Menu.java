@@ -40,12 +40,15 @@ public class Menu extends JFrame {
         singleplayer.setFont(font);
         singleplayer.setBorder(BorderFactory.createLineBorder(Color.GRAY, 2));
         singleplayer.setBackground(Color.WHITE);
+        singleplayer.setOpaque(true);
         multiplayer.setFont(font);
         multiplayer.setBorder(BorderFactory.createLineBorder(Color.GRAY, 2));
         multiplayer.setBackground(Color.WHITE);
+        multiplayer.setOpaque(true);
         settings.setFont(font);
         settings.setBorder(BorderFactory.createLineBorder(Color.GRAY, 2));
         settings.setBackground(Color.WHITE);
+        settings.setOpaque(true);
 
         //Aggiunta dei bottoni al panel
         panel.setBorder(new EmptyBorder(250, 100, 100, 100));

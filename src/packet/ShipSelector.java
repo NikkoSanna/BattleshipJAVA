@@ -73,7 +73,7 @@ public class ShipSelector extends JFrame {
         ship5.addActionListener(listener);
 
         //Impostazioni di visualizzazione
-        this.setSize(1063, 250);
+        this.setSize(1063, 200);
         this.setLocation(ScreenSize.getWidth() / 2 - 525, ScreenSize.getHeight() / 3 + 345);
         this.setResizable(false);
         this.setVisible(true);
