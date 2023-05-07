@@ -6,8 +6,8 @@ import java.io.File;
 
 public class VictoryScreen extends JFrame {
     //Immagini usate
-    ImageIcon victoryImage = new ImageIcon(new ImageIcon("images/backgrounds/victoryImage.png").getImage().getScaledInstance(500, 500, Image.SCALE_SMOOTH));
-    ImageIcon loseImage = new ImageIcon(new ImageIcon("images/backgrounds/loseImage.png").getImage().getScaledInstance(500, 500, Image.SCALE_SMOOTH));
+    ImageIcon victoryImage = new ImageIcon(new ImageIcon("images/backgrounds/victoryImage.png").getImage().getScaledInstance(400, 500, Image.SCALE_SMOOTH));
+    ImageIcon loseImage = new ImageIcon(new ImageIcon("images/backgrounds/loseImage.png").getImage().getScaledInstance(400, 500, Image.SCALE_SMOOTH));
 
     //Oggetti legati all'interfaccia
     Container c = this.getContentPane();
