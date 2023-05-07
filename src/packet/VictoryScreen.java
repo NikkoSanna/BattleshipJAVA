@@ -31,9 +31,9 @@ public class VictoryScreen extends JFrame {
 
         //Selezione scritta in base alla vittoria/sconfitta
         if (str.equals("lost")) {
-            background.setIcon(victoryImage);
-        } else {
             background.setIcon(loseImage);
+        } else {
+            background.setIcon(victoryImage);
         }
 
         background.add(text);
