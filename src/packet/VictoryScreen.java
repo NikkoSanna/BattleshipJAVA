@@ -6,8 +6,8 @@ import java.io.File;
 
 public class VictoryScreen extends JFrame {
     //Immagini usate
-    ImageIcon victoryImage = new ImageIcon(new ImageIcon("images/backgrounds/victoryImage.png").getImage().getScaledInstance(400, 500, Image.SCALE_SMOOTH));
-    ImageIcon loseImage = new ImageIcon(new ImageIcon("images/backgrounds/loseImage.png").getImage().getScaledInstance(400, 500, Image.SCALE_SMOOTH));
+    ImageIcon victoryImage = new ImageIcon(new ImageIcon("images/backgrounds/victoryImage.png").getImage());
+    ImageIcon loseImage = new ImageIcon(new ImageIcon("images/backgrounds/loseImage.png").getImage());
 
     //Oggetti legati all'interfaccia
     Container c = this.getContentPane();
@@ -31,10 +31,8 @@ public class VictoryScreen extends JFrame {
 
         //Selezione scritta in base alla vittoria/sconfitta
         if (str.equals("lost")) {
-            text.setText("Mi spiace ma hai perso");
             background.setIcon(victoryImage);
         } else {
-            text.setText("Congratulazioni per aver vinto");
             background.setIcon(loseImage);
         }
 
