@@ -11,6 +11,7 @@ public class Tile extends JButton implements MouseListener {
     boolean hasShip;    //Attributo che indica se é presente o meno una parte di barca
     boolean isHit = false;      //Attributo che indica se una parte di barca é stata colpita (fase di gioco)
     boolean somethingSunk = false;      //Attributo usato per capire se c'é stato o meno un affondo
+
     int i;      //Coordinate ordinata
     int j;      //Coordinate ascissa
 
@@ -94,124 +95,244 @@ public class Tile extends JButton implements MouseListener {
     //Se non ho posizionato la barca rimetto la grafica delle caselle come prima
     @Override
     public void mouseExited(MouseEvent e) {
-        try {
-            //Se la barca selezionata é quella da 2
-            if (map.getShipType().equals("ship2")) {
-                if (!hasShip) {
-                    setContentAreaFilled(false);
-                    setBackground(null);
-                    setIcon(null);
+        if (!map.tilded) {
+            try {
+                //Se la barca selezionata é quella da 2
+                if (map.getShipType().equals("ship2")) {
+                    if (!hasShip) {
+                        setContentAreaFilled(false);
+                        setBackground(null);
+                        setIcon(null);
+                    }
+                    if (!map.tile[i - 1][j].hasShip) {
+                        map.tile[i - 1][j].setContentAreaFilled(false);
+                        map.tile[i - 1][j].setBackground(null);
+                        map.tile[i - 1][j].setIcon(null);
+                    }
                 }
-                if (!map.tile[i - 1][j].hasShip) {
-                    map.tile[i - 1][j].setContentAreaFilled(false);
-                    map.tile[i - 1][j].setBackground(null);
-                    map.tile[i - 1][j].setIcon(null);
+                //Se la barca selezionata é quella da 3
+                else if (map.getShipType().equals("ship3")) {
+                    if (!hasShip) {
+                        setContentAreaFilled(false);
+                        setBackground(null);
+                        setIcon(null);
+                    }
+                    if (!map.tile[i - 1][j].hasShip && !map.tile[i + 1][j].hasShip) {
+                        map.tile[i - 1][j].setContentAreaFilled(false);
+                        map.tile[i + 1][j].setContentAreaFilled(false);
+                        map.tile[i - 1][j].setBackground(null);
+                        map.tile[i + 1][j].setBackground(null);
+                        map.tile[i - 1][j].setIcon(null);
+                        map.tile[i + 1][j].setIcon(null);
+                    }
                 }
+                //Se la barca selezionata é quella da 4
+                else if (map.getShipType().equals("ship4")) {
+                    if (!hasShip) {
+                        setContentAreaFilled(false);
+                        setBackground(null);
+                        setIcon(null);
+                    }
+                    if (!map.tile[i - 1][j].hasShip && !map.tile[i + 1][j].hasShip && !map.tile[i - 2][j].hasShip) {
+                        map.tile[i - 1][j].setContentAreaFilled(false);
+                        map.tile[i + 1][j].setContentAreaFilled(false);
+                        map.tile[i - 2][j].setContentAreaFilled(false);
+                        map.tile[i - 1][j].setBackground(null);
+                        map.tile[i + 1][j].setBackground(null);
+                        map.tile[i - 2][j].setBackground(null);
+                        map.tile[i - 1][j].setIcon(null);
+                        map.tile[i + 1][j].setIcon(null);
+                        map.tile[i - 2][j].setIcon(null);
+                    }
+                }
+                //Se la barca selezionata é quella da 5
+                else if (map.getShipType().equals("ship5")) {
+                    if (!hasShip) {
+                        setContentAreaFilled(false);
+                        setBackground(null);
+                        setIcon(null);
+                    }
+                    if (!map.tile[i - 1][j].hasShip && !map.tile[i + 1][j].hasShip && !map.tile[i - 2][j].hasShip && !map.tile[i + 2][j].hasShip) {
+                        map.tile[i - 1][j].setContentAreaFilled(false);
+                        map.tile[i + 1][j].setContentAreaFilled(false);
+                        map.tile[i - 2][j].setContentAreaFilled(false);
+                        map.tile[i + 2][j].setContentAreaFilled(false);
+                        map.tile[i - 1][j].setBackground(null);
+                        map.tile[i + 1][j].setBackground(null);
+                        map.tile[i - 2][j].setBackground(null);
+                        map.tile[i + 2][j].setBackground(null);
+                        map.tile[i - 1][j].setIcon(null);
+                        map.tile[i + 1][j].setIcon(null);
+                        map.tile[i - 2][j].setIcon(null);
+                        map.tile[i + 2][j].setIcon(null);
+                    }
+                }
+            } catch (Exception ignored) {
             }
-            //Se la barca selezionata é quella da 3
-            else if (map.getShipType().equals("ship3")) {
-                if (!hasShip) {
-                    setContentAreaFilled(false);
-                    setBackground(null);
-                    setIcon(null);
+        } else {
+            try {
+                //Se la barca selezionata é quella da 2
+                if (map.getShipType().equals("ship2")) {
+                    if (!hasShip) {
+                        setContentAreaFilled(false);
+                        setBackground(null);
+                        setIcon(null);
+                    }
+                    if (!map.tile[i][j - 1].hasShip) {
+                        map.tile[i][j - 1].setContentAreaFilled(false);
+                        map.tile[i][j - 1].setBackground(null);
+                        map.tile[i][j - 1].setIcon(null);
+                    }
                 }
-                if (!map.tile[i - 1][j].hasShip && !map.tile[i + 1][j].hasShip) {
-                    map.tile[i - 1][j].setContentAreaFilled(false);
-                    map.tile[i + 1][j].setContentAreaFilled(false);
-                    map.tile[i - 1][j].setBackground(null);
-                    map.tile[i + 1][j].setBackground(null);
-                    map.tile[i - 1][j].setIcon(null);
-                    map.tile[i + 1][j].setIcon(null);
+                //Se la barca selezionata é quella da 3
+                else if (map.getShipType().equals("ship3")) {
+                    if (!hasShip) {
+                        setContentAreaFilled(false);
+                        setBackground(null);
+                        setIcon(null);
+                    }
+                    if (!map.tile[i][j - 1].hasShip && !map.tile[i][j + 1].hasShip) {
+                        map.tile[i][j - 1].setContentAreaFilled(false);
+                        map.tile[i][j + 1].setContentAreaFilled(false);
+                        map.tile[i][j - 1].setBackground(null);
+                        map.tile[i][j + 1].setBackground(null);
+                        map.tile[i][j - 1].setIcon(null);
+                        map.tile[i][j + 1].setIcon(null);
+                    }
                 }
+                //Se la barca selezionata é quella da 4
+                else if (map.getShipType().equals("ship4")) {
+                    if (!hasShip) {
+                        setContentAreaFilled(false);
+                        setBackground(null);
+                        setIcon(null);
+                    }
+                    if (!map.tile[i][j - 1].hasShip && !map.tile[i][j + 1].hasShip && !map.tile[i][j - 2].hasShip) {
+                        map.tile[i][j - 1].setContentAreaFilled(false);
+                        map.tile[i][j + 1].setContentAreaFilled(false);
+                        map.tile[i][j - 2].setContentAreaFilled(false);
+                        map.tile[i][j - 1].setBackground(null);
+                        map.tile[i][j + 1].setBackground(null);
+                        map.tile[i][j - 2].setBackground(null);
+                        map.tile[i][j - 1].setIcon(null);
+                        map.tile[i][j + 1].setIcon(null);
+                        map.tile[i][j - 2].setIcon(null);
+                    }
+                }
+                //Se la barca selezionata é quella da 5
+                else if (map.getShipType().equals("ship5")) {
+                    if (!hasShip) {
+                        setContentAreaFilled(false);
+                        setBackground(null);
+                        setIcon(null);
+                    }
+                    if (!map.tile[i][j - 1].hasShip && !map.tile[i][j + 1].hasShip && !map.tile[i][j - 2].hasShip && !map.tile[i][j + 2].hasShip) {
+                        map.tile[i][j - 1].setContentAreaFilled(false);
+                        map.tile[i][j + 1].setContentAreaFilled(false);
+                        map.tile[i][j - 2].setContentAreaFilled(false);
+                        map.tile[i][j + 2].setContentAreaFilled(false);
+                        map.tile[i][j - 1].setBackground(null);
+                        map.tile[i][j + 1].setBackground(null);
+                        map.tile[i][j - 2].setBackground(null);
+                        map.tile[i][j + 2].setBackground(null);
+                        map.tile[i][j - 1].setIcon(null);
+                        map.tile[i][j + 1].setIcon(null);
+                        map.tile[i][j - 2].setIcon(null);
+                        map.tile[i][j + 2].setIcon(null);
+                    }
+                }
+            } catch (Exception ignored) {
             }
-            //Se la barca selezionata é quella da 4
-            else if (map.getShipType().equals("ship4")) {
-                if (!hasShip) {
-                    setContentAreaFilled(false);
-                    setBackground(null);
-                    setIcon(null);
-                }
-                if (!map.tile[i - 1][j].hasShip && !map.tile[i + 1][j].hasShip && !map.tile[i - 2][j].hasShip) {
-                    map.tile[i - 1][j].setContentAreaFilled(false);
-                    map.tile[i + 1][j].setContentAreaFilled(false);
-                    map.tile[i - 2][j].setContentAreaFilled(false);
-                    map.tile[i - 1][j].setBackground(null);
-                    map.tile[i + 1][j].setBackground(null);
-                    map.tile[i - 2][j].setBackground(null);
-                    map.tile[i - 1][j].setIcon(null);
-                    map.tile[i + 1][j].setIcon(null);
-                    map.tile[i - 2][j].setIcon(null);
-                }
-            }
-            //Se la barca selezionata é quella da 5
-            else if (map.getShipType().equals("ship5")) {
-                if (!hasShip) {
-                    setContentAreaFilled(false);
-                    setBackground(null);
-                    setIcon(null);
-                }
-                if (!map.tile[i - 1][j].hasShip && !map.tile[i + 1][j].hasShip && !map.tile[i - 2][j].hasShip && !map.tile[i + 2][j].hasShip) {
-                    map.tile[i - 1][j].setContentAreaFilled(false);
-                    map.tile[i + 1][j].setContentAreaFilled(false);
-                    map.tile[i - 2][j].setContentAreaFilled(false);
-                    map.tile[i + 2][j].setContentAreaFilled(false);
-                    map.tile[i - 1][j].setBackground(null);
-                    map.tile[i + 1][j].setBackground(null);
-                    map.tile[i - 2][j].setBackground(null);
-                    map.tile[i + 2][j].setBackground(null);
-                    map.tile[i - 1][j].setIcon(null);
-                    map.tile[i + 1][j].setIcon(null);
-                    map.tile[i - 2][j].setIcon(null);
-                    map.tile[i + 2][j].setIcon(null);
-                }
-            }
-        } catch (Exception ignored) {
         }
     }
 
 
     //Nella fase di piazzamento mi mostra dove sto piazzando le barche
     public void shipHovering() {
-        try {
-            //Se la barca selezionata é quella da 2
-            if (map.getShipType().equals("ship2")) {
-                //Con questa condizione evito anche che vengano cancellati i colori
-                if (i >= 1 && !hasShip && !map.tile[i - 1][j].hasShip) {
-                    setIcon(ship2_2);
-                    map.tile[i - 1][j].setIcon(ship2_1);
+        if (!map.tilded) {
+            try {
+                //Se la barca selezionata é quella da 2
+                if (map.getShipType().equals("ship2")) {
+                    //Con questa condizione evito anche che vengano cancellati i colori
+                    if (i >= 1 && !hasShip && !map.tile[i - 1][j].hasShip) {
+                        setIcon(ship2_2);
+                        map.tile[i - 1][j].setIcon(ship2_1);
+                    }
                 }
-            }
-            //Se la barca selezionata é quella da 3
-            else if (map.getShipType().equals("ship3")) {
-                //Con questa condizione evito anche che vengano cancellati i colori
-                if (i >= 1 && i <= map.getDimension() - 1 && !hasShip && !map.tile[i - 1][j].hasShip && !map.tile[i + 1][j].hasShip) {
-                    setIcon(ship3_2);
-                    map.tile[i - 1][j].setIcon(ship3_1);
-                    map.tile[i + 1][j].setIcon(ship3_3);
+                //Se la barca selezionata é quella da 3
+                else if (map.getShipType().equals("ship3")) {
+                    //Con questa condizione evito anche che vengano cancellati i colori
+                    if (i >= 1 && i <= map.getDimension() - 1 && !hasShip && !map.tile[i - 1][j].hasShip && !map.tile[i + 1][j].hasShip) {
+                        setIcon(ship3_2);
+                        map.tile[i - 1][j].setIcon(ship3_1);
+                        map.tile[i + 1][j].setIcon(ship3_3);
+                    }
                 }
-            }
-            //Se la barca selezionata é la quella da 4
-            else if (map.getShipType().equals("ship4")) {
-                //Con questa condizione evito anche che vengano cancellati i colori
-                if (i >= 2 && i <= map.getDimension() - 1 && !hasShip && !map.tile[i - 1][j].hasShip && !map.tile[i + 1][j].hasShip && !map.tile[i - 2][j].hasShip) {
-                    setIcon(ship4_3);
-                    map.tile[i - 1][j].setIcon(ship4_2);
-                    map.tile[i + 1][j].setIcon(ship4_4);
-                    map.tile[i - 2][j].setIcon(ship4_1);
+                //Se la barca selezionata é la quella da 4
+                else if (map.getShipType().equals("ship4")) {
+                    //Con questa condizione evito anche che vengano cancellati i colori
+                    if (i >= 2 && i <= map.getDimension() - 1 && !hasShip && !map.tile[i - 1][j].hasShip && !map.tile[i + 1][j].hasShip && !map.tile[i - 2][j].hasShip) {
+                        setIcon(ship4_3);
+                        map.tile[i - 1][j].setIcon(ship4_2);
+                        map.tile[i + 1][j].setIcon(ship4_4);
+                        map.tile[i - 2][j].setIcon(ship4_1);
+                    }
                 }
-            }
-            //Se la barca selezionata é quella da 5
-            else if (map.getShipType().equals("ship5")) {
-                //Con questa condizione evito anche che vengano cancellati i colori
-                if (i >= 2 && i <= map.getDimension() - 2 && !hasShip && !map.tile[i - 1][j].hasShip && !map.tile[i + 1][j].hasShip && !map.tile[i - 2][j].hasShip && !map.tile[i + 2][j].hasShip) {
-                    setIcon(ship5_3);
-                    map.tile[i - 1][j].setIcon(ship5_2);
-                    map.tile[i + 1][j].setIcon(ship5_4);
-                    map.tile[i - 2][j].setIcon(ship5_1);
-                    map.tile[i + 2][j].setIcon(ship5_5);
+                //Se la barca selezionata é quella da 5
+                else if (map.getShipType().equals("ship5")) {
+                    //Con questa condizione evito anche che vengano cancellati i colori
+                    if (i >= 2 && i <= map.getDimension() - 2 && !hasShip && !map.tile[i - 1][j].hasShip && !map.tile[i + 1][j].hasShip && !map.tile[i - 2][j].hasShip && !map.tile[i + 2][j].hasShip) {
+                        setIcon(ship5_3);
+                        map.tile[i - 1][j].setIcon(ship5_2);
+                        map.tile[i + 1][j].setIcon(ship5_4);
+                        map.tile[i - 2][j].setIcon(ship5_1);
+                        map.tile[i + 2][j].setIcon(ship5_5);
+                    }
                 }
+            } catch (Exception ignored) {
             }
-        } catch (Exception ignored) {
+        } else {
+            try {
+                //Se la barca selezionata é quella da 2
+                if (map.getShipType().equals("ship2")) {
+                    //Con questa condizione evito anche che vengano cancellati i colori
+                    if (j >= 1 && !hasShip && !map.tile[i][j - 1].hasShip) {
+                        setIcon(ship2_2);
+                        map.tile[i][j - 1].setIcon(ship2_1);
+                    }
+                }
+                //Se la barca selezionata é quella da 3
+                else if (map.getShipType().equals("ship3")) {
+                    //Con questa condizione evito anche che vengano cancellati i colori
+                    if (j >= 1 && j <= map.getDimension() - 1 && !hasShip && !map.tile[i][j - 1].hasShip && !map.tile[i][j + 1].hasShip) {
+                        setIcon(ship3_2);
+                        map.tile[i][j - 1].setIcon(ship3_1);
+                        map.tile[i][j + 1].setIcon(ship3_3);
+                    }
+                }
+                //Se la barca selezionata é la quella da 4
+                else if (map.getShipType().equals("ship4")) {
+                    //Con questa condizione evito anche che vengano cancellati i colori
+                    if (j >= 2 && j <= map.getDimension() - 1 && !hasShip && !map.tile[i][j - 1].hasShip && !map.tile[i][j + 1].hasShip && !map.tile[i][j - 2].hasShip) {
+                        setIcon(ship4_3);
+                        map.tile[i][j - 1].setIcon(ship4_2);
+                        map.tile[i][j + 1].setIcon(ship4_4);
+                        map.tile[i][j - 2].setIcon(ship4_1);
+                    }
+                }
+                //Se la barca selezionata é quella da 5
+                else if (map.getShipType().equals("ship5")) {
+                    //Con questa condizione evito anche che vengano cancellati i colori
+                    if (j >= 2 && j <= map.getDimension() - 2 && !hasShip && !map.tile[i][j - 1].hasShip && !map.tile[i][j + 1].hasShip && !map.tile[i][j - 2].hasShip && !map.tile[i][j + 2].hasShip) {
+                        setIcon(ship5_3);
+                        map.tile[i][j - 1].setIcon(ship5_2);
+                        map.tile[i][j + 1].setIcon(ship5_4);
+                        map.tile[i][j - 2].setIcon(ship5_1);
+                        map.tile[i][j + 2].setIcon(ship5_5);
+                    }
+                }
+            } catch (Exception ignored) {
+            }
         }
     }
 
@@ -268,53 +389,107 @@ public class Tile extends JButton implements MouseListener {
 
     //Metodo che viene richiamato per il piazzamento della barca nella fase di piazzamento
     public void placeShip(String shipType) {
-        //Se la barca selezionata é quella da 2
-        if (shipType.equals("ship2")) {
-            hasShip = true;
-            map.tile[i - 1][j].hasShip = true;
+        if (!map.tilded) {
+            //Se la barca selezionata é quella da 2
+            if (shipType.equals("ship2")) {
+                hasShip = true;
+                map.tile[i - 1][j].hasShip = true;
 
-            //Inserimento all'interno di un array delle coordinate che occupa la barca
-            map.shipTwo_Tiles[0] = (map.tile[i - 1][j].i - 1) + "," + (map.tile[i - 1][j].j - 1);
-            map.shipTwo_Tiles[1] = (i - 1) + "," + (j - 1);
-        }
-        //Se la barca selezionata é quella da 3
-        else if (shipType.equals("ship3")) {
-            hasShip = true;
-            map.tile[i - 1][j].hasShip = true;
-            map.tile[i + 1][j].hasShip = true;
+                //Inserimento all'interno di un array delle coordinate che occupa la barca
+                map.shipTwo_Tiles[0] = (map.tile[i - 1][j].i - 1) + "," + (map.tile[i - 1][j].j - 1);
+                map.shipTwo_Tiles[1] = (i - 1) + "," + (j - 1);
+            }
+            //Se la barca selezionata é quella da 3
+            else if (shipType.equals("ship3")) {
+                hasShip = true;
+                map.tile[i - 1][j].hasShip = true;
+                map.tile[i + 1][j].hasShip = true;
 
-            //Inserimento all'interno di un array delle coordinate che occupa la barca
-            map.shipThree_Tiles[0] = (map.tile[i - 1][j].i - 1) + "," + (map.tile[i - 1][j].j - 1);
-            map.shipThree_Tiles[1] = (i - 1) + "," + (j - 1);
-            map.shipThree_Tiles[2] = (map.tile[i + 1][j].i - 1) + "," + (map.tile[i + 1][j].j - 1);
-        }
-        //Se la barca selezionata é la terza
-        else if (shipType.equals("ship4")) {
-            hasShip = true;
-            map.tile[i - 1][j].hasShip = true;
-            map.tile[i + 1][j].hasShip = true;
-            map.tile[i - 2][j].hasShip = true;
+                //Inserimento all'interno di un array delle coordinate che occupa la barca
+                map.shipThree_Tiles[0] = (map.tile[i - 1][j].i - 1) + "," + (map.tile[i - 1][j].j - 1);
+                map.shipThree_Tiles[1] = (i - 1) + "," + (j - 1);
+                map.shipThree_Tiles[2] = (map.tile[i + 1][j].i - 1) + "," + (map.tile[i + 1][j].j - 1);
+            }
+            //Se la barca selezionata é la terza
+            else if (shipType.equals("ship4")) {
+                hasShip = true;
+                map.tile[i - 1][j].hasShip = true;
+                map.tile[i + 1][j].hasShip = true;
+                map.tile[i - 2][j].hasShip = true;
 
-            //Inserimento all'interno di un array delle coordinate che occupa la barca
-            map.shipFour_Tiles[0] = (map.tile[i - 2][j].i - 1) + "," + (map.tile[i - 2][j].j - 1);
-            map.shipFour_Tiles[1] = (map.tile[i - 1][j].i - 1) + "," + (map.tile[i - 1][j].j - 1);
-            map.shipFour_Tiles[2] = (i - 1) + "," + (j - 1);
-            map.shipFour_Tiles[3] = (map.tile[i + 1][j].i - 1) + "," + (map.tile[i + 1][j].j - 1);
-        }
-        //Se la barca selezionata é quella da 5
-        else if (shipType.equals("ship5")) {
-            hasShip = true;
-            map.tile[i - 1][j].hasShip = true;
-            map.tile[i + 1][j].hasShip = true;
-            map.tile[i - 2][j].hasShip = true;
-            map.tile[i + 2][j].hasShip = true;
+                //Inserimento all'interno di un array delle coordinate che occupa la barca
+                map.shipFour_Tiles[0] = (map.tile[i - 2][j].i - 1) + "," + (map.tile[i - 2][j].j - 1);
+                map.shipFour_Tiles[1] = (map.tile[i - 1][j].i - 1) + "," + (map.tile[i - 1][j].j - 1);
+                map.shipFour_Tiles[2] = (i - 1) + "," + (j - 1);
+                map.shipFour_Tiles[3] = (map.tile[i + 1][j].i - 1) + "," + (map.tile[i + 1][j].j - 1);
+            }
+            //Se la barca selezionata é quella da 5
+            else if (shipType.equals("ship5")) {
+                hasShip = true;
+                map.tile[i - 1][j].hasShip = true;
+                map.tile[i + 1][j].hasShip = true;
+                map.tile[i - 2][j].hasShip = true;
+                map.tile[i + 2][j].hasShip = true;
 
-            //Inserimento all'interno di un array delle coordinate che occupa la barca
-            map.shipFive_Tiles[0] = (map.tile[i - 2][j].i - 1) + "," + (map.tile[i - 2][j].j - 1);
-            map.shipFive_Tiles[1] = (map.tile[i - 1][j].i - 1) + "," + (map.tile[i - 1][j].j - 1);
-            map.shipFive_Tiles[2] = (i - 1) + "," + (j - 1);
-            map.shipFive_Tiles[3] = (map.tile[i + 1][j].i - 1) + "," + (map.tile[i + 1][j].j - 1);
-            map.shipFive_Tiles[4] = (map.tile[i + 2][j].i - 1) + "," + (map.tile[i + 2][j].j - 1);
+                //Inserimento all'interno di un array delle coordinate che occupa la barca
+                map.shipFive_Tiles[0] = (map.tile[i - 2][j].i - 1) + "," + (map.tile[i - 2][j].j - 1);
+                map.shipFive_Tiles[1] = (map.tile[i - 1][j].i - 1) + "," + (map.tile[i - 1][j].j - 1);
+                map.shipFive_Tiles[2] = (i - 1) + "," + (j - 1);
+                map.shipFive_Tiles[3] = (map.tile[i + 1][j].i - 1) + "," + (map.tile[i + 1][j].j - 1);
+                map.shipFive_Tiles[4] = (map.tile[i + 2][j].i - 1) + "," + (map.tile[i + 2][j].j - 1);
+            }
+        } else {
+            //Se la barca selezionata é quella da 2
+            if (shipType.equals("ship2")) {
+                hasShip = true;
+                map.tile[i][j - 1].hasShip = true;
+
+                //Inserimento all'interno di un array delle coordinate che occupa la barca
+                map.shipTwo_Tiles[0] = (map.tile[i][j - 1].i - 1) + "," + (map.tile[i][j - 1].j - 1);
+                map.shipTwo_Tiles[1] = (i) + "," + (j - 1);
+
+                System.out.println(map.shipTwo_Tiles[0]);
+                System.out.println(map.shipTwo_Tiles[1]);
+            }
+            //Se la barca selezionata é quella da 3
+            else if (shipType.equals("ship3")) {
+                hasShip = true;
+                map.tile[i - 1][j].hasShip = true;
+                map.tile[i + 1][j].hasShip = true;
+
+                //Inserimento all'interno di un array delle coordinate che occupa la barca
+                map.shipThree_Tiles[0] = (map.tile[i - 1][j].i - 1) + "," + (map.tile[i - 1][j].j - 1);
+                map.shipThree_Tiles[1] = (i - 1) + "," + (j - 1);
+                map.shipThree_Tiles[2] = (map.tile[i + 1][j].i - 1) + "," + (map.tile[i + 1][j].j - 1);
+            }
+            //Se la barca selezionata é la terza
+            else if (shipType.equals("ship4")) {
+                hasShip = true;
+                map.tile[i - 1][j].hasShip = true;
+                map.tile[i + 1][j].hasShip = true;
+                map.tile[i - 2][j].hasShip = true;
+
+                //Inserimento all'interno di un array delle coordinate che occupa la barca
+                map.shipFour_Tiles[0] = (map.tile[i - 2][j].i - 1) + "," + (map.tile[i - 2][j].j - 1);
+                map.shipFour_Tiles[1] = (map.tile[i - 1][j].i - 1) + "," + (map.tile[i - 1][j].j - 1);
+                map.shipFour_Tiles[2] = (i - 1) + "," + (j - 1);
+                map.shipFour_Tiles[3] = (map.tile[i + 1][j].i - 1) + "," + (map.tile[i + 1][j].j - 1);
+            }
+            //Se la barca selezionata é quella da 5
+            else if (shipType.equals("ship5")) {
+                hasShip = true;
+                map.tile[i - 1][j].hasShip = true;
+                map.tile[i + 1][j].hasShip = true;
+                map.tile[i - 2][j].hasShip = true;
+                map.tile[i + 2][j].hasShip = true;
+
+                //Inserimento all'interno di un array delle coordinate che occupa la barca
+                map.shipFive_Tiles[0] = (map.tile[i - 2][j].i - 1) + "," + (map.tile[i - 2][j].j - 1);
+                map.shipFive_Tiles[1] = (map.tile[i - 1][j].i - 1) + "," + (map.tile[i - 1][j].j - 1);
+                map.shipFive_Tiles[2] = (i - 1) + "," + (j - 1);
+                map.shipFive_Tiles[3] = (map.tile[i + 1][j].i - 1) + "," + (map.tile[i + 1][j].j - 1);
+                map.shipFive_Tiles[4] = (map.tile[i + 2][j].i - 1) + "," + (map.tile[i + 2][j].j - 1);
+            }
         }
 
         map.setShipType("");
@@ -670,7 +845,7 @@ public class Tile extends JButton implements MouseListener {
                             new VictoryScreen("lost");
                             map.server.mapTwo.gameText.setText("Hai perso");
 
-                            try{
+                            try {
                                 Thread.sleep(4000);
                                 System.exit(0);
                             } catch (InterruptedException e) {
@@ -688,7 +863,7 @@ public class Tile extends JButton implements MouseListener {
                             new VictoryScreen("lost");
                             map.client.mapTwo.gameText.setText("Hai perso");
 
-                            try{
+                            try {
                                 Thread.sleep(4000);
                                 System.exit(0);
                             } catch (InterruptedException e) {

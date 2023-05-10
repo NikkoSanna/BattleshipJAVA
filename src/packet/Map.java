@@ -10,14 +10,15 @@ public class Map extends JFrame {
 
     private final int dimension = 11;    //Per comoditá le dimensioni sono su una variabile di tipo int costante
 
-    int shipSunkCounterInt = 0;     //Contatore delle barche affondate
+    public int shipSunkCounterInt = 0;     //Contatore delle barche affondate
 
     public boolean shipTwo_Sunk = false;    //Attributo che indica se la barca da 2 é affondata
     public boolean shipThree_Sunk = false;  //Attributo che indica se la barca da 3 é affondata
     public boolean shipFour_Sunk = false;   //Attributo che indica se la barca da 4 é affondata
     public boolean shipFive_Sunk = false;   //Attributo che indica se la barca da 5 é affondata
 
-    boolean actuallyPlaying = false;    //Attributo che indica se si sta giocando o se si sta piazzando le navi
+    public boolean tilded = false;
+    public boolean actuallyPlaying = false;    //Attributo che indica se si sta giocando o se si sta piazzando le navi
 
     private String shipType = "";     //Variabile che contiene il tipo di barca da posizionare
 
