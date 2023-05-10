@@ -95,7 +95,7 @@ public class Tile extends JButton implements MouseListener {
     //Se non ho posizionato la barca rimetto la grafica delle caselle come prima
     @Override
     public void mouseExited(MouseEvent e) {
-        if (!map.tilded) {
+        if (!map.tilted) {
             try {
                 //Se la barca selezionata é quella da 2
                 if (map.getShipType().equals("ship2")) {
@@ -249,7 +249,7 @@ public class Tile extends JButton implements MouseListener {
 
     //Nella fase di piazzamento mi mostra dove sto piazzando le barche
     public void shipHovering() {
-        if (!map.tilded) {
+        if (!map.tilted) {
             try {
                 //Se la barca selezionata é quella da 2
                 if (map.getShipType().equals("ship2")) {
@@ -389,7 +389,7 @@ public class Tile extends JButton implements MouseListener {
 
     //Metodo che viene richiamato per il piazzamento della barca nella fase di piazzamento
     public void placeShip(String shipType) {
-        if (!map.tilded) {
+        if (!map.tilted) {
             //Se la barca selezionata é quella da 2
             if (shipType.equals("ship2")) {
                 hasShip = true;
@@ -494,7 +494,7 @@ public class Tile extends JButton implements MouseListener {
 
         map.setShipType("");
         map.shipselect.setVisible(true);
-        map.tilded = false;
+        map.tilted = false;
 
         if (!map.shipselect.ship2.isEnabled() && !map.shipselect.ship3.isEnabled() && !map.shipselect.ship4.isEnabled() && !map.shipselect.ship5.isEnabled()) {
             map.ready.setEnabled(true);

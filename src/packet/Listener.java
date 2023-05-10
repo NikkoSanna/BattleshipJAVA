@@ -61,10 +61,10 @@ public class Listener extends JFrame implements ActionListener, WindowListener {
         //Metodi richiamati dal ship selector
         try {
             if(e.getSource() == shipSelect.tiltShip) {
-                shipSelect.map.tilded = true;
+                shipSelect.map.tilted = true;
             }
             //Se la barca selezionata é la prima
-            if (e.getSource() == shipSelect.ship2) {
+            else if (e.getSource() == shipSelect.ship2) {
                 //Rendo il bottone della barca non piú usabile e nascondo lo ship selector
                 shipSelect.ship2.setEnabled(false);
                 shipSelect.setVisible(false);
