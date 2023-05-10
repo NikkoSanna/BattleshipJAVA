@@ -82,6 +82,7 @@ public class Map extends JFrame {
         ready.setBorder(BorderFactory.createLineBorder(Color.GRAY, 2));
         ready.setBackground(Color.WHITE);
         ready.setOpaque(true);
+        clear.setBorder(BorderFactory.createLineBorder(Color.GRAY, 2));
         clear.setBackground(Color.WHITE);
         clear.setOpaque(true);
 
