@@ -24,13 +24,15 @@ public class ShipSelector extends JFrame {
     JButton ship4 = new JButton();
     JButton ship5 = new JButton();
 
+    JButton tiltShip = new JButton();       //Bottone usato per ruotare la barca
+
     public ShipSelector(Map map) {
         this.map = map;     //Il ship selector é a conoscenza dell'intera struttura della mappa
 
         setTitle("Ship Select");
 
         //Impostazioni dei layout
-        ships.setLayout(new GridLayout(1, 4, 20, 20));
+        ships.setLayout(new GridLayout(1, 5, 20, 20));
         ships.setBorder(new EmptyBorder(20, 20, 20, 20));
         ships.setBackground(Color.GRAY);
 
@@ -44,6 +46,10 @@ public class ShipSelector extends JFrame {
         ship5.setContentAreaFilled(false);
         ship5.setBorderPainted(false);
 
+        tiltShip.setBorder(BorderFactory.createLineBorder(Color.GRAY, 2));
+        tiltShip.setBackground(Color.WHITE);
+        tiltShip.setOpaque(true);
+
         //Aggiungo le icone ai bottoni
         ship2.setIcon(iconShip2);
         ship3.setIcon(iconShip3);
@@ -55,6 +61,7 @@ public class ShipSelector extends JFrame {
         ships.add(ship3);
         ships.add(ship4);
         ships.add(ship5);
+        ships.add(tiltShip);
 
         c.add(ships);   //Aggiunta del panel al content pane
 
@@ -71,6 +78,8 @@ public class ShipSelector extends JFrame {
 
         ship5.setActionCommand("ship5");
         ship5.addActionListener(listener);
+
+        tiltShip.addActionListener(listener);
 
         //Impostazioni di visualizzazione
         this.setSize(1063, 200);
