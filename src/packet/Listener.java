@@ -74,6 +74,8 @@ public class Listener extends JFrame implements ActionListener, WindowListener {
             }
             //Se la barca selezionata é la seconda
             else if (e.getSource() == shipSelect.ship3) {
+                shipSelect.map.clear.setEnabled(false);
+
                 //Rendo il bottone della barca non piú usabile e nascondo lo ship selector
                 shipSelect.ship3.setEnabled(false);
                 shipSelect.setVisible(false);
@@ -83,6 +85,8 @@ public class Listener extends JFrame implements ActionListener, WindowListener {
             }
             //Se la barca selezionata é la terza
             else if (e.getSource() == shipSelect.ship4) {
+                shipSelect.map.clear.setEnabled(false);
+
                 //Rendo il bottone della barca non piú usabile e nascondo lo ship selector
                 shipSelect.ship4.setEnabled(false);
                 shipSelect.setVisible(false);
@@ -92,6 +96,8 @@ public class Listener extends JFrame implements ActionListener, WindowListener {
             }
             //Se la barca selezionata é la quarta
             else {
+                shipSelect.map.clear.setEnabled(false);
+
                 //Rendo il bottone della barca non piú usabile e nascondo lo ship selector
                 shipSelect.ship5.setEnabled(false);
                 shipSelect.setVisible(false);
