@@ -45,6 +45,8 @@ public class ShipSelector extends JFrame {
         } catch (Exception ignored) {
         }
 
+        c.setLayout(new FlowLayout());
+
         //Impostazioni del layout barche
         ships.setLayout(new GridLayout(1, 4, 20, 20));
         ships.setBorder(new EmptyBorder(20, 20, 20, 10));
