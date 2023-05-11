@@ -547,7 +547,7 @@ public class Tile extends JButton implements MouseListener {
 
                 //Effetto audio
                 try {
-                    File file = new File("SoundEffect.m4a"); // Inserire il percorso del file audio clic
+                    File file = new File("SoundEffect.mp3"); // Inserire il percorso del file audio clic
                     Clip clip = AudioSystem.getClip();
                     clip.open(AudioSystem.getAudioInputStream(file));
                     clip.start();
