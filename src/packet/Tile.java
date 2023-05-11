@@ -462,9 +462,6 @@ public class Tile extends JButton implements MouseListener {
                 //Inserimento all'interno di un array delle coordinate che occupa la barca
                 map.shipTwo_Tiles[0] = (map.tile[i][j - 1].i - 1) + "," + (map.tile[i][j - 1].j - 1);
                 map.shipTwo_Tiles[1] = (i - 1) + "," + (j - 1);
-
-                System.out.println(map.shipTwo_Tiles[0]);
-                System.out.println(map.shipTwo_Tiles[1]);
             }
             //Se la barca selezionata é quella da 3
             else if (shipType.equals("ship3")) {
@@ -473,9 +470,13 @@ public class Tile extends JButton implements MouseListener {
                 map.tile[i][j + 1].hasShip = true;
 
                 //Inserimento all'interno di un array delle coordinate che occupa la barca
-                map.shipThree_Tiles[0] = (map.tile[i - 1][j].i - 1) + "," + (map.tile[i - 1][j].j - 1);
+                map.shipThree_Tiles[0] = (map.tile[i][j - 1].i - 1) + "," + (map.tile[i][j - 1].j - 1);
                 map.shipThree_Tiles[1] = (i - 1) + "," + (j - 1);
-                map.shipThree_Tiles[2] = (map.tile[i + 1][j].i - 1) + "," + (map.tile[i + 1][j].j - 1);
+                map.shipThree_Tiles[2] = (map.tile[i][j + 1].i - 1) + "," + (map.tile[i][j + 1].j - 1);
+
+                System.out.println(map.shipThree_Tiles[0]);
+                System.out.println(map.shipThree_Tiles[1]);
+                System.out.println(map.shipThree_Tiles[2]);
             }
             //Se la barca selezionata é la terza
             else if (shipType.equals("ship4")) {
@@ -485,10 +486,16 @@ public class Tile extends JButton implements MouseListener {
                 map.tile[i][j - 2].hasShip = true;
 
                 //Inserimento all'interno di un array delle coordinate che occupa la barca
-                map.shipFour_Tiles[0] = (map.tile[i - 2][j].i - 1) + "," + (map.tile[i - 2][j].j - 1);
-                map.shipFour_Tiles[1] = (map.tile[i - 1][j].i - 1) + "," + (map.tile[i - 1][j].j - 1);
+                map.shipFour_Tiles[0] = (map.tile[i][j - 2].i - 1) + "," + (map.tile[i][j - 2].j - 1);
+                map.shipFour_Tiles[1] = (map.tile[i][j - 1].i - 1) + "," + (map.tile[i][j - 1].j - 1);
                 map.shipFour_Tiles[2] = (i - 1) + "," + (j - 1);
-                map.shipFour_Tiles[3] = (map.tile[i + 1][j].i - 1) + "," + (map.tile[i + 1][j].j - 1);
+                map.shipFour_Tiles[3] = (map.tile[i][j + 1].i - 1) + "," + (map.tile[i][j + 1].j - 1);
+
+                System.out.println(map.shipFour_Tiles[0]);
+                System.out.println(map.shipFour_Tiles[1]);
+                System.out.println(map.shipFour_Tiles[2]);
+                System.out.println(map.shipFour_Tiles[3]);
+
             }
             //Se la barca selezionata é quella da 5
             else if (shipType.equals("ship5")) {
