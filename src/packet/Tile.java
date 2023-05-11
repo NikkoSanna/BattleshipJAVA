@@ -545,9 +545,9 @@ public class Tile extends JButton implements MouseListener {
             if (hasShip) {
                 setIcon(shipHit);
 
-                //Effetto audio
+                //Effetto audio colpita
                 try {
-                    File file = new File("SoundEffect.mp3"); // Inserire il percorso del file audio clic
+                    File file = new File("SoundEffect.wav"); // Inserire il percorso del file audio clic
                     Clip clip = AudioSystem.getClip();
                     clip.open(AudioSystem.getAudioInputStream(file));
                     clip.start();
@@ -866,6 +866,16 @@ public class Tile extends JButton implements MouseListener {
                             throw new RuntimeException(e);
                         }
                     }
+
+                    //Effetto audio colpita (senza affondo)
+                    try {
+                        File file = new File("HitSoundEffect.wav"); // Inserire il percorso del file audio clic
+                        Clip clip = AudioSystem.getClip();
+                        clip.open(AudioSystem.getAudioInputStream(file));
+                        clip.start();
+                    } catch (Exception ex) {
+                        ex.printStackTrace();
+                    }
                 } else {
                     map.shipSunkCounterInt++;    //Incremento il contatore delle barche affondate
                     if (map.client == null) {
@@ -874,6 +884,15 @@ public class Tile extends JButton implements MouseListener {
                         map.client.mapOne.shipSunkText.setText("Barche affondate: " + map.shipSunkCounterInt);
                     }
 
+                    //Effetto audio affondo
+                    try {
+                        File file = new File("SunkSoundEffect.wav"); // Inserire il percorso del file audio clic
+                        Clip clip = AudioSystem.getClip();
+                        clip.open(AudioSystem.getAudioInputStream(file));
+                        clip.start();
+                    } catch (Exception ex) {
+                        ex.printStackTrace();
+                    }
                 }
 
                 //Controllo se tutte le barche sono affondate e in caso lo comunico all'avversario
@@ -918,6 +937,16 @@ public class Tile extends JButton implements MouseListener {
                 }
                 //Se non é presente una barca devo mostrare che quella casella é stata colpita ma a vuoto e informare l'avversario
             } else {
+                //Effetto audio colpo a vuoto
+                try {
+                    File file = new File("WaterHit.wav"); // Inserire il percorso del file audio clic
+                    Clip clip = AudioSystem.getClip();
+                    clip.open(AudioSystem.getAudioInputStream(file));
+                    clip.start();
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
+
                 setIcon(badHit);
                 if (map.client == null) {
                     try {

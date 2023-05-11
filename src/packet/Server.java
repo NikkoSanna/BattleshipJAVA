@@ -1,5 +1,7 @@
 package packet;
 
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
 import javax.swing.*;
 import java.io.*;
 import java.net.DatagramSocket;
@@ -158,6 +160,16 @@ public class Server extends JFrame implements Runnable {
                                             mapTwo.tile[x2][y2].setIcon(mapTwo.tile[x2][y2].ship2_2Hit);
                                         }
                                     }
+
+                                    //Effetto audio affondo
+                                    try {
+                                        File file = new File("SunkSoundEffect.wav"); // Inserire il percorso del file audio clic
+                                        Clip clip = AudioSystem.getClip();
+                                        clip.open(AudioSystem.getAudioInputStream(file));
+                                        clip.start();
+                                    } catch (Exception ex) {
+                                        ex.printStackTrace();
+                                    }
                                 } else if (str.equals("shipThreeSunk")) {
                                     shipSunk++;
                                     //Uso un ciclo e leggo dal client tutte le coordinate delle caselle
@@ -176,6 +188,16 @@ public class Server extends JFrame implements Runnable {
                                         } else if (a == 2) {
                                             mapTwo.tile[x2][y2].setIcon(mapTwo.tile[x2][y2].ship3_3Hit);
                                         }
+                                    }
+
+                                    //Effetto audio affondo
+                                    try {
+                                        File file = new File("SunkSoundEffect.wav"); // Inserire il percorso del file audio clic
+                                        Clip clip = AudioSystem.getClip();
+                                        clip.open(AudioSystem.getAudioInputStream(file));
+                                        clip.start();
+                                    } catch (Exception ex) {
+                                        ex.printStackTrace();
                                     }
                                 } else if (str.equals("shipFourSunk")) {
                                     shipSunk++;
@@ -197,6 +219,16 @@ public class Server extends JFrame implements Runnable {
                                         } else if (a == 3) {
                                             mapTwo.tile[x2][y2].setIcon(mapTwo.tile[x2][y2].ship4_4Hit);
                                         }
+                                    }
+
+                                    //Effetto audio affondo
+                                    try {
+                                        File file = new File("SunkSoundEffect.wav"); // Inserire il percorso del file audio clic
+                                        Clip clip = AudioSystem.getClip();
+                                        clip.open(AudioSystem.getAudioInputStream(file));
+                                        clip.start();
+                                    } catch (Exception ex) {
+                                        ex.printStackTrace();
                                     }
                                 } else if (str.equals("shipFiveSunk")) {
                                     shipSunk++;
@@ -221,11 +253,41 @@ public class Server extends JFrame implements Runnable {
                                             mapTwo.tile[x2][y2].setIcon(mapTwo.tile[x2][y2].ship5_5Hit);
                                         }
                                     }
+
+                                    //Effetto audio affondo
+                                    try {
+                                        File file = new File("SunkSoundEffect.wav"); // Inserire il percorso del file audio clic
+                                        Clip clip = AudioSystem.getClip();
+                                        clip.open(AudioSystem.getAudioInputStream(file));
+                                        clip.start();
+                                    } catch (Exception ex) {
+                                        ex.printStackTrace();
+                                    }
                                 } else {
+                                    //Effetto audio colpita (senza affondo)
+                                    try {
+                                        File file = new File("HitSoundEffect.wav"); // Inserire il percorso del file audio clic
+                                        Clip clip = AudioSystem.getClip();
+                                        clip.open(AudioSystem.getAudioInputStream(file));
+                                        clip.start();
+                                    } catch (Exception ex) {
+                                        ex.printStackTrace();
+                                    }
+
                                     System.out.println("Nessuna barca affondata");
                                 }
                                 //Se non ho colpito una barca devo mettere l'icona corretta
                             } else if (str.equals("badHit")) {
+                                //Effetto audio colpo a vuoto
+                                try {
+                                    File file = new File("WaterHit.wav"); // Inserire il percorso del file audio clic
+                                    Clip clip = AudioSystem.getClip();
+                                    clip.open(AudioSystem.getAudioInputStream(file));
+                                    clip.start();
+                                } catch (Exception ex) {
+                                    ex.printStackTrace();
+                                }
+
                                 //Comunico all'avversario che puó smettere di aspettare nuove coordinate
                                 bufferOut.write("stopCycle");
                                 bufferOut.newLine();
