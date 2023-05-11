@@ -11,10 +11,10 @@ public class ShipSelector extends JFrame {
 
     //Immagini relative alle barche
 
-    ImageIcon iconShip2 = new ImageIcon(new ImageIcon("images/ship2/ship2.png").getImage());
-    ImageIcon iconShip3 = new ImageIcon(new ImageIcon("images/ship3/ship3.png").getImage());
-    ImageIcon iconShip4 = new ImageIcon(new ImageIcon("images/ship4/ship4.png").getImage());
-    ImageIcon iconShip5 = new ImageIcon(new ImageIcon("images/ship5/ship5.png").getImage());
+    ImageIcon iconShip2 = new ImageIcon(new ImageIcon("images/ship2/ship2.png").getImage().getScaledInstance(76,46, Image.SCALE_SMOOTH));
+    ImageIcon iconShip3 = new ImageIcon(new ImageIcon("images/ship3/ship3.png").getImage().getScaledInstance(114, 46, Image.SCALE_SMOOTH));
+    ImageIcon iconShip4 = new ImageIcon(new ImageIcon("images/ship4/ship4.png").getImage().getScaledInstance(152, 46, Image.SCALE_SMOOTH));
+    ImageIcon iconShip5 = new ImageIcon(new ImageIcon("images/ship5/ship5.png").getImage().getScaledInstance(190, 46, Image.SCALE_SMOOTH));
 
     //Oggetti legati all'interfaccia
     Container c = this.getContentPane();
