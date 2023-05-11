@@ -4,7 +4,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.io.File;
 import java.io.IOException;
+import javax.sound.sampled.*;
 
 public class Tile extends JButton implements MouseListener {
     //Attributi della casella
@@ -542,6 +544,16 @@ public class Tile extends JButton implements MouseListener {
             //Se é presente una barca allora devo mostrare che questa é stata colpita e informare l'avversario
             if (hasShip) {
                 setIcon(shipHit);
+
+                //Effetto audio
+                try {
+                    File file = new File("SoundEffect.m4a"); // Inserire il percorso del file audio clic
+                    Clip clip = AudioSystem.getClip();
+                    clip.open(AudioSystem.getAudioInputStream(file));
+                    clip.start();
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
 
                 if (map.client == null) {
                     try {
