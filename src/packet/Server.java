@@ -16,7 +16,6 @@ public class Server extends JFrame implements Runnable {
     String ip;
     String str;     //stringa usata per la ricezione dal client
     String tileUsed;    //Stringa che contiene la casella che ho cliccato
-    String shipSunklbl;    //Stringa che contiene il tipo di barca affondata
 
     int shipSunk = 0;       //Contatore delle navi affondate
 
