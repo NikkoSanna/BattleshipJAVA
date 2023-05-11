@@ -341,17 +341,32 @@ public class Tile extends JButton implements MouseListener {
     public void mouseClicked(MouseEvent e) {
         //Se sono nella fase di piazzamento richiamo il metodo placeShip col tipo di barca corretto
         if (!map.actuallyPlaying) {
-            try {
-                if (map.getShipType().equals("ship2") && !hasShip && !map.tile[i - 1][j].hasShip) {
-                    placeShip("ship2");
-                } else if (map.getShipType().equals("ship3") && !hasShip && !map.tile[i - 1][j].hasShip && !map.tile[i + 1][j].hasShip) {
-                    placeShip("ship3");
-                } else if (map.getShipType().equals("ship4") && !hasShip && !map.tile[i - 1][j].hasShip && !map.tile[i + 1][j].hasShip && !map.tile[i - 2][j].hasShip) {
-                    placeShip("ship4");
-                } else if (map.getShipType().equals("ship5") && !hasShip && !map.tile[i - 1][j].hasShip && !map.tile[i + 1][j].hasShip && !map.tile[i - 2][j].hasShip && !map.tile[i + 2][j].hasShip) {
-                    placeShip("ship5");
+            if (!map.tilted) {
+                try {
+                    if (map.getShipType().equals("ship2") && !hasShip && !map.tile[i - 1][j].hasShip) {
+                        placeShip("ship2");
+                    } else if (map.getShipType().equals("ship3") && !hasShip && !map.tile[i - 1][j].hasShip && !map.tile[i + 1][j].hasShip) {
+                        placeShip("ship3");
+                    } else if (map.getShipType().equals("ship4") && !hasShip && !map.tile[i - 1][j].hasShip && !map.tile[i + 1][j].hasShip && !map.tile[i - 2][j].hasShip) {
+                        placeShip("ship4");
+                    } else if (map.getShipType().equals("ship5") && !hasShip && !map.tile[i - 1][j].hasShip && !map.tile[i + 1][j].hasShip && !map.tile[i - 2][j].hasShip && !map.tile[i + 2][j].hasShip) {
+                        placeShip("ship5");
+                    }
+                } catch (Exception ignored) {
                 }
-            } catch (Exception ignored) {
+            } else {
+                try {
+                    if (map.getShipType().equals("ship2") && !hasShip && !map.tile[i][j - 1].hasShip) {
+                        placeShip("ship2");
+                    } else if (map.getShipType().equals("ship3") && !hasShip && !map.tile[i][j - 1].hasShip && !map.tile[i][j + 1].hasShip) {
+                        placeShip("ship3");
+                    } else if (map.getShipType().equals("ship4") && !hasShip && !map.tile[i][j - 1].hasShip && !map.tile[i][j + 1].hasShip && !map.tile[i][j - 2].hasShip) {
+                        placeShip("ship4");
+                    } else if (map.getShipType().equals("ship5") && !hasShip && !map.tile[i][j - 1].hasShip && !map.tile[i][j + 1].hasShip && !map.tile[i][j - 2].hasShip && !map.tile[i][j + 2].hasShip) {
+                        placeShip("ship5");
+                    }
+                } catch (Exception ignored) {
+                }
             }
         }
 
