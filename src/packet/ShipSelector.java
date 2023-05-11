@@ -17,11 +17,12 @@ public class ShipSelector extends JFrame {
     ImageIcon iconShip4 = new ImageIcon(new ImageIcon("images/ship4/ship4.png").getImage().getScaledInstance(152, 46, Image.SCALE_SMOOTH));
     ImageIcon iconShip5 = new ImageIcon(new ImageIcon("images/ship5/ship5.png").getImage().getScaledInstance(190, 46, Image.SCALE_SMOOTH));
 
-    ImageIcon iconRotationX = new ImageIcon(new ImageIcon("images/sottomarino.png").getImage().getScaledInstance(114, 46, Image.SCALE_SMOOTH));
-    ImageIcon iconRotationY = new ImageIcon(new ImageIcon("images/sottomarino.png").getImage().getScaledInstance(46, 114, Image.SCALE_SMOOTH));
+    ImageIcon iconRotationX = new ImageIcon(new ImageIcon("images/shipExample.png").getImage().getScaledInstance(114, 46, Image.SCALE_SMOOTH));
+    ImageIcon iconRotationY = new ImageIcon(new ImageIcon("images/shipExample.png").getImage().getScaledInstance(46, 114, Image.SCALE_SMOOTH));
 
     //Oggetti legati all'interfaccia
     Container c = this.getContentPane();
+
     JPanel ships = new JPanel();
     JButton ship2 = new JButton();
     JButton ship3 = new JButton();
@@ -46,11 +47,11 @@ public class ShipSelector extends JFrame {
         }
 
         c.setLayout(new FlowLayout());
+        c.setBackground(Color.GRAY);
 
         //Impostazioni del layout barche
-        ships.setLayout(new GridLayout(1, 4, 20, 20));
-        ships.setBorder(new EmptyBorder(20, 20, 20, 10));
-        ships.setBackground(Color.GRAY);
+        ships.setLayout(new GridLayout(1, 4, 5, 0));
+        ships.setOpaque(false);
 
         //Comandi per l'estetica dei bottoni
         ship2.setContentAreaFilled(false);
@@ -68,7 +69,7 @@ public class ShipSelector extends JFrame {
         ship4.setIcon(iconShip4);
         ship5.setIcon(iconShip5);
 
-        shipRotation.setIcon(iconRotationX);
+        shipRotation.setIcon(iconRotationY);
 
         //Aggiungo i bottoni al panel
         ships.add(ship2);
@@ -79,18 +80,20 @@ public class ShipSelector extends JFrame {
 
         c.add(ships);   //Aggiunta del panel al content pane
 
-        rotate.setLayout(new GridLayout(2,1,20,20));
-        rotate.setBorder(new EmptyBorder(20, 10, 20, 20));
-        rotate.setBackground(Color.GRAY);
+        rotate.setLayout(new BoxLayout(rotate, BoxLayout.Y_AXIS));
+        rotate.setPreferredSize(new Dimension(120, 160));
+        rotate.setOpaque(false);
 
         tiltShip.setText("Ruota");
         tiltShip.setFont(font);
-        tiltShip.setBorder(BorderFactory.createLineBorder(Color.GRAY, 2));
-        tiltShip.setBackground(Color.WHITE);
+        tiltShip.setBorder(BorderFactory.createLineBorder(Color.WHITE, 2));
         tiltShip.setOpaque(true);
+        tiltShip.setAlignmentX(Component.CENTER_ALIGNMENT);
+        tiltShip.setBackground(Color.WHITE);
+
+        shipRotation.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         rotate.add(tiltShip);
-
         rotate.add(shipRotation);
 
         c.add(rotate);
