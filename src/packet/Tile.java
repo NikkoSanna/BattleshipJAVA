@@ -545,16 +545,6 @@ public class Tile extends JButton implements MouseListener {
             if (hasShip) {
                 setIcon(shipHit);
 
-                //Effetto audio colpita
-                try {
-                    File file = new File("SoundEffect.wav"); // Inserire il percorso del file audio clic
-                    Clip clip = AudioSystem.getClip();
-                    clip.open(AudioSystem.getAudioInputStream(file));
-                    clip.start();
-                } catch (Exception ex) {
-                    ex.printStackTrace();
-                }
-
                 if (map.client == null) {
                     try {
                         map.server.bufferOut.write("goodHit");
