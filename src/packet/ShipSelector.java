@@ -3,6 +3,7 @@ package packet;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
+import java.io.File;
 
 public class ShipSelector extends JFrame {
     Map map;    //Il ship selector deve conoscere la mappa per permettere poi effettivamente di piazzare le barche
@@ -16,6 +17,9 @@ public class ShipSelector extends JFrame {
     ImageIcon iconShip4 = new ImageIcon(new ImageIcon("images/ship4/ship4.png").getImage().getScaledInstance(152, 46, Image.SCALE_SMOOTH));
     ImageIcon iconShip5 = new ImageIcon(new ImageIcon("images/ship5/ship5.png").getImage().getScaledInstance(190, 46, Image.SCALE_SMOOTH));
 
+    ImageIcon iconRotationX = new ImageIcon(new ImageIcon("images/sottomarino.png").getImage().getScaledInstance(114, 46, Image.SCALE_SMOOTH));
+    ImageIcon iconRotationY = new ImageIcon(new ImageIcon("images/sottomarino.png").getImage().getScaledInstance(46, 114, Image.SCALE_SMOOTH));
+
     //Oggetti legati all'interfaccia
     Container c = this.getContentPane();
     JPanel ships = new JPanel();
@@ -24,16 +28,26 @@ public class ShipSelector extends JFrame {
     JButton ship4 = new JButton();
     JButton ship5 = new JButton();
 
+    JPanel rotate = new JPanel();
     JButton tiltShip = new JButton();       //Bottone usato per ruotare la barca
+    JLabel shipRotation = new JLabel();
+
+    Font font;
 
     public ShipSelector(Map map) {
         this.map = map;     //Il ship selector é a conoscenza dell'intera struttura della mappa
 
         setTitle("Ship Select");
 
-        //Impostazioni dei layout
-        ships.setLayout(new GridLayout(1, 5, 20, 20));
-        ships.setBorder(new EmptyBorder(20, 20, 20, 20));
+        //Font da file esterno
+        try {
+            font = Font.createFont(Font.TRUETYPE_FONT, new File("Font.ttf")).deriveFont(Font.PLAIN, 25);
+        } catch (Exception ignored) {
+        }
+
+        //Impostazioni del layout barche
+        ships.setLayout(new GridLayout(1, 4, 20, 20));
+        ships.setBorder(new EmptyBorder(20, 20, 20, 10));
         ships.setBackground(Color.GRAY);
 
         //Comandi per l'estetica dei bottoni
@@ -46,15 +60,13 @@ public class ShipSelector extends JFrame {
         ship5.setContentAreaFilled(false);
         ship5.setBorderPainted(false);
 
-        tiltShip.setBorder(BorderFactory.createLineBorder(Color.GRAY, 2));
-        tiltShip.setBackground(Color.WHITE);
-        tiltShip.setOpaque(true);
-
         //Aggiungo le icone ai bottoni
         ship2.setIcon(iconShip2);
         ship3.setIcon(iconShip3);
         ship4.setIcon(iconShip4);
         ship5.setIcon(iconShip5);
+
+        shipRotation.setIcon(iconRotationX);
 
         //Aggiungo i bottoni al panel
         ships.add(ship2);
@@ -65,6 +77,21 @@ public class ShipSelector extends JFrame {
 
         c.add(ships);   //Aggiunta del panel al content pane
 
+        rotate.setLayout(new GridLayout(2,1,20,20));
+        rotate.setBorder(new EmptyBorder(20, 10, 20, 20));
+        rotate.setBackground(Color.GRAY);
+
+        tiltShip.setText("Ruota");
+        tiltShip.setFont(font);
+        tiltShip.setBorder(BorderFactory.createLineBorder(Color.GRAY, 2));
+        tiltShip.setBackground(Color.WHITE);
+        tiltShip.setOpaque(true);
+
+        rotate.add(tiltShip);
+
+        rotate.add(shipRotation);
+
+        c.add(rotate);
 
         //Imposto degli action listener con relativi comandi ad ogni bottone
         ship2.setActionCommand("ship2");

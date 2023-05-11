@@ -61,7 +61,14 @@ public class Listener extends JFrame implements ActionListener, WindowListener {
         //Metodi richiamati dal ship selector
         try {
             if(e.getSource() == shipSelect.tiltShip) {
-                shipSelect.map.tilted = true;
+                if(!shipSelect.map.tilted){
+                    shipSelect.map.tilted = true;
+                    shipSelect.shipRotation.setIcon(shipSelect.iconRotationX);
+                }else{
+                    shipSelect.map.tilted = false;
+                    shipSelect.shipRotation.setIcon(shipSelect.iconRotationY);
+                }
+
             }
             //Se la barca selezionata é la prima
             else if (e.getSource() == shipSelect.ship2) {
