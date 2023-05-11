@@ -65,6 +65,8 @@ public class Listener extends JFrame implements ActionListener, WindowListener {
             }
             //Se la barca selezionata é la prima
             else if (e.getSource() == shipSelect.ship2) {
+                shipSelect.map.clear.setEnabled(false);
+
                 //Rendo il bottone della barca non piú usabile e nascondo lo ship selector
                 shipSelect.ship2.setEnabled(false);
                 shipSelect.setVisible(false);

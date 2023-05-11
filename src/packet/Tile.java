@@ -495,6 +495,7 @@ public class Tile extends JButton implements MouseListener {
         map.setShipType("");
         map.shipselect.setVisible(true);
         map.tilted = false;
+        map.clear.setEnabled(true);
 
         if (!map.shipselect.ship2.isEnabled() && !map.shipselect.ship3.isEnabled() && !map.shipselect.ship4.isEnabled() && !map.shipselect.ship5.isEnabled()) {
             map.ready.setEnabled(true);
