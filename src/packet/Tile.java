@@ -21,39 +21,67 @@ public class Tile extends JButton implements MouseListener {
 
     ImageIcon ship2_1 = new ImageIcon(new ImageIcon("images/ship2/ship2_1.png").getImage().getScaledInstance(36, 36, Image.SCALE_SMOOTH));
     ImageIcon ship2_2 = new ImageIcon(new ImageIcon("images/ship2/ship2_2.png").getImage().getScaledInstance(36, 36, Image.SCALE_SMOOTH));
+    ImageIcon ship2_1tilted = new ImageIcon(new ImageIcon("images/ship2/ship2_1tilted.png").getImage().getScaledInstance(36, 36, Image.SCALE_SMOOTH));
+    ImageIcon ship2_2tilted = new ImageIcon(new ImageIcon("images/ship2/ship2_2tilted.png").getImage().getScaledInstance(36, 36, Image.SCALE_SMOOTH));
 
     ImageIcon ship3_1 = new ImageIcon(new ImageIcon("images/ship3/ship3_1.png").getImage().getScaledInstance(36, 36, Image.SCALE_SMOOTH));
     ImageIcon ship3_2 = new ImageIcon(new ImageIcon("images/ship3/ship3_2.png").getImage().getScaledInstance(36, 36, Image.SCALE_SMOOTH));
     ImageIcon ship3_3 = new ImageIcon(new ImageIcon("images/ship3/ship3_3.png").getImage().getScaledInstance(36, 36, Image.SCALE_SMOOTH));
+    ImageIcon ship3_1tilted = new ImageIcon(new ImageIcon("images/ship3/ship3_1tilted.png").getImage().getScaledInstance(36, 36, Image.SCALE_SMOOTH));
+    ImageIcon ship3_2tilted = new ImageIcon(new ImageIcon("images/ship3/ship3_2tilted.png").getImage().getScaledInstance(36, 36, Image.SCALE_SMOOTH));
+    ImageIcon ship3_3tilted = new ImageIcon(new ImageIcon("images/ship3/ship3_3tilted.png").getImage().getScaledInstance(36, 36, Image.SCALE_SMOOTH));
 
     ImageIcon ship4_1 = new ImageIcon(new ImageIcon("images/ship4/ship4_1.png").getImage().getScaledInstance(36, 36, Image.SCALE_SMOOTH));
     ImageIcon ship4_2 = new ImageIcon(new ImageIcon("images/ship4/ship4_2.png").getImage().getScaledInstance(36, 36, Image.SCALE_SMOOTH));
     ImageIcon ship4_3 = new ImageIcon(new ImageIcon("images/ship4/ship4_3.png").getImage().getScaledInstance(36, 36, Image.SCALE_SMOOTH));
     ImageIcon ship4_4 = new ImageIcon(new ImageIcon("images/ship4/ship4_4.png").getImage().getScaledInstance(36, 36, Image.SCALE_SMOOTH));
+    ImageIcon ship4_1tilted = new ImageIcon(new ImageIcon("images/ship4/ship4_1tilted.png").getImage().getScaledInstance(36, 36, Image.SCALE_SMOOTH));
+    ImageIcon ship4_2tilted = new ImageIcon(new ImageIcon("images/ship4/ship4_2tilted.png").getImage().getScaledInstance(36, 36, Image.SCALE_SMOOTH));
+    ImageIcon ship4_3tilted = new ImageIcon(new ImageIcon("images/ship4/ship4_3tilted.png").getImage().getScaledInstance(36, 36, Image.SCALE_SMOOTH));
+    ImageIcon ship4_4tilted = new ImageIcon(new ImageIcon("images/ship4/ship4_4tilted.png").getImage().getScaledInstance(36, 36, Image.SCALE_SMOOTH));
 
     ImageIcon ship5_1 = new ImageIcon(new ImageIcon("images/ship5/ship5_1.png").getImage().getScaledInstance(36, 36, Image.SCALE_SMOOTH));
     ImageIcon ship5_2 = new ImageIcon(new ImageIcon("images/ship5/ship5_2.png").getImage().getScaledInstance(36, 36, Image.SCALE_SMOOTH));
     ImageIcon ship5_3 = new ImageIcon(new ImageIcon("images/ship5/ship5_3.png").getImage().getScaledInstance(36, 36, Image.SCALE_SMOOTH));
     ImageIcon ship5_4 = new ImageIcon(new ImageIcon("images/ship5/ship5_4.png").getImage().getScaledInstance(36, 36, Image.SCALE_SMOOTH));
     ImageIcon ship5_5 = new ImageIcon(new ImageIcon("images/ship5/ship5_5.png").getImage().getScaledInstance(36, 36, Image.SCALE_SMOOTH));
+    ImageIcon ship5_1tilted = new ImageIcon(new ImageIcon("images/ship5/ship5_1tilted.png").getImage().getScaledInstance(36, 36, Image.SCALE_SMOOTH));
+    ImageIcon ship5_2tilted = new ImageIcon(new ImageIcon("images/ship5/ship5_2tilted.png").getImage().getScaledInstance(36, 36, Image.SCALE_SMOOTH));
+    ImageIcon ship5_3tilted = new ImageIcon(new ImageIcon("images/ship5/ship5_3tilted.png").getImage().getScaledInstance(36, 36, Image.SCALE_SMOOTH));
+    ImageIcon ship5_4tilted = new ImageIcon(new ImageIcon("images/ship5/ship5_4tilted.png").getImage().getScaledInstance(36, 36, Image.SCALE_SMOOTH));
+    ImageIcon ship5_5tilted = new ImageIcon(new ImageIcon("images/ship5/ship5_5tilted.png").getImage().getScaledInstance(36, 36, Image.SCALE_SMOOTH));
 
     ImageIcon ship2_1Hit = new ImageIcon(new ImageIcon("images/ship2/ship2_1Hit.png").getImage().getScaledInstance(36, 36, Image.SCALE_SMOOTH));
     ImageIcon ship2_2Hit = new ImageIcon(new ImageIcon("images/ship2/ship2_2Hit.png").getImage().getScaledInstance(36, 36, Image.SCALE_SMOOTH));
+    ImageIcon ship2_1Hittilted = new ImageIcon(new ImageIcon("images/ship2/ship2_1Hittilted.png").getImage().getScaledInstance(36, 36, Image.SCALE_SMOOTH));
+    ImageIcon ship2_2Hittilted = new ImageIcon(new ImageIcon("images/ship2/ship2_2Hittilted.png").getImage().getScaledInstance(36, 36, Image.SCALE_SMOOTH));
 
     ImageIcon ship3_1Hit = new ImageIcon(new ImageIcon("images/ship3/ship3_1Hit.png").getImage().getScaledInstance(36, 36, Image.SCALE_SMOOTH));
     ImageIcon ship3_2Hit = new ImageIcon(new ImageIcon("images/ship3/ship3_2Hit.png").getImage().getScaledInstance(36, 36, Image.SCALE_SMOOTH));
     ImageIcon ship3_3Hit = new ImageIcon(new ImageIcon("images/ship3/ship3_3Hit.png").getImage().getScaledInstance(36, 36, Image.SCALE_SMOOTH));
+    ImageIcon ship3_1Hittilted = new ImageIcon(new ImageIcon("images/ship3/ship3_1Hittilted.png").getImage().getScaledInstance(36, 36, Image.SCALE_SMOOTH));
+    ImageIcon ship3_2Hittilted = new ImageIcon(new ImageIcon("images/ship3/ship3_2Hittilted.png").getImage().getScaledInstance(36, 36, Image.SCALE_SMOOTH));
+    ImageIcon ship3_3Hittilted = new ImageIcon(new ImageIcon("images/ship3/ship3_3Hittilted.png").getImage().getScaledInstance(36, 36, Image.SCALE_SMOOTH));
 
     ImageIcon ship4_1Hit = new ImageIcon(new ImageIcon("images/ship4/ship4_1Hit.png").getImage().getScaledInstance(36, 36, Image.SCALE_SMOOTH));
     ImageIcon ship4_2Hit = new ImageIcon(new ImageIcon("images/ship4/ship4_2Hit.png").getImage().getScaledInstance(36, 36, Image.SCALE_SMOOTH));
     ImageIcon ship4_3Hit = new ImageIcon(new ImageIcon("images/ship4/ship4_3Hit.png").getImage().getScaledInstance(36, 36, Image.SCALE_SMOOTH));
     ImageIcon ship4_4Hit = new ImageIcon(new ImageIcon("images/ship4/ship4_4Hit.png").getImage().getScaledInstance(36, 36, Image.SCALE_SMOOTH));
+    ImageIcon ship4_1Hittilted = new ImageIcon(new ImageIcon("images/ship4/ship4_1Hittilted.png").getImage().getScaledInstance(36, 36, Image.SCALE_SMOOTH));
+    ImageIcon ship4_2Hittilted = new ImageIcon(new ImageIcon("images/ship4/ship4_2Hittilted.png").getImage().getScaledInstance(36, 36, Image.SCALE_SMOOTH));
+    ImageIcon ship4_3Hittilted = new ImageIcon(new ImageIcon("images/ship4/ship4_3Hittilted.png").getImage().getScaledInstance(36, 36, Image.SCALE_SMOOTH));
+    ImageIcon ship4_4Hittilted = new ImageIcon(new ImageIcon("images/ship4/ship4_4Hittilted.png").getImage().getScaledInstance(36, 36, Image.SCALE_SMOOTH));
 
     ImageIcon ship5_1Hit = new ImageIcon(new ImageIcon("images/ship5/ship5_1Hit.png").getImage().getScaledInstance(36, 36, Image.SCALE_SMOOTH));
     ImageIcon ship5_2Hit = new ImageIcon(new ImageIcon("images/ship5/ship5_2Hit.png").getImage().getScaledInstance(36, 36, Image.SCALE_SMOOTH));
     ImageIcon ship5_3Hit = new ImageIcon(new ImageIcon("images/ship5/ship5_3Hit.png").getImage().getScaledInstance(36, 36, Image.SCALE_SMOOTH));
     ImageIcon ship5_4Hit = new ImageIcon(new ImageIcon("images/ship5/ship5_4Hit.png").getImage().getScaledInstance(36, 36, Image.SCALE_SMOOTH));
     ImageIcon ship5_5Hit = new ImageIcon(new ImageIcon("images/ship5/ship5_5Hit.png").getImage().getScaledInstance(36, 36, Image.SCALE_SMOOTH));
+    ImageIcon ship5_1Hittilted = new ImageIcon(new ImageIcon("images/ship5/ship5_1Hittilted.png").getImage().getScaledInstance(36, 36, Image.SCALE_SMOOTH));
+    ImageIcon ship5_2Hittilted = new ImageIcon(new ImageIcon("images/ship5/ship5_2Hittilted.png").getImage().getScaledInstance(36, 36, Image.SCALE_SMOOTH));
+    ImageIcon ship5_3Hittilted = new ImageIcon(new ImageIcon("images/ship5/ship5_3Hittilted.png").getImage().getScaledInstance(36, 36, Image.SCALE_SMOOTH));
+    ImageIcon ship5_4Hittilted = new ImageIcon(new ImageIcon("images/ship5/ship5_4Hittilted.png").getImage().getScaledInstance(36, 36, Image.SCALE_SMOOTH));
+    ImageIcon ship5_5Hittilted = new ImageIcon(new ImageIcon("images/ship5/ship5_5Hittilted.png").getImage().getScaledInstance(36, 36, Image.SCALE_SMOOTH));
 
     ImageIcon shipHit = new ImageIcon(new ImageIcon("images/shipHit.png").getImage().getScaledInstance(36, 36, Image.SCALE_SMOOTH));
     ImageIcon badHit = new ImageIcon(new ImageIcon("images/badHit.png").getImage().getScaledInstance(24, 24, Image.SCALE_SMOOTH));
@@ -299,38 +327,38 @@ public class Tile extends JButton implements MouseListener {
                 if (map.getShipType().equals("ship2")) {
                     //Con questa condizione evito anche che vengano cancellati i colori
                     if (j >= 1 && !hasShip && !map.tile[i][j - 1].hasShip) {
-                        setIcon(ship2_2);
-                        map.tile[i][j - 1].setIcon(ship2_1);
+                        setIcon(ship2_2tilted);
+                        map.tile[i][j - 1].setIcon(ship2_1tilted);
                     }
                 }
                 //Se la barca selezionata é quella da 3
                 else if (map.getShipType().equals("ship3")) {
                     //Con questa condizione evito anche che vengano cancellati i colori
                     if (j >= 1 && j <= map.getDimension() - 1 && !hasShip && !map.tile[i][j - 1].hasShip && !map.tile[i][j + 1].hasShip) {
-                        setIcon(ship3_2);
-                        map.tile[i][j - 1].setIcon(ship3_1);
-                        map.tile[i][j + 1].setIcon(ship3_3);
+                        setIcon(ship3_2tilted);
+                        map.tile[i][j - 1].setIcon(ship3_1tilted);
+                        map.tile[i][j + 1].setIcon(ship3_3tilted);
                     }
                 }
                 //Se la barca selezionata é la quella da 4
                 else if (map.getShipType().equals("ship4")) {
                     //Con questa condizione evito anche che vengano cancellati i colori
                     if (j >= 2 && j <= map.getDimension() - 1 && !hasShip && !map.tile[i][j - 1].hasShip && !map.tile[i][j + 1].hasShip && !map.tile[i][j - 2].hasShip) {
-                        setIcon(ship4_3);
-                        map.tile[i][j - 1].setIcon(ship4_2);
-                        map.tile[i][j + 1].setIcon(ship4_4);
-                        map.tile[i][j - 2].setIcon(ship4_1);
+                        setIcon(ship4_3tilted);
+                        map.tile[i][j - 1].setIcon(ship4_2tilted);
+                        map.tile[i][j + 1].setIcon(ship4_4tilted);
+                        map.tile[i][j - 2].setIcon(ship4_1tilted);
                     }
                 }
                 //Se la barca selezionata é quella da 5
                 else if (map.getShipType().equals("ship5")) {
                     //Con questa condizione evito anche che vengano cancellati i colori
                     if (j >= 2 && j <= map.getDimension() - 2 && !hasShip && !map.tile[i][j - 1].hasShip && !map.tile[i][j + 1].hasShip && !map.tile[i][j - 2].hasShip && !map.tile[i][j + 2].hasShip) {
-                        setIcon(ship5_3);
-                        map.tile[i][j - 1].setIcon(ship5_2);
-                        map.tile[i][j + 1].setIcon(ship5_4);
-                        map.tile[i][j - 2].setIcon(ship5_1);
-                        map.tile[i][j + 2].setIcon(ship5_5);
+                        setIcon(ship5_3tilted);
+                        map.tile[i][j - 1].setIcon(ship5_2tilted);
+                        map.tile[i][j + 1].setIcon(ship5_4tilted);
+                        map.tile[i][j - 2].setIcon(ship5_1tilted);
+                        map.tile[i][j + 2].setIcon(ship5_5tilted);
                     }
                 }
             } catch (Exception ignored) {
