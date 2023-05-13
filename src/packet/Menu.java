@@ -16,6 +16,7 @@ public class Menu extends JFrame {
     JButton play = new JButton("Gioca");
     JLabel emptySpace = new JLabel();
     JLabel background = new JLabel();
+    JLabel credits = new JLabel();
     Font font;
 
     public Menu() {
@@ -33,7 +34,8 @@ public class Menu extends JFrame {
         background.setLayout(new FlowLayout());
         background.setIcon(seaImage);
 
-        emptySpace.setBorder(BorderFactory.createEmptyBorder(500,0,100,0));
+        credits.setText("by Corra and Nikko");
+        emptySpace.setBorder(BorderFactory.createEmptyBorder(500,0,0,0));
 
         //Aspetto grafico del bottone
         play.setFont(font);
@@ -44,6 +46,8 @@ public class Menu extends JFrame {
 
         background.add(emptySpace);
         background.add(play);   //Aggiunta del bottone al label
+        background.add(credits);
+        background.add(emptySpace);
 
         c.add(background);       //Aggiunta del panel al content pane
 
