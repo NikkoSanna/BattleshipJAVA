@@ -13,10 +13,7 @@ public class Menu extends JFrame {
 
     //Oggetti legati all'interfaccia
     Container c = this.getContentPane();
-    JPanel panel = new JPanel();
-    JButton singleplayer = new JButton("Singleplayer"); //Non implementato
-    JButton multiplayer = new JButton("Multiplayer");
-    JButton settings = new JButton("Impostazioni");      //Non implementato
+    JButton play = new JButton("Gioca");
 
     JLabel background = new JLabel();
     Font font;
@@ -37,36 +34,16 @@ public class Menu extends JFrame {
         background.setIcon(seaImage);
 
         //Aspetto grafico dei bottoni
-        singleplayer.setFont(font);
-        singleplayer.setBorder(BorderFactory.createLineBorder(Color.GRAY, 2));
-        singleplayer.setBackground(Color.WHITE);
-        singleplayer.setOpaque(true);
-        multiplayer.setFont(font);
-        multiplayer.setBorder(BorderFactory.createLineBorder(Color.GRAY, 2));
-        multiplayer.setBackground(Color.WHITE);
-        multiplayer.setOpaque(true);
-        settings.setFont(font);
-        settings.setBorder(BorderFactory.createLineBorder(Color.GRAY, 2));
-        settings.setBackground(Color.WHITE);
-        settings.setOpaque(true);
+        play.setFont(font);
+        play.setBorder(BorderFactory.createLineBorder(Color.GRAY, 2));
+        play.setBackground(Color.WHITE);
+        play.setOpaque(true);
 
-        //Aggiunta dei bottoni al panel
-        panel.setBorder(new EmptyBorder(250, 100, 100, 100));
-        panel.setLayout(new GridLayout(3, 1, 20, 30));
-        panel.setOpaque(false);
-        panel.add(singleplayer);
-        panel.add(multiplayer);
-        panel.add(settings);
-
-        background.add(panel);   //Aggiunta del panel al label
+        background.add(play);   //Aggiunta del bottone al label
 
         c.add(background);       //Aggiunta del panel al content pane
 
-
-        //Aggiunta di action listener per i bottoni
-        singleplayer.addActionListener(listener);
-        multiplayer.addActionListener(listener);
-        settings.addActionListener(listener);
+        play.addActionListener(listener);   //Aggiunta di action listener per il bottone
 
         this.addWindowListener(listener);   //Aggiunta di un window listener al frame
 

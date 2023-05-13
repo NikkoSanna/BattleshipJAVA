@@ -252,7 +252,129 @@ public class Client extends JFrame implements Runnable {
                                 } catch (Exception ex) {
                                     ex.printStackTrace();
                                 }
-                            }else{
+                            }
+                            else if (str.equals("shipTwoSunkTilt")) {
+                                shipSunk++;
+                                //Uso un ciclo e leggo dal client tutte le coordinate delle caselle
+                                for (int a = 0; a < mapTwo.shipTwo_Tiles.length; a++) {
+                                    str = bufferIn.readLine();
+
+                                    String[] coordinates2 = str.split(",");     //Splitto le coordinate
+                                    int x2 = Integer.parseInt(coordinates2[0]) + 1;     //Converto la coordinata x in intero
+                                    int y2 = Integer.parseInt(coordinates2[1]) + 1;     //Converto la coordinata y in intero
+
+                                    //Cambio le icone
+                                    if (a == 0) {
+                                        mapTwo.tile[x2][y2].setIcon(mapTwo.tile[x2][y2].ship2_1HitTilted);
+                                    } else if (a == 1) {
+                                        mapTwo.tile[x2][y2].setIcon(mapTwo.tile[x2][y2].ship2_2HitTilted);
+                                    }
+                                }
+
+                                //Effetto audio affondo
+                                try {
+                                    File file = new File("SunkSoundEffect.wav"); // Inserire il percorso del file audio clic
+                                    Clip clip = AudioSystem.getClip();
+                                    clip.open(AudioSystem.getAudioInputStream(file));
+                                    clip.start();
+                                } catch (Exception ex) {
+                                    ex.printStackTrace();
+                                }
+                            } else if (str.equals("shipThreeSunkTilt")) {
+                                shipSunk++;
+                                //Uso un ciclo e leggo dal client tutte le coordinate delle caselle
+                                for (int a = 0; a < mapTwo.shipThree_Tiles.length; a++) {
+                                    str = bufferIn.readLine();
+
+                                    String[] coordinates2 = str.split(",");     //Splitto le coordinate
+                                    int x2 = Integer.parseInt(coordinates2[0]) + 1;     //Converto la coordinata x in intero
+                                    int y2 = Integer.parseInt(coordinates2[1]) + 1;     //Converto la coordinata y in intero
+
+                                    //Cambio le icone
+                                    if (a == 0) {
+                                        mapTwo.tile[x2][y2].setIcon(mapTwo.tile[x2][y2].ship3_1HitTilted);
+                                    } else if (a == 1) {
+                                        mapTwo.tile[x2][y2].setIcon(mapTwo.tile[x2][y2].ship3_2HitTilted);
+                                    } else if (a == 2) {
+                                        mapTwo.tile[x2][y2].setIcon(mapTwo.tile[x2][y2].ship3_3HitTilted);
+                                    }
+                                }
+
+                                //Effetto audio affondo
+                                try {
+                                    File file = new File("SunkSoundEffect.wav"); // Inserire il percorso del file audio clic
+                                    Clip clip = AudioSystem.getClip();
+                                    clip.open(AudioSystem.getAudioInputStream(file));
+                                    clip.start();
+                                } catch (Exception ex) {
+                                    ex.printStackTrace();
+                                }
+                            } else if (str.equals("shipFourSunkTilt")) {
+                                shipSunk++;
+                                //Uso un ciclo e leggo dal client tutte le coordinate delle caselle
+                                for (int a = 0; a < mapTwo.shipFour_Tiles.length; a++) {
+                                    str = bufferIn.readLine();
+
+                                    String[] coordinates2 = str.split(",");     //Splitto le coordinate
+                                    int x2 = Integer.parseInt(coordinates2[0]) + 1;     //Converto la coordinata x in intero
+                                    int y2 = Integer.parseInt(coordinates2[1]) + 1;     //Converto la coordinata y in intero
+
+                                    //Cambio le icone
+                                    if (a == 0) {
+                                        mapTwo.tile[x2][y2].setIcon(mapTwo.tile[x2][y2].ship4_1HitTilted);
+                                    } else if (a == 1) {
+                                        mapTwo.tile[x2][y2].setIcon(mapTwo.tile[x2][y2].ship4_2HitTilted);
+                                    } else if (a == 2) {
+                                        mapTwo.tile[x2][y2].setIcon(mapTwo.tile[x2][y2].ship4_3HitTilted);
+                                    } else if (a == 3) {
+                                        mapTwo.tile[x2][y2].setIcon(mapTwo.tile[x2][y2].ship4_4HitTilted);
+                                    }
+                                }
+
+                                //Effetto audio affondo
+                                try {
+                                    File file = new File("SunkSoundEffect.wav"); // Inserire il percorso del file audio clic
+                                    Clip clip = AudioSystem.getClip();
+                                    clip.open(AudioSystem.getAudioInputStream(file));
+                                    clip.start();
+                                } catch (Exception ex) {
+                                    ex.printStackTrace();
+                                }
+                            } else if (str.equals("shipFiveSunkTilt")) {
+                                shipSunk++;
+                                //Uso un ciclo e leggo dal client tutte le coordinate delle caselle
+                                for (int a = 0; a < mapTwo.shipFive_Tiles.length; a++) {
+                                    str = bufferIn.readLine();
+
+                                    String[] coordinates2 = str.split(",");     //Splitto le coordinate
+                                    int x2 = Integer.parseInt(coordinates2[0]) + 1;     //Converto la coordinata x in intero
+                                    int y2 = Integer.parseInt(coordinates2[1]) + 1;     //Converto la coordinata y in intero
+
+                                    //Cambio le icone
+                                    if (a == 0) {
+                                        mapTwo.tile[x2][y2].setIcon(mapTwo.tile[x2][y2].ship5_1HitTilted);
+                                    } else if (a == 1) {
+                                        mapTwo.tile[x2][y2].setIcon(mapTwo.tile[x2][y2].ship5_2HitTilted);
+                                    } else if (a == 2) {
+                                        mapTwo.tile[x2][y2].setIcon(mapTwo.tile[x2][y2].ship5_3HitTilted);
+                                    } else if (a == 3) {
+                                        mapTwo.tile[x2][y2].setIcon(mapTwo.tile[x2][y2].ship5_4HitTilted);
+                                    } else if (a == 4) {
+                                        mapTwo.tile[x2][y2].setIcon(mapTwo.tile[x2][y2].ship5_5HitTilted);
+                                    }
+                                }
+
+                                //Effetto audio affondo
+                                try {
+                                    File file = new File("SunkSoundEffect.wav"); // Inserire il percorso del file audio clic
+                                    Clip clip = AudioSystem.getClip();
+                                    clip.open(AudioSystem.getAudioInputStream(file));
+                                    clip.start();
+                                } catch (Exception ex) {
+                                    ex.printStackTrace();
+                                }
+                            }
+                            else{
                                 //Effetto audio colpita (senza affondo)
                                 try {
                                     File file = new File("HitSoundEffect.wav"); // Inserire il percorso del file audio clic

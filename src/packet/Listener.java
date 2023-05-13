@@ -43,17 +43,9 @@ public class Listener extends JFrame implements ActionListener, WindowListener {
         //Metodi richiamati dal menú
         try {
             //Apertura della mappa
-            if (e.getSource() == menu.singleplayer) {
-                //Work in progress
-            }
-            //Continuo della partita precedente
-            else if (e.getSource() == menu.multiplayer) {
+            if (e.getSource() == menu.play) {
                 PlayerRole playerRole = new PlayerRole();
                 menu.dispose();
-            }
-            //Apertura della pagina impostazioni
-            else {
-                //Settings opt = new Settings();
             }
         } catch (Exception ignored) {
         }
@@ -228,6 +220,11 @@ public class Listener extends JFrame implements ActionListener, WindowListener {
                 map.shipselect.ship3.setEnabled(true);
                 map.shipselect.ship4.setEnabled(true);
                 map.shipselect.ship5.setEnabled(true);
+
+                map.shipTwo_isTilted = false;
+                map.shipThree_isTilted = false;
+                map.shipFour_isTilted = false;
+                map.shipFive_isTilted = false;
             }
         } catch (Exception ignored) {
         }
