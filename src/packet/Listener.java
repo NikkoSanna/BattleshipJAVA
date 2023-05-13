@@ -64,9 +64,11 @@ public class Listener extends JFrame implements ActionListener, WindowListener {
                 if(!shipSelect.map.tilted){
                     shipSelect.map.tilted = true;
                     shipSelect.shipRotation.setIcon(shipSelect.iconRotationX);
+                    shipSelect.shipRotation.setBorder(BorderFactory.createEmptyBorder(40,0,0,0));
                 }else{
                     shipSelect.map.tilted = false;
                     shipSelect.shipRotation.setIcon(shipSelect.iconRotationY);
+                    shipSelect.shipRotation.setBorder(BorderFactory.createEmptyBorder(0,0,0,0));
                 }
 
             }
@@ -77,6 +79,9 @@ public class Listener extends JFrame implements ActionListener, WindowListener {
                 //Rendo il bottone della barca non piú usabile e nascondo lo ship selector
                 shipSelect.ship2.setEnabled(false);
                 shipSelect.setVisible(false);
+
+                shipSelect.shipRotation.setIcon(shipSelect.iconRotationY);
+                shipSelect.shipRotation.setBorder(BorderFactory.createEmptyBorder(0,0,0,0));
 
                 //Imposto il tipo di barca che andró a piazzare
                 shipSelect.map.setShipType(e.getActionCommand());
@@ -89,6 +94,9 @@ public class Listener extends JFrame implements ActionListener, WindowListener {
                 shipSelect.ship3.setEnabled(false);
                 shipSelect.setVisible(false);
 
+                shipSelect.shipRotation.setIcon(shipSelect.iconRotationY);
+                shipSelect.shipRotation.setBorder(BorderFactory.createEmptyBorder(0,0,0,0));
+
                 //Imposto il tipo di barca che andró a piazzare
                 shipSelect.map.setShipType(e.getActionCommand());
             }
@@ -100,6 +108,9 @@ public class Listener extends JFrame implements ActionListener, WindowListener {
                 shipSelect.ship4.setEnabled(false);
                 shipSelect.setVisible(false);
 
+                shipSelect.shipRotation.setIcon(shipSelect.iconRotationY);
+                shipSelect.shipRotation.setBorder(BorderFactory.createEmptyBorder(0,0,0,0));
+
                 //Imposto il tipo di barca che andró a piazzare
                 shipSelect.map.setShipType(e.getActionCommand());
             }
@@ -110,6 +121,9 @@ public class Listener extends JFrame implements ActionListener, WindowListener {
                 //Rendo il bottone della barca non piú usabile e nascondo lo ship selector
                 shipSelect.ship5.setEnabled(false);
                 shipSelect.setVisible(false);
+
+                shipSelect.shipRotation.setIcon(shipSelect.iconRotationY);
+                shipSelect.shipRotation.setBorder(BorderFactory.createEmptyBorder(0,0,0,0));
 
                 //Imposto il tipo di barca che andró a piazzare
                 shipSelect.map.setShipType(e.getActionCommand());
@@ -146,6 +160,28 @@ public class Listener extends JFrame implements ActionListener, WindowListener {
         //Metodi richiamati dalla mappa
         try {
             if (e.getSource() == map.ready) {
+                System.out.println(map.shipTwo_Tiles[0]);
+                System.out.println(map.shipTwo_Tiles[1]);
+                System.out.println("\n-------------\n");
+
+                System.out.println(map.shipThree_Tiles[0]);
+                System.out.println(map.shipThree_Tiles[1]);
+                System.out.println(map.shipThree_Tiles[2]);
+                System.out.println("\n-------------\n");
+
+                System.out.println(map.shipFour_Tiles[0]);
+                System.out.println(map.shipFour_Tiles[1]);
+                System.out.println(map.shipFour_Tiles[2]);
+                System.out.println(map.shipFour_Tiles[3]);
+                System.out.println("\n-------------\n");
+
+                System.out.println(map.shipFive_Tiles[0]);
+                System.out.println(map.shipFive_Tiles[1]);
+                System.out.println(map.shipFive_Tiles[2]);
+                System.out.println(map.shipFive_Tiles[3]);
+                System.out.println(map.shipFive_Tiles[4]);
+                System.out.println("\n-------------\n");
+
                 map.bottomBar.remove(map.ready);
                 map.bottomBar.remove(map.clear);
                 map.repaint();      //Aggiorna l'interfaccia grafica
