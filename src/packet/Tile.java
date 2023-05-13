@@ -589,8 +589,6 @@ public class Tile extends JButton implements MouseListener {
                     if (map.shipTwo_Tiles[a].equals((i - 1) + "," + (j - 1))) {
                         map.shipTwo_Iterator--;     //Decremento il contatore delle caselle operative
 
-                        System.out.println(map.shipTwo_Iterator);
-
                         //Controllo se quella barca é stata affondata
                         if (map.shipTwo_Iterator == 0) {     //Se il contatore é arrivato a 0 allora la barca é stata affondata
                             map.shipTwo_Sunk = true;    //Imposto la barca come affondata
