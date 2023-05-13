@@ -160,6 +160,7 @@ public class Listener extends JFrame implements ActionListener, WindowListener {
         //Metodi richiamati dalla mappa
         try {
             if (e.getSource() == map.ready) {
+                /*
                 System.out.println(map.shipTwo_Tiles[0]);
                 System.out.println(map.shipTwo_Tiles[1]);
                 System.out.println("\n-------------\n");
@@ -187,6 +188,7 @@ public class Listener extends JFrame implements ActionListener, WindowListener {
                         System.out.println((i-1)+" "+(j-1)+" :"+map.tile[i][j].hasShip);
                     }
                 }
+                 */
 
                 map.bottomBar.remove(map.ready);
                 map.bottomBar.remove(map.clear);

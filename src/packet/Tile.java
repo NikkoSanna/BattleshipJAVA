@@ -442,7 +442,7 @@ public class Tile extends JButton implements MouseListener {
 
                 //Inserimento all'interno di un array delle coordinate che occupa la barca
                 map.shipTwo_Tiles[0] = (map.tile[i - 1][j].i - 1) + "," + (map.tile[i - 1][j].j - 1);
-                map.shipTwo_Tiles[1] = (i) + "," + (j - 1);
+                map.shipTwo_Tiles[1] = (i - 1) + "," + (j - 1);
             }
             //Se la barca selezionata é quella da 3
             else if (shipType.equals("ship3")) {
@@ -580,6 +580,8 @@ public class Tile extends JButton implements MouseListener {
                 for (int a = 0; a < map.shipTwo_Tiles.length; a++) {
                     if (map.shipTwo_Tiles[a].equals((i - 1) + "," + (j - 1))) {
                         map.shipTwo_Iterator--;     //Decremento il contatore delle caselle operative
+
+                        System.out.println(map.shipTwo_Iterator);
 
                         //Controllo se quella barca é stata affondata
                         if (map.shipTwo_Iterator == 0) {     //Se il contatore é arrivato a 0 allora la barca é stata affondata
