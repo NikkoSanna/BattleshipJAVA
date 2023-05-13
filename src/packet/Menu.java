@@ -14,7 +14,7 @@ public class Menu extends JFrame {
     //Oggetti legati all'interfaccia
     Container c = this.getContentPane();
     JButton play = new JButton("Gioca");
-
+    JLabel emptySpace = new JLabel();
     JLabel background = new JLabel();
     Font font;
 
@@ -27,18 +27,22 @@ public class Menu extends JFrame {
         } catch (Exception ignored) {}
 
 
-        c.setLayout(new BoxLayout(c, BoxLayout.Y_AXIS));      //Impostazione del layout del content pane
+        c.setLayout(new FlowLayout());      //Impostazione del layout del content pane
 
         //Aggiunta dello sfondo a un label
         background.setLayout(new FlowLayout());
         background.setIcon(seaImage);
 
-        //Aspetto grafico dei bottoni
+        emptySpace.setBorder(BorderFactory.createEmptyBorder(500,0,100,0));
+
+        //Aspetto grafico del bottone
         play.setFont(font);
         play.setBorder(BorderFactory.createLineBorder(Color.GRAY, 2));
         play.setBackground(Color.WHITE);
         play.setOpaque(true);
+        play.setPreferredSize(new Dimension(200, 70));
 
+        background.add(emptySpace);
         background.add(play);   //Aggiunta del bottone al label
 
         c.add(background);       //Aggiunta del panel al content pane
