@@ -612,9 +612,9 @@ public class Tile extends JButton implements MouseListener {
                             } else {
                                 try {
                                     if(!map.shipTwo_isTilted){
-                                        map.server.bufferOut.write("shipTwoSunk");
+                                        map.client.bufferOut.write("shipTwoSunk");
                                     }else{
-                                        map.server.bufferOut.write("shipTwoSunkTilt");
+                                        map.client.bufferOut.write("shipTwoSunkTilt");
                                     }
                                     map.client.bufferOut.newLine();
                                     map.client.bufferOut.flush();
@@ -695,9 +695,9 @@ public class Tile extends JButton implements MouseListener {
                             } else {
                                 try {
                                     if(!map.shipThree_isTilted){
-                                        map.server.bufferOut.write("shipThreeSunk");
+                                        map.client.bufferOut.write("shipThreeSunk");
                                     }else{
-                                        map.server.bufferOut.write("shipThreeSunkTilt");
+                                        map.client.bufferOut.write("shipThreeSunkTilt");
                                     }
                                     map.client.bufferOut.newLine();
                                     map.client.bufferOut.flush();
@@ -781,9 +781,9 @@ public class Tile extends JButton implements MouseListener {
                             } else {
                                 try {
                                     if(!map.shipFour_isTilted){
-                                        map.server.bufferOut.write("shipFourSunk");
+                                        map.client.bufferOut.write("shipFourSunk");
                                     }else{
-                                        map.server.bufferOut.write("shipFourSunkTilt");
+                                        map.client.bufferOut.write("shipFourSunkTilt");
                                     }
                                     map.client.bufferOut.newLine();
                                     map.client.bufferOut.flush();
@@ -872,9 +872,9 @@ public class Tile extends JButton implements MouseListener {
                             } else {
                                 try {
                                     if(!map.shipFive_isTilted){
-                                        map.server.bufferOut.write("shipFiveSunk");
+                                        map.client.bufferOut.write("shipFiveSunk");
                                     }else{
-                                        map.server.bufferOut.write("shipFiveSunkTilt");
+                                        map.client.bufferOut.write("shipFiveSunkTilt");
                                     }
                                     map.client.bufferOut.newLine();
                                     map.client.bufferOut.flush();
