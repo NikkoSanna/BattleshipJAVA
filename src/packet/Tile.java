@@ -496,7 +496,7 @@ public class Tile extends JButton implements MouseListener {
             //Se la barca selezionata é quella da 3
             else if (shipType.equals("ship3")) {
                 hasShip = true;
-                map.tile[j][j - 1].hasShip = true;
+                map.tile[i][j - 1].hasShip = true;
                 map.tile[i][j + 1].hasShip = true;
 
                 //Inserimento all'interno di un array delle coordinate che occupa la barca

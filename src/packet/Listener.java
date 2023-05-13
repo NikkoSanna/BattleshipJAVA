@@ -182,6 +182,12 @@ public class Listener extends JFrame implements ActionListener, WindowListener {
                 System.out.println(map.shipFive_Tiles[4]);
                 System.out.println("\n-------------\n");
 
+                for(int i=1; i<map.getDimension(); i++){
+                    for(int j=1; j<map.getDimension(); j++){
+                        System.out.println((i-1)+" "+(j-1)+" :"+map.tile[i][j].hasShip);
+                    }
+                }
+
                 map.bottomBar.remove(map.ready);
                 map.bottomBar.remove(map.clear);
                 map.repaint();      //Aggiorna l'interfaccia grafica
