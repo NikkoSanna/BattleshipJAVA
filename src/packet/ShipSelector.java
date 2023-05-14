@@ -17,7 +17,7 @@ public class ShipSelector extends JFrame {
     ImageIcon iconShip5 = new ImageIcon(new ImageIcon("images/ship5/ship5.png").getImage().getScaledInstance(190, 46, Image.SCALE_SMOOTH));
 
     ImageIcon iconRotationX = new ImageIcon(new ImageIcon("images/shipExample.png").getImage().getScaledInstance(114, 46, Image.SCALE_SMOOTH));
-    ImageIcon iconRotationY = new ImageIcon(new ImageIcon("images/shipExample.png").getImage().getScaledInstance(46, 114, Image.SCALE_SMOOTH));
+    ImageIcon iconRotationY = new ImageIcon(new ImageIcon("images/shipExampleTilted.png").getImage().getScaledInstance(46, 114, Image.SCALE_SMOOTH));
 
     //Oggetti legati all'interfaccia
     Container c = this.getContentPane();
