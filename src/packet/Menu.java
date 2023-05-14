@@ -28,13 +28,16 @@ public class Menu extends JFrame {
         } catch (Exception ignored) {}
 
 
-        c.setLayout(new FlowLayout());      //Impostazione del layout del content pane
+        c.setLayout(new BorderLayout());      //Impostazione del layout del content pane
 
         //Aggiunta dello sfondo a un label
         background.setLayout(new FlowLayout());
         background.setIcon(seaImage);
 
+        //Aspetto grafico della scritta dei credits
         credits.setText("by Corra and Nikko");
+        credits.setFont(font.deriveFont(Font.PLAIN, 15));
+
         emptySpace.setBorder(BorderFactory.createEmptyBorder(500,0,0,0));
 
         //Aspetto grafico del bottone
@@ -46,10 +49,10 @@ public class Menu extends JFrame {
 
         background.add(emptySpace);
         background.add(play);   //Aggiunta del bottone al label
-        background.add(credits);
         background.add(emptySpace);
 
-        c.add(background);       //Aggiunta del panel al content pane
+        c.add(background, BorderLayout.CENTER);       //Aggiunta del panel al content pane
+        c.add(credits, BorderLayout.PAGE_END);      //Aggiunta della scritta dei credits
 
         play.addActionListener(listener);   //Aggiunta di action listener per il bottone
 
