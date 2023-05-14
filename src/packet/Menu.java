@@ -36,6 +36,7 @@ public class Menu extends JFrame {
 
         //Aspetto grafico della scritta dei credits
         credits.setText("by Corra and Nikko");
+        credits.setHorizontalAlignment(JLabel.RIGHT);
         credits.setFont(font.deriveFont(Font.PLAIN, 15));
 
         emptySpace.setBorder(BorderFactory.createEmptyBorder(500,0,0,0));
